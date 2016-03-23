@@ -44,18 +44,15 @@ use pocketmine\event\Listener;
 use pocketmine\level\Position;
 use pocketmine\entity\Effect;
 use pocketmine\entity\EntityDamageByEntity;
-use DarkWav\BSdriver;
 
 class AntiCheat extends PluginBase implements Listener{
 
     public function onEnable(){
 
     $this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] AntiCheat Activated");
-
 	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] Shield Activated");
-
-	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] AntiCheat version = v1.3-R1");
-
+	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] AntiCheat version = v1.3-R2");
+	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] Enabling EssentialsPE support");
 	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] Supported server software = ImagicalMine v1.4     [Elite]");
 	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] Supported server software = PocketMine-MP v1.6dev [Kappatsu Fugu]");
     
@@ -85,7 +82,7 @@ class AntiCheat extends PluginBase implements Listener{
             
             elseif($args[0] == "Information") {
             
-               $sender->sendMessage(TextFormat::AQUA."[AntiCheat] AntiCheat v1.3-R1 [ELITE] ~ DarkWav (Darku)");
+               $sender->sendMessage(TextFormat::AQUA."[AntiCheat] AntiCheat v1.3-R2 [ELITE] ~ DarkWav (Darku)");
                
             }
             
@@ -95,7 +92,7 @@ class AntiCheat extends PluginBase implements Listener{
 	
 	//ForceGameMode-Detection            
     
-    public function onPlayerGameModeChange(Player $player, array $permission) {
+    public function onPlayerGameModeChange(Player $player, Permission $permission) {
 
 	if ($player->changeGameMode()){
 
@@ -119,13 +116,53 @@ class AntiCheat extends PluginBase implements Listener{
            
                $player->banPlayer()->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were permanently banned for ForceGamemode-Cheating!")->banReason(TextFormat::AQUA."[AntiCheat] You were permanently banned for ForceGamemode-Cheating!");
               
-            }
+    }
 	
+	            elseif($permission == "none") {
+
+    //Bans the Hacker.
+           
+               $player->banPlayer()->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were permanently banned for ForceGamemode-Cheating!")->banReason(TextFormat::AQUA."[AntiCheat] You were permanently banned for ForceGamemode-Cheating!");
+              
+    }
+	
+	            elseif($permission == "moderator") {
+
+    //Moderator hook.
+           
+               $player->sendMessage(TextFormat::AQUA."[AntiCheat] You passed Gamemode changeing!");
+              
+    }
+
+	            elseif($permission == "essentials.gamemode") {
+
+    //EssentialsPE hook.
+           
+               $player->sendMessage(TextFormat::AQUA."[AntiCheat] You passed Gamemode changeing [Hooked into EssentialsPE]!");
+              
+    }
+
+	            elseif($permission == "command.gamemode") {
+
+    //Extra permission hook.
+           
+               $player->sendMessage(TextFormat::AQUA."[AntiCheat] You passed Gamemode changeing!");
+              
+    }
+
+	            elseif($permission == "anticheat.bypass") {
+
+    //AntiCheat permission hook.
+           
+               $player->sendMessage(TextFormat::AQUA."[AntiCheat] You passed Gamemode changeing!");
+              
+    }
+
     }
 	
 	//ForceField-Detection           
 
-    public function onEntityDamageByEntity(Player $damager, Entity $entity) {
+    public function onEntityDamageByEntity(Damager $damager, Entity $entity) {
 
 	if ($damager->damageEntity($entity)){
 
@@ -146,7 +183,151 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::GOLD."[AntiCheatPlus] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 3) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 4) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 5) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 6) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 7) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 8) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 9) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 10) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 11) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 12) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 13) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 14) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 15) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 16) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 17) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 18) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 19) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 20) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -162,4 +343,3 @@ class AntiCheat extends PluginBase implements Listener{
 //     All rights reserved.                         //
 //                                                  //
 //////////////////////////////////////////////////////
-
