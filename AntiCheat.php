@@ -9,11 +9,6 @@ use pocketmine\command\Command;
 use pocketmine\plugin\PluginDescription;
 use pocketmine\plugin\EventExecutor;
 use pocketmine\plugin\MethodEventExecutor;
-use pocketmine\plugin\PluginLoader;
-use pocketmine\plugin\PluginLoadOrder;
-use pocketmine\plugin\PluginLogger;
-use pocketmine\plugin\PluginManager;
-use pocketmine\plugin\ScriptPluginLoader;
 use pocketmine\player\PlayerListEntry;
 use pocketmine\event\player\PlayerAnimationEvent;
 use pocketmine\event\player\PlayerChatEvent;
@@ -23,9 +18,7 @@ use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\player\PlayerDropItemEvent;
 use pocketmine\event\player\PlayerEvent;
 use pocketmine\event\player\PlayerGameModeChangeEvent;
-use pocketmine\event\player\PlayerHungerChangeEvent;
 use pocketmine\event\player\PlayerInteractEvent;
-use pocketmine\event\player\PlayerItemConsumeEvent;
 use pocketmine\event\player\PlayerItemHeldEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerKickEvent;
@@ -51,7 +44,7 @@ class AntiCheat extends PluginBase implements Listener{
 
     $this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] AntiCheat Activated");
 	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] Shield Activated");
-	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] AntiCheat version = v1.3-R2");
+	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] AntiCheat version = v1.3-R3");
 	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] Enabling EssentialsPE support");
 	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] Supported server software = ImagicalMine v1.4     [Elite]");
 	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] Supported server software = PocketMine-MP v1.6dev [Kappatsu Fugu]");
@@ -82,7 +75,7 @@ class AntiCheat extends PluginBase implements Listener{
             
             elseif($args[0] == "Information") {
             
-               $sender->sendMessage(TextFormat::AQUA."[AntiCheat] AntiCheat v1.3-R2 [ELITE] ~ DarkWav (Darku)");
+               $sender->sendMessage(TextFormat::AQUA."[AntiCheat] AntiCheat v1.3-R3 [Anti-Exploit] [Anti-ForceField] ~ DarkWav (Darku)");
                
             }
             
@@ -155,6 +148,68 @@ class AntiCheat extends PluginBase implements Listener{
     //AntiCheat permission hook.
            
                $player->sendMessage(TextFormat::AQUA."[AntiCheat] You passed Gamemode changeing!");
+              
+    }
+
+    }
+
+	//ForceOP-Detection            
+    
+    public function onPlayerGetPermission(Player $player, Permission $permission, Switcher $switcher) {
+
+	if ($player->getPermission($permission == "op")){
+
+	$switcher->getPlayer()->getPermissions();
+
+	$switcher->getPlayer()->getName();
+
+	}
+
+	//Checks permissions.
+
+	           if($permission == "op") {
+              
+               $player->sendMessage(TextFormat::AQUA."[AntiCheat] You passed ForceOP check!");
+   
+    }
+
+	            elseif($permission == "notoperator") {
+
+    //Bans the Hacker.
+           
+               $player->banPlayer()->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were permanently banned for ForceOP-Cheating!")->banReason(TextFormat::AQUA."[AntiCheat] You were permanently banned for ForceOP-Cheating!");
+              
+    }
+	
+	            elseif($permission == "none") {
+
+    //Bans the Hacker.
+           
+               $player->banPlayer()->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were permanently banned for ForceOP-Cheating!")->banReason(TextFormat::AQUA."[AntiCheat] You were permanently banned for ForceOP-Cheating!");
+              
+    }
+	
+	            elseif($permission == "moderator") {
+
+    //Moderator hook.
+           
+               $player->sendMessage(TextFormat::AQUA."[AntiCheat] You passed ForceOP check!");
+              
+    }
+
+	            elseif($permission == "command.op") {
+
+    //Extra permission hook.
+           
+               $player->sendMessage(TextFormat::AQUA."[AntiCheat] [AntiCheat] You passed ForceOP check!");
+              
+    }
+
+	            elseif($permission == "anticheat.bypass") {
+
+    //AntiCheat permission hook.
+           
+               $player->sendMessage(TextFormat::AQUA."[AntiCheat] You passed ForceOP check!");
               
     }
 
