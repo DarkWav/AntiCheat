@@ -44,10 +44,10 @@ class AntiCheat extends PluginBase implements Listener{
 
     $this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] AntiCheat Activated");
 	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] Shield Activated");
-	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] AntiCheat version = v1.3-R3");
-	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] Enabling EssentialsPE support");
-	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] Supported server software = ImagicalMine v1.4     [Elite]");
-	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] Supported server software = PocketMine-MP v1.6dev [Kappatsu Fugu]");
+	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] AntiCheat version = v1.3.2-A3");
+	$this->getServer()->getLogger()->debug(TextFormat::AQUA."[AntiCheat] Enabling EssentialsPE support");
+	$this->getServer()->getLogger()->debug(TextFormat::AQUA."[AntiCheat] Supported server software = ImagicalMine v1.4     [Elite]");
+	$this->getServer()->getLogger()->debug(TextFormat::AQUA."[AntiCheat] Supported server software = PocketMine-MP v1.6dev [Kappatsu Fugu]");
     
     }
 
@@ -75,7 +75,7 @@ class AntiCheat extends PluginBase implements Listener{
             
             elseif($args[0] == "Information") {
             
-               $sender->sendMessage(TextFormat::AQUA."[AntiCheat] AntiCheat v1.3-R3 [Anti-Exploit] [Anti-ForceField] ~ DarkWav (Darku)");
+               $sender->sendMessage(TextFormat::AQUA."[AntiCheat] AntiCheat v1.3.2-Alpha3 [ALPHA] ~ DarkWav (Darku)");
                
             }
             
@@ -85,9 +85,9 @@ class AntiCheat extends PluginBase implements Listener{
 	
 	//ForceGameMode-Detection            
     
-    public function onPlayerGameModeChange(Player $player, Permission $permission) {
+    public function onPlayerGameModeChange(Player $player, Permission $permission, GameMode $gamemode) {
 
-	if ($player->changeGameMode()){
+	if ($player->changeGameMode($gamemode)){
 
 	$player->getPlayer()->getPermissions();
 
@@ -101,14 +101,6 @@ class AntiCheat extends PluginBase implements Listener{
               
                $player->sendMessage(TextFormat::AQUA."[AntiCheat] You passed Gamemode changeing!");
    
-    }
-
-	            elseif($permission == "notoperator") {
-
-    //Bans the Hacker.
-           
-               $player->banPlayer()->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were permanently banned for ForceGamemode-Cheating!")->banReason(TextFormat::AQUA."[AntiCheat] You were permanently banned for ForceGamemode-Cheating!");
-              
     }
 	
 	            elseif($permission == "none") {
@@ -159,7 +151,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	if ($player->getPermission($permission == "op")){
 
-	$switcher->getPlayer()->getPermissions();
+	$switcher->getPlayer()->getPermission();
 
 	$switcher->getPlayer()->getName();
 
@@ -171,14 +163,6 @@ class AntiCheat extends PluginBase implements Listener{
               
                $player->sendMessage(TextFormat::AQUA."[AntiCheat] You passed ForceOP check!");
    
-    }
-
-	            elseif($permission == "notoperator") {
-
-    //Bans the Hacker.
-           
-               $player->banPlayer()->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were permanently banned for ForceOP-Cheating!")->banReason(TextFormat::AQUA."[AntiCheat] You were permanently banned for ForceOP-Cheating!");
-              
     }
 	
 	            elseif($permission == "none") {
@@ -201,7 +185,7 @@ class AntiCheat extends PluginBase implements Listener{
 
     //Extra permission hook.
            
-               $player->sendMessage(TextFormat::AQUA."[AntiCheat] [AntiCheat] You passed ForceOP check!");
+               $player->sendMessage(TextFormat::AQUA."[AntiCheat] You passed ForceOP check!");
               
     }
 
@@ -210,6 +194,46 @@ class AntiCheat extends PluginBase implements Listener{
     //AntiCheat permission hook.
            
                $player->sendMessage(TextFormat::AQUA."[AntiCheat] You passed ForceOP check!");
+              
+    }
+
+    }
+
+	//ForceEffect-Detection            
+    
+    public function onPlayerGetEffect(Player $player, Permission $permission, Effect $effect) {
+
+	if ($player->getEffect()){
+
+	$player->getPlayer()->getPermission();
+
+	$player->getPlayer()->getName();
+
+	}
+
+	//Checks permissions.
+
+	           if($permission == "op") {
+   
+    }
+	
+	            elseif($permission == "none") {
+
+    //Bans the Hacker.
+           
+               $player->banPlayer()->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for ForceEffect-Cheating! This could be a fale positive becuse you have thrown a Potion!");
+              
+    }
+	
+	            elseif($permission == "moderator") {
+
+    }
+
+	            elseif($permission == "command.op") {    
+              
+    }
+
+	            elseif($permission == "anticheat.bypass") {      
               
     }
 
@@ -385,6 +409,47 @@ class AntiCheat extends PluginBase implements Listener{
 	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
+
+	elseif($entity = 21) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 22) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 23) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 24) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
+	elseif($entity = 25) {
+
+	//Kicks the Hacker.
+
+	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	}
+
 
 }
 
