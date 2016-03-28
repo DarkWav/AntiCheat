@@ -44,7 +44,7 @@ class AntiCheat extends PluginBase implements Listener{
 
     $this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] AntiCheat Activated");
 	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] Shield Activated");
-	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] AntiCheat version = v1.3.2-A3");
+	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] AntiCheat version = v1.3.2-A12");
 	$this->getServer()->getLogger()->debug(TextFormat::AQUA."[AntiCheat] Enabling EssentialsPE support");
 	$this->getServer()->getLogger()->debug(TextFormat::AQUA."[AntiCheat] Supported server software = ImagicalMine v1.4     [Elite]");
 	$this->getServer()->getLogger()->debug(TextFormat::AQUA."[AntiCheat] Supported server software = PocketMine-MP v1.6dev [Kappatsu Fugu]");
@@ -75,7 +75,7 @@ class AntiCheat extends PluginBase implements Listener{
             
             elseif($args[0] == "Information") {
             
-               $sender->sendMessage(TextFormat::AQUA."[AntiCheat] AntiCheat v1.3.2-Alpha3 [ALPHA] ~ DarkWav (Darku)");
+               $sender->sendMessage(TextFormat::AQUA."[AntiCheat] AntiCheat v1.3.2-Alpha12 [ALPHA] ~ DarkWav (Darku)");
                
             }
             
@@ -107,7 +107,7 @@ class AntiCheat extends PluginBase implements Listener{
 
     //Bans the Hacker.
            
-               $player->banPlayer()->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were permanently banned for ForceGamemode-Cheating!")->banReason(TextFormat::AQUA."[AntiCheat] You were permanently banned for ForceGamemode-Cheating!");
+               $player->banPlayer()->banReason(TextFormat::AQUA."[AntiCheat] You were permanently banned for ForceGamemode-Cheating!");
               
     }
 	
@@ -169,7 +169,7 @@ class AntiCheat extends PluginBase implements Listener{
 
     //Bans the Hacker.
            
-               $player->banPlayer()->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were permanently banned for ForceOP-Cheating!")->banReason(TextFormat::AQUA."[AntiCheat] You were permanently banned for ForceOP-Cheating!");
+               $player->banPlayer()->banReason(TextFormat::AQUA."[AntiCheat] You were permanently banned for ForceOP-Cheating!");
               
     }
 	
@@ -209,6 +209,8 @@ class AntiCheat extends PluginBase implements Listener{
 
 	$player->getPlayer()->getName();
 
+	$player->getPotion()->getEffect();
+
 	}
 
 	//Checks permissions.
@@ -221,7 +223,7 @@ class AntiCheat extends PluginBase implements Listener{
 
     //Bans the Hacker.
            
-               $player->banPlayer()->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for ForceEffect-Cheating! This could be a fale positive becuse you have thrown a Potion!");
+               $player->banPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for ForceEffect-Cheating! This could be a fale positive because you have thrown a Potion!");
               
     }
 	
@@ -262,7 +264,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -270,7 +272,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -278,7 +280,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -286,7 +288,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -294,7 +296,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -302,7 +304,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -310,7 +312,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -318,7 +320,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -326,7 +328,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -334,7 +336,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -342,7 +344,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -350,7 +352,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -358,7 +360,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -366,7 +368,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -374,7 +376,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -382,7 +384,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -390,7 +392,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -398,7 +400,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -406,7 +408,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -414,7 +416,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -422,7 +424,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -430,7 +432,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -438,7 +440,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
@@ -446,12 +448,74 @@ class AntiCheat extends PluginBase implements Listener{
 
 	//Kicks the Hacker.
 
-	$damager->kickPlayer($damager)->sendQuitMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+	$damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	}
 
 
 }
+
+//Speed Detection.
+
+public function onPlayerMove(Player $player, Position $pos, Tick $tick, Time $h, Speed $speed) {
+
+    if ($player->playerMove()){
+
+	$player->getPosition();
+
+	$player->getMoveSpeed();
+
+	$player->getMoveTime();
+
+	$this->getServer()->getTick();
+
+	}
+
+	if ($speed=4.3) {}
+	elseif ($speed=5.0) {}
+	elseif ($speed=6.0) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=6.1) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=6.2) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=6.3) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=6.4) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=6.5) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=6.6) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=6.7) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=6.8) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=6.9) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+    elseif ($speed=7.0) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+    elseif ($speed=7.1) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=7.2) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=7.3) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=7.4) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=7.5) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=7.6) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=7.7) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=7.8) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=7.9) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=8.0) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+    elseif ($speed=8.1) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=8.2) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=8.3) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=8.4) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=8.5) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=8.6) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=8.7) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=8.8) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=8.9) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+    elseif ($speed=9.0) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+    elseif ($speed=9.1) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=9.2) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=9.3) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=9.4) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=9.5) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=9.6) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=9.7) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=9.8) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=9.9) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	elseif ($speed=10.0) {$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+
+	}
 
 }
 
