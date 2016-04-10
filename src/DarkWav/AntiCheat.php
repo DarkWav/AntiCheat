@@ -37,26 +37,27 @@ use pocketmine\event\Listener;
 use pocketmine\level\Position;
 use pocketmine\entity\Effect;
 use pocketmine\entity\EntityDamageByEntity;
-use Key\keyghabhjaksbxcklcabhgckwhbjvfajkvdfj;
 
-class AntiCheat extends PluginBase implements Listener {
+class AntiCheat extends PluginBase implements Listener{
 
     public function onEnable(){
 
     $this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] AntiCheat Activated");
 	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] Shield Activated");
-	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] AntiCheat version = v1.4 (b2)");
+	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] AntiCheat v1.4 (b5) [Ultimate] ~ DarkWav");
 	$this->getServer()->getLogger()->warning(TextFormat::RED."[AntiCheat] If you are using Genisys ITX Core, this Plugin may not work!");
 	$this->getServer()->getLogger()->debug(TextFormat::AQUA."[AntiCheat] Enabling EssentialsPE support");
 	$this->getServer()->getLogger()->debug(TextFormat::AQUA."[AntiCheat] Supported server software = ImagicalMine  v1.4    [Elite] (100% Stable!)");
-	$this->getServer()->getLogger()->debug(TextFormat::AQUA."[AntiCheat] Supported server software = PocketMine-MP v1.6dev [Kappatsu Fugu] (Could cause lag!");
+	$this->getServer()->getLogger()->debug(TextFormat::AQUA."[AntiCheat] Supported server software = PocketMine-MP v1.6dev [Kappatsu Fugu] (Could cause lag!)");
     $this->getServer()->getLogger()->debug(TextFormat::RED."[AntiCheat] Supported server software = Genisys       v1.1dev [Icaros] (BETA-FEATURE!)");
     
     }
 
     public function onDisable(){
     
-    $this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] AntiCheat Deactivated");    
+    $this->getServer()->getLogger()->warning(TextFormat::RED."[AntiCheat] You are no longer protected from cheats!");
+    $this->getServer()->getLogger()->warning(TextFormat::RED."[AntiCheat] Shield Deactivated");
+	$this->getServer()->getLogger()->warning(TextFormat::RED."[AntiCheat] AntiCheat Deactivated");    
     
     }
     
@@ -78,12 +79,12 @@ class AntiCheat extends PluginBase implements Listener {
             
             elseif($args[0] == "Information") {
             
-               $sender->sendMessage(TextFormat::AQUA."[AntiCheat] AntiCheat v1.4 (build 2) [Ultimate] ~ DarkWav (Darku)");
+               $sender->sendMessage(TextFormat::AQUA."[AntiCheat] AntiCheat v1.4 (build 5) [Ultimate] ~ DarkWav (Darku)");
                
             }
             
       }
-      
+
     }
 	
 	//ForceGameMode-Detection            
@@ -100,21 +101,14 @@ class AntiCheat extends PluginBase implements Listener {
 
 	//Checks permissions.
 
-	           if($permission == "op") {
+	           if($player !== $player and !$player->hasPermission("none")){
               
                $player->sendMessage(TextFormat::AQUA."[AntiCheat] You passed Gamemode changeing!");
    
     }
 	
-	            elseif($permission == "none") {
-
-    //Bans the Hacker.
-           
-               $player->banPlayer()->banReason(TextFormat::AQUA."[AntiCheat] You were permanently banned for ForceGamemode-Cheating!");
-              
-    }
 	
-	            elseif($permission == "moderator") {
+	            elseif($player !== $player and !$player->hasPermission("moderator")){
 
     //Moderator hook.
            
@@ -122,7 +116,7 @@ class AntiCheat extends PluginBase implements Listener {
               
     }
 
-	            elseif($permission == "essentials.gamemode") {
+	            elseif($target !== $player and !$sender->hasPermission("anticheat")){
 
     //EssentialsPE hook.
            
@@ -130,7 +124,7 @@ class AntiCheat extends PluginBase implements Listener {
               
     }
 
-	            elseif($permission == "command.gamemode") {
+	            elseif($player !== $player and !$player->hasPermission("command.gamemode")){
 
     //Extra permission hook.
            
@@ -138,7 +132,7 @@ class AntiCheat extends PluginBase implements Listener {
               
     }
 
-	            elseif($permission == "anticheat.bypass") {
+	            elseif($player !== $player and !$player->hasPermission("anticheat.bypass")){
 
     //AntiCheat permission hook.
            
