@@ -1,0 +1,8 @@
+---
+# AntiCheat Config:
+Messages: true
+ForceGameMode: true
+OneHit/Unkillable: true
+# Beta:
+Speed: false
+...

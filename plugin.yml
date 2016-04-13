@@ -1,10 +1,14 @@
 name: AntiCheat
 main: DarkWav\AntiCheat
-version: 1.4 (b5)
+version: 1.5.1
+load: POSTWORLD
 author: DarkWav (Darku)
 api: ["2.1.0","2.0.0","1.14.0","1.13.2"]
 commands:
       anticheat:
+           description: anitcheat main command
+           aliases: ["anticheat"]
+      AntiCheat:
            description: AnitCheat main command
            aliases: ["AntiCheat"]
 permissions:
