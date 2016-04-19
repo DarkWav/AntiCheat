@@ -1,8 +1,15 @@
 ---
-# AntiCheat Config:
-Messages: true
-ForceGameMode: true
-OneHit/Unkillable: true
-# Beta:
-Speed: false
+#AntiCheat main configuration file
+#Some functions are Beta, some not
+#Release-Detections:
+#Wich damage Checks should be enabled?
+   Unkillable: true
+   OneHit: true
+#Beta-Detections (Could be Useless and cause lag)
+#Do you want to allow Beta Checks?
+#NEVR set them true on a production server.
+#Wich Beta Checks should be enabled?
+   Speed: false
+   ForceGameMode: false
+#AntiCheat main configuration file end
 ...

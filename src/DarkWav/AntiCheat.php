@@ -36,7 +36,7 @@ use pocketmine\permission\Permission;
 use pocketmine\event\Listener;
 use pocketmine\level\Position;
 use pocketmine\entity\Effect;
-use pocketmine\event\entity\EntityDamageByEntity;
+use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\entity\Damageable;
 use pocketmine\utils\Config;
 use pocketmine\event\entity\EntityDamageEvent;
@@ -47,23 +47,17 @@ class AntiCheat extends PluginBase implements Listener{
 	$this->saveDefaultConfig();
     $yml = new Config($this->getDataFolder() . "config.yml", Config::YAML);
     $this->yml = $yml->getAll();
-    if($this->yml["Messages"] == "true"){
   	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] AntiCheat Activated");
     $this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] Shield Activated");
-	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] AntiCheat v1.5.1 [Wolverine]");
-	 
-    }
+	$this->getServer()->getLogger()->info(TextFormat::AQUA."[AntiCheat] AntiCheat v1.7.1 [Wolverine]");
 
     }
 
     public function onDisable(){
-    
-	if($this->yml["Messages"] == "true"){
+
     $this->getServer()->getLogger()->warning(TextFormat::RED."[AntiCheat] You are no longer protected from cheats!");
     $this->getServer()->getLogger()->warning(TextFormat::RED."[AntiCheat] Shield Deactivated");
 	$this->getServer()->getLogger()->warning(TextFormat::RED."[AntiCheat] AntiCheat Deactivated");
-    
-	}
 
     }
     
@@ -85,13 +79,13 @@ class AntiCheat extends PluginBase implements Listener{
             
             elseif($args[0] == "information") {
             
-               $sender->sendMessage(TextFormat::AQUA."[AntiCheat] AntiCheat v1.5.1 [Wolverine] ~ DarkWav (Darku)");
-			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] ===== Blocked Hacks: =====");
-			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] =     -ForceGameMode     =");
-			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] =     -Unkillable        =");
-			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] =     -OneHit            =");
-			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] =     -Speed [BETA]      =");
-			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] ==========================");
+                $sender->sendMessage(TextFormat::AQUA."[AntiCheat] AntiCheat v1.7.1 [Wolverine] ~ DarkWav (Darku)");
+			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] ===== Blocked Hacks: =======");
+			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] =     -ForceGameMode [BETA]=");
+			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] =     -Unkillable          =");
+			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] =     -OneHit              =");
+			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] =     -Speed [BETA]        =");
+			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] ============================");
                
             }
             
@@ -113,13 +107,13 @@ class AntiCheat extends PluginBase implements Listener{
             
             elseif($args[0] == "Information") {
             
-               $sender->sendMessage(TextFormat::AQUA."[AntiCheat] AntiCheat v1.5.1 [Wolverine] ~ DarkWav (Darku)");
-			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] ===== Blocked Hacks: =====");
-			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] =     -ForceGameMode     =");
-			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] =     -Unkillable        =");
-			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] =     -OneHit            =");
-			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] =     -Speed [BETA]      =");
-			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] ==========================");
+               $sender->sendMessage(TextFormat::AQUA."[AntiCheat] AntiCheat v1.7.1 [Wolverine] ~ DarkWav (Darku)");
+			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] ===== Blocked Hacks: =======");
+			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] =     -ForceGameMode [BETA]=");
+			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] =     -Unkillable          =");
+			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] =     -OneHit              =");
+			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] =     -Speed [BETA]        =");
+			   $sender->sendMessage(TextFormat::AQUA."[AntiCheat] ============================");
                
             }
             
@@ -127,11 +121,11 @@ class AntiCheat extends PluginBase implements Listener{
 
     }
 	
-	//ForceGameMode-Detection [-->STABLE<--]           
+	//ForceGameMode-Detection [-->BETA<--]           
     
     public function onGameModeChange(Player $player, Permission $permission, NewGameMode $newGamemode) {
 
-	if ($player->gamemode = (int) $newGamemode()){
+	if ($player->changeGameMode()){
 
 	$player->getPlayer()->getPermissions();
 
@@ -186,9 +180,9 @@ class AntiCheat extends PluginBase implements Listener{
 
 	}
 	
-	//OneHit/Unkillable-Detection  [-->STABLE<--]     
+	//OneHit/Unkillable-Detection  [-->RELEASE<--]     
 
-    public function onDamage(EntityDamageEvent $e, Damager $damager, Entity $entity, Player $player, Damage $damage){
+    public function onDamage(EntityDamageByEntityEvent $e, Damager $damager, Entity $entity, Player $player, Damage $damage){
 
 	if ($e->getDamage($entity)){
 
@@ -210,233 +204,27 @@ class AntiCheat extends PluginBase implements Listener{
 
 	}
 
-	if($this->yml["OneHit/Unkillable"] == "true"){
+	if($this->yml["Unkillable"] == "true"){
 
-	//Checks how many Targets a player hits.
+	     if($damage = 0) {
 
-	if($damage = 0) {
+	     $entity = $player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Unkillable!");
 
-	$player = $entity->kickPlayer($entity)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Unkillable!");
+	     }
 
-	}
+	     }
 
-	elseif($damage = 20) {
+    elseif($this->yml["OneHit"] == "true"){
 
-	//Kicks the Hacker.
+	     if($damage > 19) {
 
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
+	     //Kicks the Hacker.
 
-	}
+	     $damager = $player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
 
-	elseif($damage = 20-100000) {
+	     }
 
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 21) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 22) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 23) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 24) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 25) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 26) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 27) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 28) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 29) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 30) {
-
-	//Kicks the Hacker.
-
-    $player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 31) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 32) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 33) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 34) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 35) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 36) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 37) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 38) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 39) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 40) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 41) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 42) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 43) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 44) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-	elseif($damage = 45) {
-
-	//Kicks the Hacker.
-
-	$player = $damager->kickPlayer($damager)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking OneHit!");
-
-	}
-
-}
+		 }
 
 }
 
@@ -454,28 +242,15 @@ public function onPlayerMove(Player $player, Location $from, Location $to){
 
 		if($this->yml["Speed"] == "true"){
 
-        if($getFrom($from)->getTo($to) == 1) {}
+        if($getFrom($from)->getTo($to) == 1) {
+		
+		}
 
-	    elseif($getFrom($from)->getTo($to) == 6){$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
-		elseif($getFrom($from)->getTo($to) == 7){$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
-        elseif($getFrom($from)->getTo($to) == 8){$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
-        elseif($getFrom($from)->getTo($to) == 9){$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
-        elseif($getFrom($from)->getTo($to) == 10){$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
-        elseif($getFrom($from)->getTo($to) == 11){$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
-        elseif($getFrom($from)->getTo($to) == 12){$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
-        elseif($getFrom($from)->getTo($to) == 13){$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
-        elseif($getFrom($from)->getTo($to) == 14){$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
-        elseif($getFrom($from)->getTo($to) == 15){$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
-        elseif($getFrom($from)->getTo($to) == 16){$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
-        elseif($getFrom($from)->getTo($to) == 17){$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
-        elseif($getFrom($from)->getTo($to) == 18){$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
-		elseif($getFrom($from)->getTo($to) == 19){$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
-		elseif($getFrom($from)->getTo($to) == 20){$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
-		elseif($getFrom($from)->getTo($to) == 21){$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
-		elseif($getFrom($from)->getTo($to) == 22){$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
-		elseif($getFrom($from)->getTo($to) == 23){$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
-		elseif($getFrom($from)->getTo($to) == 24){$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
-		elseif($getFrom($from)->getTo($to) == 25){$player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");}
+	    elseif($getFrom($from)->getTo($to) > 6){
+		
+		    $player->kickPlayer()->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");
+		
+		}
 
 		}
 
