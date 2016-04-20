@@ -2,9 +2,11 @@
 #AntiCheat main configuration file
 #Some functions are Beta, some not
 #Release-Detections:
-#Wich damage Checks should be enabled?
+#Wich Checks should be enabled?
    Unkillable: true
    OneHit: true
+   Nuker: [Comming Soon]
+   ForceOP: [Comming Soon]
 #Beta-Detections (Could be Useless and cause lag)
 #Do you want to allow Beta Checks?
 #NEVR set them true on a production server.

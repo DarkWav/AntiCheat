@@ -1,6 +1,6 @@
 name: AntiCheat
 main: DarkWav\AntiCheat
-version: 1.7.1
+version: 1.8.1
 load: STARTUP
 author: DarkWav (Darku)
 api: ["2.1.0","2.0.0","1.14.0","1.13.2"]
