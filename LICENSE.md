@@ -1,5 +1,4 @@
 # ImagicalMine License
-##### This license applies to all changes made by third-party organisations including, but not limited to, the Imagical Corporation, iTX Technologies and the Hydreon Corporation.
 
 This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0
 International License.
