@@ -1,21 +1,13 @@
 name: AntiCheat
 main: DarkWav\AntiCheat
-version: 1.8.1
+version: 2.2.1
 load: STARTUP
 author: DarkWav (Darku)
 api: ["2.1.0","2.0.0","1.14.0","1.13.2"]
 commands:
       anticheat:
            description: anitcheat main command
-           aliases: ["anticheat"]
-      AntiCheat:
+           aliases: ["AntiCheat"]
+      ac:
            description: AnitCheat main command
            aliases: ["AntiCheat"]
-permissions:
-    anticheat:
-        default: op
-        description: "Allows to use all AntiCheat features."
-children:
-    anticheat.bypass:
-        default: op
-        description: "Allows to bypass AntiCheat."
