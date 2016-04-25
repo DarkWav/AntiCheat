@@ -1,9 +1,12 @@
 ---
 #AntiCheat main configuration file
 #Wich Cheats should be blocked?
-   Unkillable: true
+   AntiKnockBack: true
    OneHit: true
-   AntiKnockback: true
-#If you want Speed Detections, use NoCheatPE
+   Unkillable: true
+   ForceField: true
+   ForceGameMode: true
+#Old Detections:
+   Speed: false
 #AntiCheat main configuration file end
 ...

@@ -39,7 +39,7 @@ class AntiCheat extends PluginBase implements Listener{
     $this->yml = $yml->getAll();
   	$this->getServer()->getLogger()->info(TextFormat::GOLD."[AntiCheat] AntiCheat Activated");
     $this->getServer()->getLogger()->info(TextFormat::GOLD."[AntiCheat] Shield Activated");
-	$this->getServer()->getLogger()->info(TextFormat::GOLD."[AntiCheat] AntiCheat v2.2.1 [Wolverine]");
+	$this->getServer()->getLogger()->info(TextFormat::GOLD."[AntiCheat] AntiCheat v2.3.1 [Wolverine]");
 
     }
 
@@ -57,7 +57,7 @@ class AntiCheat extends PluginBase implements Listener{
     
           if(!isset($args[0])){
           
-             $sender->sendMessage(TextFormat::GOLD."[AntiCheat] AntiCheat v2.2.1 [Wolverine] ~ DarkWav (Darku)");
+             $sender->sendMessage(TextFormat::GOLD."[AntiCheat] AntiCheat v2.3.1 [Wolverine] ~ DarkWav (Darku)");
               
             }
 
@@ -67,33 +67,116 @@ class AntiCheat extends PluginBase implements Listener{
     
           if(!isset($args[0])){
           
-             $sender->sendMessage(TextFormat::GOLD."[AntiCheat] AntiCheat v2.2.1 [Wolverine] ~ DarkWav (Darku)");
+             $sender->sendMessage(TextFormat::GOLD."[AntiCheat] AntiCheat v2.3.1 [Wolverine] ~ DarkWav (Darku)");
               
             }
 
 			}
             
       }
+
+    public function onGameModeChange(PlayerKickEvent $k, Player $player, PlayerGameModeChangeEvent $c, Permission $permission, NewGameMode $newGamemode) {
+
+	if ($player->changeGameMode()){
+
+	$player->getPlayer()->getPermissions();
+
+	$player->getPlayer()->getName();
+
+	$c->getPlayer();
+
+	}
+
+	if($this->yml["ForceGameMode"] == "true"){
+
+	//Checks permissions.
+
+	           if($player !== $player and !$player->hasPermission("none")){
+              
+               $k->kickPlayer($c->getPlayer)->kickMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceGameMode!");
+
+			   $this->getServer()->getLogger()->info(TextFormat::GOLD."[AntiCheat] $c->getPlayer() is hacking ForceGameMode!");
+   
+    }
 	
-	//OneHit/Unkillable/AntiKnockback-Detection  
+	
+	            elseif($player !== $player and !$player->hasPermission("moderator")){
+
+    //Moderator hook.
+           
+               $player->sendMessage(TextFormat::AQUA."[AntiCheat] You passed Gamemode changeing!");
+              
+    }
+
+	            elseif($target !== $player and !$sender->hasPermission("anticheat")){
+
+    //EssentialsPE hook.
+           
+               $player->sendMessage(TextFormat::AQUA."[AntiCheat] You passed Gamemode changeing [Hooked into EssentialsPE]!");
+              
+    }
+
+	            elseif($player !== $player and !$player->hasPermission("command.gamemode")){
+
+    //Extra permission hook.
+           
+               $player->sendMessage(TextFormat::AQUA."[AntiCheat] You passed Gamemode changeing!");
+              
+    }
+
+	            elseif($player !== $player and !$player->hasPermission("anticheat.bypass")){
+
+    //AntiCheat permission hook.
+           
+               $player->sendMessage(TextFormat::AQUA."[AntiCheat] You passed Gamemode changeing!");
+              
+    }
+
+    }
+
+	}
+
+	//Speed Detection. [-->BETA<--]
+
+public function onPlayerMove(PlayerMoveEvent $m, PlayerKickEvent $k, Player $player, Location $from, Location $to){
+
+        if ($player->getTo()){
+
+        $player->getFrom();
+
+		$player->getTo();
+
+		}
+
+		if($this->yml["Speed"] == "true"){
+
+	        if($getFrom($from)->getTo($to) > 6){
+		
+		    $k->kickPlayer($m->getPlayer)->kickReason(TextFormat::AQUA."[AntiCheat] You were kicked for hacking Speed!");
+		
+		}
+
+		}
+
+}
+	
+	//Combat-Hack-Detection  (API extends 2.3.1)
 
     public function onDamage(EntityDamageEvent $d, EntityDamageByEntityEvent $e, Damager $damager, PlayerKickEvent $k){
 
-	$player->getPlayer();
-	$e->getDamage();
-	$e2->getDamager();
-	$e2->getEntity();
-	$e->getPlayer();
-	$player->getPlayer()->getName();
-	$e->getDamage();
-	$p = $e->getEntity();
-	$e2->getEntity();
+	$d->getDamage();
+	$d->getEntity();
+	$e->getDamager();
+	$e->getEntity();
+	$e->getKnockBack();
+
+	//Unkillable-Detection
 
 	if($e->getEntity() instanceof Player){
 
 	     if($this->yml["Unkillable"] == "true"){
 
-	     if($d->getDamage < 0) {
+	     if($d->getDamage() < 0) {
 
 	     $k->kickPlayer($e->getEntity())->kickMessage(TextFormat::GOLD."[AntiCheat] You were kicked for hacking Unkillable!");
 
@@ -103,11 +186,13 @@ class AntiCheat extends PluginBase implements Listener{
 
 		 }
 
+	//OneHit-Detection
+
 	elseif($e->getDamager() instanceof Player){
 
     if($this->yml["OneHit"] == "true"){
 
-	     if($d->getDamage > 19) {
+	     if($d->getDamage() > 19) {
 
 	     //Kicks the Hacker.
 
@@ -119,13 +204,65 @@ class AntiCheat extends PluginBase implements Listener{
 
          }
 
+	//AntiKnockBack-Detection
+
     elseif($e->getEntity() instanceof Player){
 
-	if($this->yml["AntiKnockback"] == "true"){
+	if($this->yml["AntiKnockBack"] == "true"){
 
 	     if($e->getKnockBack() < 0.7) {
 
 	     $k->kickPlayer($e->getEntity())->kickMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking AntiKnockback!");
+
+	     }
+
+	     }
+
+		 }
+
+	//ForceField-Detection
+
+    //First Way to detect ForceField
+
+    elseif($e->getDamager() instanceof Player){
+
+	if($this->yml["ForceField"] == "true"){
+
+	     if($e->getEntity() < 1) {
+
+	     $k->kickPlayer($e->getDamager())->kickMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	     }
+
+	     }
+
+		 }
+
+    //Second Way to detect ForceField
+
+    elseif($e->getDamager() instanceof Player){
+
+	if($this->yml["ForceField"] == "true"){
+
+	     if($e > 1) {
+
+	     $k->kickPlayer($e->getDamager())->kickMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
+
+	     }
+
+	     }
+
+		 }
+
+	//Third Way to detect ForceField
+
+    elseif($e->getDamager() instanceof Player){
+
+	if($this->yml["ForceField"] == "true"){
+
+	     if($d > 1) {
+
+	     $k->kickPlayer($e->getDamager())->kickMessage(TextFormat::AQUA."[AntiCheat] You were kicked for hacking ForceField!");
 
 	     }
 
@@ -140,8 +277,8 @@ class AntiCheat extends PluginBase implements Listener{
 //////////////////////////////////////////////////////
 //                                                  //
 //     AntiCheat by DarkWav.                        //
-//     Distributed under the AntiCheat License.     //
-//     Do not redistribute in compiled form!        //
+//     Distributed under the ImagicalMine License.  //
+//     Do not redistribute in modyfied form!        //
 //     All rights reserved.                         //
 //                                                  //
 //////////////////////////////////////////////////////

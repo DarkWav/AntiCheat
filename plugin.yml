@@ -1,13 +1,13 @@
 name: AntiCheat
 main: DarkWav\AntiCheat
-version: 2.2.1
+version: 2.3.1
 load: STARTUP
 author: DarkWav (Darku)
-api: ["2.1.0","2.0.0","1.14.0","1.13.2"]
+api: ["2.1.0","2.0.0","1.14.0","1.13.2","1.0.0"]
 commands:
       anticheat:
-           description: anitcheat main command
+           description: AntiCheat main command
            aliases: ["AntiCheat"]
       ac:
-           description: AnitCheat main command
+           description: AntiCheat main command
            aliases: ["AntiCheat"]
