@@ -6,3 +6,4 @@ Get the Plugin: [Simonvogl.de](http://simonvogl.de/resources/AntiCheat)
 This plugin blocks ForceGameMode, OneHit and Unkillable.
 [Download Now](http://simonvogl.de/resources/AntiCheat)
 # This Project is abandoned!
+# [New Version of AntiCheat](https://github.com/DarkWav/EAC)
