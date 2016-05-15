@@ -5,3 +5,4 @@ With downloading the source or the Plugin, you AGREE to the [License](https://gi
 Get the Plugin: [Simonvogl.de](http://simonvogl.de/resources/AntiCheat)
 This plugin blocks ForceGameMode, OneHit and Unkillable.
 [Download Now](http://simonvogl.de/resources/AntiCheat)
+# This Project is abandoned!
