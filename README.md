@@ -18,4 +18,4 @@
 # Please mark issues with the label of your platform.
 
 
-# [Download Now](http://simonvogl.de/resources/AntiCheat)
+# [Download Now](https://forums.imagicalmine.net/plugins/anticheat.52/download?version=589)
