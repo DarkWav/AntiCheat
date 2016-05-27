@@ -18,4 +18,4 @@
 # Please mark issues with the label of your platform.
 
 
-# [Download Now](htts://simonvogl.de/resources/AntiCheat)
+# [Download Now](http://simonvogl.de/resources/AntiCheat)
