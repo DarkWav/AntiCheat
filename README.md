@@ -1,4 +1,4 @@
-# EAC (EvilAntiCheat)
+# AntiCheat
 
 # The GitHub repo for my AntiCheat-PE plugin.
 
@@ -12,16 +12,10 @@
 # This Plugin is for ImagicalMine: [ImagicalMine.net](http://adf.ly/1YbrDu)
 
 
-# This plugin blocks ForceGameMode, OneHit, Unkillable, AntiKnockBack and ForceField.
-
-
-#Warning: This Plugin may be / is incompatible with Genisys because it was made for ImagicalMine! You Won´t get support if you´re using Genisys!
-
-
-# If there are problems with PocketMine-MP, I`ll try to slove them, but I don´t guarantee that all pocketmine problems are sloveable. Write Me a message [Here](https://github.com/DarkWav/EAC/issues/new).
+# If there are problems  I`ll try to slove them, but I don´t guarantee that all pocketmine problems are sloveable. Write Me a message [Here](https://github.com/DarkWav/AntiCheat/issues/new).
 
 
 # Please mark issues with the label of your platform.
 
 
-# [Download Now](https://forums.imagicalmine.net/plugins/eac-evilanticheat.52/download?version=561)
+# [Download Now](htts://simonvogl.de/resources/AntiCheat)
