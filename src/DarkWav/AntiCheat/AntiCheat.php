@@ -42,7 +42,7 @@ class AntiCheat extends PluginBase implements Listener{
     $this->yml = $yml->getAll();
   	$this->getServer()->getLogger()->info(TextFormat::RED."[AntiCheat] > AntiCheat Activated");
     $this->getServer()->getLogger()->info(TextFormat::RED."[AntiCheat] > Shield Activated");
-	$this->getServer()->getLogger()->info(TextFormat::RED."[AntiCheat] > AntiCheat v1.12.2 [Wolverine]");
+	$this->getServer()->getLogger()->info(TextFormat::RED."[AntiCheat] > AntiCheat v1.12.3 [Wolverine]");
 	$this->getServer()->getLogger()->info(TextFormat::RED."[AntiCheat] > Enabling AntiForceGameMode");
 	if($this->yml["ForceField"] == "true"){$this->getServer()->getLogger()->info(TextFormat::RED."[AntiCheat] > Enabling AntiForceField");}
 	if($this->yml["OneHit"] == "true"){$this->getServer()->getLogger()->info(TextFormat::RED."[AntiCheat] > Enabling AntiOneHit");}
@@ -66,13 +66,13 @@ class AntiCheat extends PluginBase implements Listener{
     
     if ($cmd->getName() == "anticheat"){
           
-             $sender->sendMessage(TextFormat::RED."[AntiCheat] > AntiCheat v1.12.2 [Wolverine] ~ DarkWav (Darku)");
+             $sender->sendMessage(TextFormat::RED."[AntiCheat] > AntiCheat v1.12.3 [Wolverine] ~ DarkWav (Darku)");
 
 			}
 
 	if ($cmd->getName() == "ac"){
           
-             $sender->sendMessage(TextFormat::RED."[AntiCheat] > AntiCheat v1.12.2 [Wolverine] ~ DarkWav (Darku)");
+             $sender->sendMessage(TextFormat::RED."[AntiCheat] > AntiCheat v1.12.3 [Wolverine] ~ DarkWav (Darku)");
 
 			}
 
@@ -190,7 +190,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 		 $d->getEntity()->kick(TextFormat::RED."[AntiCheat] > You were kicked for hacking Unkillable!");
 
-		 $this->getServer()->getLogger()->info(TextFormat::RED."[AntiCheat] > $e->getEntity() is hacking Unkillable!");
+		 $this->getServer()->getLogger()->info(TextFormat::RED."[AntiCheat] > $d->getEntity() is hacking Unkillable!");
 
 	     }
 
@@ -220,7 +220,7 @@ class AntiCheat extends PluginBase implements Listener{
 
 		 $e->getEntity()->kick(TextFormat::RED."[AntiCheat] > You were kicked for hacking AntiKnockBack!");
 
-		 $this->getServer()->getLogger()->info(TextFormat::RED."[AntiCheat] > $e->getEntity() is hacking AntiKnockback!");
+		 $this->getServer()->getLogger()->info(TextFormat::RED."[AntiCheat] > $d->getEntity() is hacking AntiKnockback!");
 
 	     }
 
@@ -229,14 +229,6 @@ class AntiCheat extends PluginBase implements Listener{
     //ForceField-Detection
 
 	if ($this->yml["ForceField"] == "true"){
-
-	     if ($e->getEntity() > 1) {
-
-		 $e->getDamager()->kick(TextFormat::RED."[AntiCheat] > You were kicked for hacking ForceField!");
-
-		 $this->getServer()->getLogger()->info(TextFormat::RED."[AntiCheat] > $e->getDamager() is hacking ForceField!");
-
-	     }
 
 	     if ($d->getEntity() > 1) {
 
