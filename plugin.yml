@@ -1,13 +1,21 @@
 name: AntiCheat
-main: DarkWav\AntiCheat
-version: 2.3.1
+main: DarkWav\AntiCheat\AntiCheat
+version: 1.12.2
 load: STARTUP
 author: DarkWav (Darku)
-api: ["2.1.0","2.0.0","1.14.0","1.13.2","1.0.0"]
+api: ["3.0.0",2.1.0","2.0.0","1.14.0","1.13.2","1.0.0"]
 commands:
       anticheat:
-           description: AntiCheat main command
+           description: Shows AntiCheat version
            aliases: ["AntiCheat"]
       ac:
-           description: AntiCheat main command
+           description: Shows AntiCheat version
            aliases: ["AntiCheat"]
+permissions:
+    anticheat:
+        default: op
+        description: "Allows to use all EAC features."
+children:
+    anticheat.bypass:
+        default: op
+        description: "Allows to bypass AntiForceGameMode."

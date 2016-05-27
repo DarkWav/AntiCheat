@@ -5,8 +5,4 @@
    OneHit: true
    Unkillable: true
    ForceField: true
-   ForceGameMode: true
-#Old Detections:
-   Speed: false
-#AntiCheat main configuration file end
 ...
