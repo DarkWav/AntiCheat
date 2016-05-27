@@ -1,4 +1,4 @@
-﻿# AntiCheat
+# EAC (EvilAntiCheat)
 
 # The GitHub repo for my AntiCheat-PE plugin.
 
