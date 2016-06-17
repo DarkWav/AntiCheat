@@ -37,18 +37,19 @@ class AntiCheat extends PluginBase implements Listener{
 
     public function onEnable(){
 	$this->saveDefaultConfig();
+	$this->saveResource("AntiForceOP.txt");
     $yml = new Config($this->getDataFolder() . "config.yml", Config::YAML);
     $this->yml = $yml->getAll();
   	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat Activated");
     $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Shield Activated");
-	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.0.0 [Racoon]");
+	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.1.0 [Racoon]");
 	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiForceGameMode");
 	if($this->yml["ForceField"] == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiForceField");}
 	if($this->yml["OneHit"] == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiOneHit");}
 	if($this->yml["Unkillable"] == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiUnkillable");}
 	if($this->yml["AntiKnockBack"] == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiAntiKnockBack");}
-	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiForceOP");
-	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiForceBan");
+	if($this->yml["ForceOP"] == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiForceOP");}
+	if($this->yml["KillAura"] == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiKillAura");}
 
     }
 
@@ -64,114 +65,82 @@ class AntiCheat extends PluginBase implements Listener{
     
     if ($cmd->getName() == "anticheat"){
           
-             $sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.0.0 [Racoon] ~ DarkWav (Darku)");
+             $sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.1.0 [Racoon] ~ DarkWav (Darku)");
 
 			}
 
 	if ($cmd->getName() == "ac"){
           
-             $sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.0.0 [Racoon] ~ DarkWav (Darku)");
-
-			}
-
-	if ($cmd->getName() == "gamemode"){
-
-			if($player !== $player and !$player->hasPermission("none")){
-          
-			$sender->kick(TextFormat::BLUE."[AntiCheat] > You were kicked for hacking ForceGameMode!");
-
-			}
-
-			}
-
-	if ($cmd->getName() == "op"){
-
-			if($player !== $player and !$player->hasPermission("none")){
-          
-			$sender->kick(TextFormat::BLUE."[AntiCheat] > You were kicked for hacking ForceOP!");
-
-			}
-
-			}
-
-	if ($cmd->getName() == "ban"){
-
-			if($player !== $player and !$player->hasPermission("none")){
-          
-			$sender->kick(TextFormat::BLUE."[AntiCheat] > You were kicked for hacking ForceBan!");
-
-			}
-
-			}
-
-	if ($cmd->getName() == "ban-ip"){
-
-			if($player !== $player and !$player->hasPermission("none")){
-          
-			$sender->kick(TextFormat::BLUE."[AntiCheat] > You were kicked for hacking ForceBan!");
-
-			}
-
-			}
-
-	if ($cmd->getName() == "ban-device"){
-
-			if($player !== $player and !$player->hasPermission("none")){
-          
-			$sender->kick(TextFormat::BLUE."[AntiCheat] > You were kicked for hacking ForceBan!");
-
-			}
+            $sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.1.0 [Racoon] ~ DarkWav (Darku)");
 
 			}
 
 	}
 
 
-    public function onGameModeChange(PlayerKickEvent $k, Player $player, PlayerGameModeChangeEvent $c, Permission $permission, NewGameMode $newGamemode) {
+    public function PlayerGameModeChangeEvent(PlayerKickEvent $k, Player $player, PlayerGameModeChangeEvent $c, Permission $permission, NewGameMode $newGamemode){
 
 	//Checks permissions.
 
-	           if($player !== $player and !$player->hasPermission("none")){
+		if($player !== $player and !$player->hasPermission("none")){
 
-			   $c->player->kick(TextFormat::BLUE."[AntiCheat] > You were kicked for hacking ForceGameMode!");
+			$c->player->kick(TextFormat::BLUE."[AntiCheat] > You were kicked for hacking ForceGameMode!");
 
-			   $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > $c->player is hacking ForceGameMode!");
+			$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > $c->player is hacking ForceGameMode!");
    
-    }
+		}
 	
 	
-	            elseif($player !== $player and !$player->hasPermission("moderator")){
+		if($player !== $player and !$player->hasPermission("moderator")){
 
     //Moderator hook.
            
-               $player->sendMessage(TextFormat::BLUE."[AntiCheat] > You passed Gamemode changeing!");
+			$player->sendMessage(TextFormat::BLUE."[AntiCheat] > You passed Gamemode changeing!");
               
-    }
+		}
 
-	            elseif($target !== $player and !$sender->hasPermission("anticheat")){
+		if($target !== $player and !$sender->hasPermission("anticheat")){
            
-               $player->sendMessage(TextFormat::BLUE."[AntiCheat] > You passed Gamemode changeing!");
+			$player->sendMessage(TextFormat::BLUE."[AntiCheat] > You passed Gamemode changeing!");
               
-    }
-
-	            elseif($player !== $player and !$player->hasPermission("command.gamemode")){
+		}
+		
+		if($player !== $player and !$player->hasPermission("command.gamemode")){
 
     //Extra permission hook.
            
-               $player->sendMessage(TextFormat::BLUE."[AntiCheat] > You passed Gamemode changeing!");
-              
-    }
+			$player->sendMessage(TextFormat::BLUE."[AntiCheat] > You passed Gamemode changeing!");
+            
+		}
 
-	            elseif($player !== $player and !$player->hasPermission("anticheat.bypass")){
+		if($player !== $player and !$player->hasPermission("anticheat.bypass")){
 
     //AntiCheat permission hook.
            
-               $player->sendMessage(TextFormat::BLUE."[AntiCheat] > You passed Gamemode changeing!");
+			$player->sendMessage(TextFormat::BLUE."[AntiCheat] > You passed Gamemode changeing!");
 
-    }
+		}
 
 	}
 	
+	public function onPlayerEvent(PlayerEvent $event){
+
+		if ($this->yml["Unkillable"] == "true"){
+
+			if ($event->getPlayer()->isOp()){
+
+				if (!$event->getPlayer()->hasPermission("anticheat.op")){
+
+					$event->getPlayer()->kick("ForceOP detected!");
+
+				}
+
+			}
+
+		}
+
+	}
+
 	//Combat-Hack-Detection  (API extends 2.0)
 
     public function onEntityDamageByEntityEvent(EntityDamageByEntityEvent $event){
@@ -180,79 +149,77 @@ class AntiCheat extends PluginBase implements Listener{
 
 	     if ($this->yml["Unkillable"] == "true"){
 
-	     if ($event->getDamage() < 0.5) {
+			if ($event->getDamage() < 0.5) {
 
-		 $event->getEntity()->kick(TextFormat::BLUE."[AntiCheat] > Unkillable is not allowed!");
+				$event->getEntity()->kick(TextFormat::BLUE."[AntiCheat] > Unkillable is not allowed!");
 
-		 $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > $event->getEntity() is hacking Unkillable!");
+				$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > $event->getEntity() is hacking Unkillable!");
 
-	     }
+			}
 
 	     }
 
 	//OneHit-Detection
 
-	  if ($this->yml["OneHit"] == "true"){
+		if ($this->yml["OneHit"] == "true"){
 
-	     if ($event->getDamage() > 19.5) {
+			if ($event->getDamage() > 19.5) {
 
-	     //Kicks the Hacker.
+				$event->getDamager()->kick(TextFormat::BLUE."[AntiCheat] > OneHit is not allowed!");
 
-		 $event->getDamager()->kick(TextFormat::BLUE."[AntiCheat] > OneHit is not allowed!");
+				$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > $event->getDamager() is hacking OneHit!");
 
-		 $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > $event->getDamager() is hacking OneHit!");
-
-	     }
+			}
 
 		 }
 
 	//AntiKnockBack-Detection
 
-	if ($this->yml["AntiKnockBack"] == "true"){
+		if ($this->yml["AntiKnockBack"] == "true"){
 
-	     if ($event->getKnockBack() < 0.4) {
+			if ($event->getKnockBack() < 0.4) {
 
-		 $event->getEntity()->kick(TextFormat::BLUE."[AntiCheat] > AntiKnockBack is not allowed!");
+				$event->getEntity()->kick(TextFormat::BLUE."[AntiCheat] > AntiKnockBack is not allowed!");
 
-		 $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > $event->getEntity() is hacking AntiKnockBack!");
+				$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > $event->getEntity() is hacking AntiKnockBack!");
 
-	     }
+			}
 
 		 }
 
     //ForceField-Detection
 
-	if ($this->yml["ForceField"] == "true"){
+		if ($this->yml["ForceField"] == "true"){
 
-	     if ($event->getEntity() > 1) {
+			if ($event->getEntity() > 1) {
 
-		 $event->getDamager()->kick(TextFormat::BLUE."[AntiCheat] > ForceField is not allowed!");
+				$event->getDamager()->kick(TextFormat::BLUE."[AntiCheat] > ForceField is not allowed!");
 
-		 $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > $event->getDamager() is hacking ForceField!");
+				$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > $event->getDamager() is hacking ForceField!");
 
-	     }
+			}
 
 		 }
 
     //KillAura-Detection
 
-	if ($this->yml["KillAura"] == "true"){
+		if ($this->yml["KillAura"] == "true"){
 
-		if ($event->getEntity()->getPosition() == $event->getDamager()->round()) {
+			if ($event->getEntity()->getPosition() == $event->getDamager()->round()) {
 
-			if ($event->getEntity()->getPosition() !== $event->getDamager()->getForward()) {
+				if ($event->getEntity()->getPosition() !== $event->getDamager()->getForward()) {
 
-				$event->getDamager()->kick(TextFormat::BLUE."[AntiCheat] > KillAura is not allowed!");
+					$event->getDamager()->kick(TextFormat::BLUE."[AntiCheat] > KillAura is not allowed!");
 
-				$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > $event->getDamager() is hacking KillAura!");
+					$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > $event->getDamager() is hacking KillAura!");
+
+				}
 
 			}
 
-	    }
+		}
 
 	}
-
-}
 
 }
 

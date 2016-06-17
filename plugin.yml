@@ -1,6 +1,6 @@
 name: AntiCheat
 main: DarkWav\AntiCheat\AntiCheat
-version: 2.0.0
+version: 2.1.0
 load: STARTUP
 author: DarkWav (Darku)
 api: ["3.0.0",2.1.0","2.0.0","1.14.0","1.13.2","1.0.0"]
@@ -19,3 +19,5 @@ children:
     anticheat.bypass:
         default: op
         description: "Allows to bypass AntiForceGameMode."
+    anticheat.op:
+        description: "A permission."
