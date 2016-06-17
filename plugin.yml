@@ -14,7 +14,7 @@ commands:
 permissions:
     anticheat:
         default: op
-        description: "Allows to use all EAC features."
+        description: "Allows to use all AntiCheat features."
 children:
     anticheat.bypass:
         default: op

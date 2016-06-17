@@ -11,17 +11,14 @@ use pocketmine\plugin\EventExecutor;
 use pocketmine\plugin\MethodEventExecutor;
 use pocketmine\event\player\PlayerAnimationEvent;
 use pocketmine\event\player\PlayerCommandPreprocessEvent;
-use pocketmine\event\player\PlayerCreationEvent;
 use pocketmine\event\player\PlayerEvent;
 use pocketmine\event\player\PlayerGameModeChangeEvent;
-use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerKickEvent;
 use pocketmine\event\player\PlayerLoginEvent;
 use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\event\player\PlayerPreLoginEvent;
 use pocketmine\event\player\PlayerQuitEvent;
-use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\Cancellable;
 use pocketmine\permission\Permission;
 use pocketmine\permission\Permissible;
@@ -33,6 +30,8 @@ use pocketmine\utils\Config;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityEvent;
+use pocketmine\level\Position;
+use pocketmine\math\Vector3;
 
 class AntiCheat extends PluginBase implements Listener{
 
@@ -50,7 +49,6 @@ class AntiCheat extends PluginBase implements Listener{
 	if($this->yml["AntiKnockBack"] == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiAntiKnockBack");}
 	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiForceOP");
 	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiForceBan");
-	$this->getServer()->getPluginManager()->registerEvents($this, $this);
 
     }
 
@@ -176,17 +174,17 @@ class AntiCheat extends PluginBase implements Listener{
 	
 	//Combat-Hack-Detection  (API extends 2.0)
 
-    public function onDamage(EntityDamageEvent $d, EntityDamageByEntityEvent $e, EntityEvent $v){
+    public function onEntityDamageByEntityEvent(EntityDamageByEntityEvent $event){
 
 	//Unkillable-Detection
 
 	     if ($this->yml["Unkillable"] == "true"){
 
-	     if ($e->damage < 0.5) {
+	     if ($event->getDamage() < 0.5) {
 
-		 $e->entity->kick(TextFormat::BLUE."[AntiCheat] > Unkillable is not allowed!");
+		 $event->getEntity()->kick(TextFormat::BLUE."[AntiCheat] > Unkillable is not allowed!");
 
-		 $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > $e->entity is hacking Unkillable!");
+		 $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > $event->getEntity() is hacking Unkillable!");
 
 	     }
 
@@ -196,13 +194,13 @@ class AntiCheat extends PluginBase implements Listener{
 
 	  if ($this->yml["OneHit"] == "true"){
 
-	     if ($e->damage > 19.5) {
+	     if ($event->getDamage() > 19.5) {
 
 	     //Kicks the Hacker.
 
-		 $e->damager->kick(TextFormat::BLUE."[AntiCheat] > OneHit is not allowed!");
+		 $event->getDamager()->kick(TextFormat::BLUE."[AntiCheat] > OneHit is not allowed!");
 
-		 $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > $e->damager is hacking OneHit!");
+		 $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > $event->getDamager() is hacking OneHit!");
 
 	     }
 
@@ -212,11 +210,25 @@ class AntiCheat extends PluginBase implements Listener{
 
 	if ($this->yml["AntiKnockBack"] == "true"){
 
-	     if ($e->knockBack() < 0.4) {
+	     if ($event->getKnockBack() < 0.4) {
 
-		 $e->entity->kick(TextFormat::BLUE."[AntiCheat] > AntiKnockBack is not allowed!");
+		 $event->getEntity()->kick(TextFormat::BLUE."[AntiCheat] > AntiKnockBack is not allowed!");
 
-		 $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiAura] > $e->entity is hacking AntiKnockBack!");
+		 $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > $event->getEntity() is hacking AntiKnockBack!");
+
+	     }
+
+		 }
+
+    //ForceField-Detection
+
+	if ($this->yml["ForceField"] == "true"){
+
+	     if ($event->getEntity() > 1) {
+
+		 $event->getDamager()->kick(TextFormat::BLUE."[AntiCheat] > ForceField is not allowed!");
+
+		 $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > $event->getDamager() is hacking ForceField!");
 
 	     }
 
@@ -224,15 +236,19 @@ class AntiCheat extends PluginBase implements Listener{
 
     //KillAura-Detection
 
-	if ($this->yml["ForceField"] == "true"){
+	if ($this->yml["KillAura"] == "true"){
 
-	     if ($e->entity > 1) {
+		if ($event->getEntity()->getPosition() == $event->getDamager()->round()) {
 
-		 $e->damager->kick(TextFormat::BLUE."[AntiCheat] > ForceField is not allowed!");
+			if ($event->getEntity()->getPosition() !== $event->getDamager()->getForward()) {
 
-		 $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiAura] > $e->damager is hacking ForceField!");
+				$event->getDamager()->kick(TextFormat::BLUE."[AntiCheat] > KillAura is not allowed!");
 
-	     }
+				$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > $event->getDamager() is hacking KillAura!");
+
+			}
+
+	    }
 
 	}
 

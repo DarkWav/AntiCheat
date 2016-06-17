@@ -1,8 +1,31 @@
 ---
 #AntiCheat main configuration file
-#Wich Cheats should be blocked?
+#What should be blocked?
+#Do you want to enable AntiKnockBack Detection?
+
    AntiKnockBack: true
-   OneHit: true
+
+#Do you want to stop Players from dealing more than 19.5
+#damage to prevent OneHit kills?
+
+   OneHit: false
+
+#Do you want to enable Unkillable Detection?
+
    Unkillable: true
+
+#Do you want to enable advanced KillAura check?
+
+   KillAura: true
+
+#Do you want to enable ForceField Detection?
+
    ForceField: true
+
+#Do you want to enable advanced ForceOP check?
+#READ AntiForceOP.txt BEFORE ENABLING!
+
+   ForceOP: false
+
+#AntiCheat main configuration file end
 ...
