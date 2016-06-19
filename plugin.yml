@@ -3,7 +3,7 @@ main: DarkWav\AntiCheat\AntiCheat
 version: 2.1.0
 load: STARTUP
 author: DarkWav (Darku)
-api: ["3.0.0",2.1.0","2.0.0","1.14.0","1.13.2","1.0.0"]
+api: ["3.0.0","2.1.0","2.0.0","1.14.0","1.13.2","1.0.0"]
 commands:
       anticheat:
            description: Shows AntiCheat version
@@ -13,7 +13,6 @@ commands:
            aliases: ["AntiCheat"]
 permissions:
     anticheat:
-        default: op
         description: "Allows to use all AntiCheat features."
 children:
     anticheat.bypass:
