@@ -6,13 +6,8 @@ use pocketmine\utils\TextFormat;
 use pocketmine\event\Listener;
 use pocketmine\utils\Config;
 use pocketmine\permission\Permission;
-use pocketmine\permission\Permissible;
-use pocketmine\plugin\PluginBase;
-use pocketmine\plugin\Plugin;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
-use pocketmine\event\entity\EntityEvent;
-use pocketmine\command\ConsoleCommandSender;
 use pocketmine\event\player\PlayerMoveEvent;
 
 class EventListener implements Listener{
@@ -65,7 +60,7 @@ class EventListener implements Listener{
 
 			if ($this->yml["OneHit"] == "true"){
 
-				if ($event->getDamage() > 19.5) {
+				if ($event->getDamage() > 19.9) {
 
 					$event->getDamager()->kick(TextFormat::BLUE."[AntiCheat] > OneHit is not allowed!");
 
@@ -75,11 +70,11 @@ class EventListener implements Listener{
 
 		}
 
-		elseif($event->getEntity() instanceof Player){
+		if($event->getEntity() instanceof Player){
 
 			if ($this->yml["NoKnockBack"] == "true"){
 
-				if ($event->getKnockBack() < 0.4){
+				if ($event->getKnockBack() < $this->getConfig()->get("MinKnockBack")){
 
 					$event->getEntity()->kick(TextFormat::BLUE."[AntiCheat] > NoKnockBack is not allowed!");
 
@@ -89,7 +84,7 @@ class EventListener implements Listener{
 
 			if ($this->yml["Unkillable"] == "true"){
 
-				if ($event->getDamage() < 0.001) {
+				if ($event->getDamage() < $this->getConfig()->get("MinDamage")){
 
 					$event->getEntity()->kick(TextFormat::BLUE."[AntiCheat] > Unkillable is not allowed!");
 
