@@ -14,7 +14,7 @@ class EventListener implements Listener{
 
 	public function onEnable(){
 
-		$yml = Config($this->getDataFolder() . "config.yml", Config::YAML);
+		$yml = new Config($this->getDataFolder() . "config.yml", Config::YAML);
 
 		$this->yml = $yml->getAll();
 	
