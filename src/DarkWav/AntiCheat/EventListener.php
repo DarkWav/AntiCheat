@@ -35,6 +35,16 @@ class EventListener implements Listener{
 			}
 
 		}
+		if($this->yml["WallHack"] == "true"){
+			$level = $event->getPlayer()->getLevel();
+			$pos = new Vector3($$event->getPlayer()->getX(), $event->getPlayer()->getY(), $event->getPlayer()->getZ()); 
+			if($event->getPlayer()->isOp()){
+				return;
+			}
+			else if($level->getBlock($pos)->getId() > 0){
+				$event->getPlayer()->kick(TextFormat::RED . "WallHack Detected!");
+			}
+		}
 
 	}
 
