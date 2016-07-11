@@ -38,6 +38,10 @@
 #READ AntiForceOP.txt BEFORE ENABLING!
 
    ForceOP: false
+   
+#Do you want to enable WallHack check?
+
+   WallHack: true
 
 #AntiCheat main configuration file end
 ...
