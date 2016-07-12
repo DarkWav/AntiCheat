@@ -36,6 +36,16 @@ class EventListener implements Listener{
 
 		}
 
+		if ($this->yml["NoClip"] == "true"){
+
+			if ($event->getPlayer()->getPosition()->level->getBlockIdAt() !== 0){
+
+				$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+
+			}
+
+		}
+
 	}
 
 	public function onDamage(EntityDamageByEntityEvent $event, EntityDamageEvent $event2){

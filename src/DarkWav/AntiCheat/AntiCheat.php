@@ -20,10 +20,11 @@ class AntiCheat extends PluginBase{
 	$this->saveResource("AntiForceOP.txt");
   	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat Activated");
     $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Shield Activated");
-	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.2.1 [Racoon]");
+	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.2.2 [Racoon]");
 	if($this->yml["OneHit"] == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiOneHit");}
 	if($this->yml["Unkillable"] == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiUnkillable");}
 	if($this->yml["ForceOP"] == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiForceOP");}
+	if($this->yml["NoClip"] == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiNoClip");}
 	if($this->yml["KillAura"] == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiKillAura");}
 	if($this->yml["NoKnockBack"] == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiNoKnockBack");}
 
@@ -41,13 +42,13 @@ class AntiCheat extends PluginBase{
    
 		if ($cmd->getName() == "anticheat"){
           
-             $sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.2.1 [Racoon] ~ DarkWav (Darku)");
+             $sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.2.2 [Racoon] ~ DarkWav (Darku)");
 
 		}
 
 		if ($cmd->getName() == "ac"){
 		
-		$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.2.1 [Racoon] ~ DarkWav (Darku)");
+		$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.2.2 [Racoon] ~ DarkWav (Darku)");
 
 		}
 

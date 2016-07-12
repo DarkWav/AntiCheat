@@ -1,7 +1,7 @@
 ---
 #AntiCheat main configuration file
 #What should be blocked?
-#Do you want to enable AntiKnockBack Detection?
+#Do you want to enable NoKnockBack Detection?
 
    NoKnockBack: true
 
@@ -38,6 +38,12 @@
 #READ AntiForceOP.txt BEFORE ENABLING!
 
    ForceOP: false
+
+#Do you want to enable NoClip Detection?
+#This only allows players to be in the air.
+#Causes a Kick if the player is inside of Blocks.
+
+   NoClip: true
 
 #AntiCheat main configuration file end
 ...
