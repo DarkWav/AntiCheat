@@ -38,6 +38,10 @@
 #READ AntiForceOP.txt BEFORE ENABLING!
 
    ForceOP: false
+   
+#Do you want to enable WallHack check?
+
+   WallHack: true
 
 #Do you want to enable NoClip Detection?
 #This only allows players to be in the air.

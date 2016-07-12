@@ -9,6 +9,7 @@ use pocketmine\permission\Permission;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\player\PlayerMoveEvent;
+use pocketmine\math\Vector3;
 
 class EventListener implements Listener{
 
@@ -35,6 +36,16 @@ class EventListener implements Listener{
 			}
 
 		}
+		//if($this->yml["WallHack"] == "true"){
+			$level = $event->getPlayer()->getLevel();
+			$pos = new Vector3($event->getPlayer()->getX(), $event->getPlayer()->getY(), $event->getPlayer()->getZ()); 
+			if($event->getPlayer()->isOp()){
+				return;
+			}
+			else if($level->getBlock($pos)->getId() > 0){
+				$event->getPlayer()->kick(TextFormat::RED . "WallHack Detected!");
+			}
+		//}
 
 		if ($this->yml["NoClip"] == "true"){
 
