@@ -45,5 +45,11 @@
 
    NoClip: true
 
+#Do you Want to enable SafeMode to prevent false
+#positvises with cobweb, grass, ect?
+#HIGHLY recommanded to be kept at "true"
+
+   NoClipSafeMode: true
+
 #AntiCheat main configuration file end
 ...

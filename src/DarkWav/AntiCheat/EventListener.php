@@ -12,17 +12,9 @@ use pocketmine\event\player\PlayerMoveEvent;
 
 class EventListener implements Listener{
 
-	public function onEnable(){
-
-		$yml = new Config($this->getDataFolder() . "config.yml", Config::YAML);
-
-		$this->yml = $yml->getAll();
-	
-	}
-
 	public function onMove(PlayerMoveEvent $event){
 
-		if ($this->yml["ForceOP"] == "true"){
+		if ($this->getConfig()->get("ForceOP") == "true"){
 
 			if ($event->getPlayer()->isOp()){
 
@@ -36,11 +28,119 @@ class EventListener implements Listener{
 
 		}
 
-		if ($this->yml["NoClip"] == "true"){
+		if ($this->getConfig()->get("NoClip") == "true"){
 
-			if ($event->getPlayer()->getPosition()->level->getBlockIdAt() !== 0){
+			$level = $event->getPlayer()->getLevel();
 
-				$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+			$pos = new Vector3($event->getPlayer()->getX(), $event->getPlayer()->getY(), $event->getPlayer()->getZ());
+
+			if ($this->getConfig()->get("NoClipSafeMode") == "true"){
+
+				if ($level->getBlock($pos)->getId() > 0 and $level->getBlock($pos)->getId() < 6){
+
+					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+
+				}
+
+				if ($level->getBlock($pos)->getId() > 11 and $level->getBlock($pos)->getId() < 26){
+
+					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+
+				}
+
+				if ($level->getBlock($pos)->getId() > 40 and $level->getBlock($pos)->getId() < 44){
+
+					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+
+				}
+
+				if ($level->getBlock($pos)->getId() > 44 and $level->getBlock($pos)->getId() < 50){
+
+					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+
+				}
+
+				if ($level->getBlock($pos)->getId() > 78 and $level->getBlock($pos)->getId() < 81){
+
+					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+
+				}
+
+				if ($level->getBlock($pos)->getId() > 85 and $level->getBlock($pos)->getId() < 90){
+
+					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+
+				}
+
+				if ($level->getBlock($pos)->getId() == 112){
+
+					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+
+				}
+
+				if ($level->getBlock($pos)->getId() > 120 and $level->getBlock($pos)->getId() < 126){
+
+					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+
+				}
+
+				if ($level->getBlock($pos)->getId() > 151 and $level->getBlock($pos)->getId() < 156){
+
+					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+
+				}
+
+				if ($level->getBlock($pos)->getId() == 157){
+
+					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+
+				}
+
+				if ($level->getBlock($pos)->getId() == 159){
+
+					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+
+				}
+
+				if ($level->getBlock($pos)->getId() == 162){
+
+					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+
+				}
+
+				if ($level->getBlock($pos)->getId() == 198){
+
+					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+
+				}
+
+				if ($level->getBlock($pos)->getId() == 243){
+
+					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+
+				}
+
+				if ($level->getBlock($pos)->getId() > 245 and $level->getBlock($pos)->getId() < 255){
+
+					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+
+				}
+
+				if ($level->getBlock($pos)->getId() > 171 and $level->getBlock($pos)->getId() < 175){
+
+					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+
+				}
+
+			}
+
+			if ($this->getConfig()->get("NoClipSafeMode") == "false"){
+
+				if ($level->getBlock($pos)->getId() !== 0){
+
+					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+
+				}
 
 			}
 
@@ -52,7 +152,7 @@ class EventListener implements Listener{
 
 		if($event->getDamager() instanceof Player){
 
-			if ($this->yml["KillAura"] == "true"){
+			if ($this->getConfig()->get("KillAura") == "true"){
 
 				if ($event->getEntity()->getPosition() !== $event->getDamager()->getForward()){
 
@@ -68,7 +168,7 @@ class EventListener implements Listener{
 
 			}
 
-			if ($this->yml["OneHit"] == "true"){
+			if ($this->getConfig()->get("OneHit") == "true"){
 
 				if ($event->getDamage() > 19.9) {
 
@@ -82,7 +182,7 @@ class EventListener implements Listener{
 
 		if($event->getEntity() instanceof Player){
 
-			if ($this->yml["NoKnockBack"] == "true"){
+			if ($this->getConfig()->get("NoKnockBack") == "true"){
 
 				if ($event->getKnockBack() < $this->getConfig()->get("MinKnockBack")){
 
@@ -92,7 +192,7 @@ class EventListener implements Listener{
 
 			}
 
-			if ($this->yml["Unkillable"] == "true"){
+			if ($this->getConfig()->get("Unkillable") == "true"){
 
 				if ($event->getDamage() < $this->getConfig()->get("MinDamage")){
 

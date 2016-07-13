@@ -15,18 +15,16 @@ class AntiCheat extends PluginBase{
 
 	$this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
 	$this->saveDefaultConfig();
-	$yml = new Config($this->getDataFolder() . "config.yml", Config::YAML);
-    $this->yml = $yml->getAll();
 	$this->saveResource("AntiForceOP.txt");
   	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat Activated");
     $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Shield Activated");
-	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.2.2 [Racoon]");
-	if($this->yml["OneHit"] == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiOneHit");}
-	if($this->yml["Unkillable"] == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiUnkillable");}
-	if($this->yml["ForceOP"] == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiForceOP");}
-	if($this->yml["NoClip"] == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiNoClip");}
-	if($this->yml["KillAura"] == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiKillAura");}
-	if($this->yml["NoKnockBack"] == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiNoKnockBack");}
+	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.3.0 [Racoon]");
+	if($this->getConfig()->get("OneHit") == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiOneHit");}
+	if($this->getConfig()->get("Unkillable") == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiUnkillable");}
+	if($this->getConfig()->get("ForceOP") == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiForceOP");}
+	if($this->getConfig()->get("NoClip") == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiNoClip");}
+	if($this->getConfig()->get("KillAura") == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiKillAura");}
+	if($this->getConfig()->get("NoKnockBack") == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiNoKnockBack");}
 
     }
 
@@ -42,13 +40,13 @@ class AntiCheat extends PluginBase{
    
 		if ($cmd->getName() == "anticheat"){
           
-             $sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.2.2 [Racoon] ~ DarkWav (Darku)");
+             $sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.3.0 [Racoon] ~ DarkWav (Darku)");
 
 		}
 
 		if ($cmd->getName() == "ac"){
 		
-		$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.2.2 [Racoon] ~ DarkWav (Darku)");
+		$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.3.0 [Racoon] ~ DarkWav (Darku)");
 
 		}
 
