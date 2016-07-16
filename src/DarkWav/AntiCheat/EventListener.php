@@ -2,6 +2,7 @@
 
 namespace DarkWav\AntiCheat;
 
+use pocketmine\command\ConsoleCommandSender;
 use pocketmine\utils\TextFormat;
 use pocketmine\event\Listener;
 use pocketmine\utils\Config;
@@ -9,12 +10,22 @@ use pocketmine\permission\Permission;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\player\PlayerMoveEvent;
+use pocketmine\math\Vector3;
+use DarkWav\AntiCheat\AntiCheat;
 
 class EventListener implements Listener{
 
+	private $getConfig;
+
+    public function __construct(AntiCheat $getConfig){
+
+    $this->getCfg = $getConfig;
+
+	}
+
 	public function onMove(PlayerMoveEvent $event){
 
-		if ($this->getConfig()->get("ForceOP") == "true"){
+		if ($this->getCfg->getConfig()->get("ForceOP") == "true"){
 
 			if ($event->getPlayer()->isOp()){
 
@@ -28,13 +39,13 @@ class EventListener implements Listener{
 
 		}
 
-		if ($this->getConfig()->get("NoClip") == "true"){
+		if ($this->getCfg->getConfig()->get("NoClip") == "true"){
 
 			$level = $event->getPlayer()->getLevel();
 
 			$pos = new Vector3($event->getPlayer()->getX(), $event->getPlayer()->getY(), $event->getPlayer()->getZ());
 
-			if ($this->getConfig()->get("NoClipSafeMode") == "true"){
+			if ($this->getCfg->getConfig()->get("NoClipSafeMode") == "true"){
 
 				if ($level->getBlock($pos)->getId() > 0 and $level->getBlock($pos)->getId() < 6){
 
@@ -134,7 +145,7 @@ class EventListener implements Listener{
 
 			}
 
-			if ($this->getConfig()->get("NoClipSafeMode") == "false"){
+			if ($this->getCfg->getConfig()->get("NoClipSafeMode") == "false"){
 
 				if ($level->getBlock($pos)->getId() !== 0){
 
@@ -152,7 +163,7 @@ class EventListener implements Listener{
 
 		if($event->getDamager() instanceof Player){
 
-			if ($this->getConfig()->get("KillAura") == "true"){
+			if ($this->getCfg->getConfig()->get("KillAura") == "true"){
 
 				if ($event->getEntity()->getPosition() !== $event->getDamager()->getForward()){
 
@@ -168,7 +179,7 @@ class EventListener implements Listener{
 
 			}
 
-			if ($this->getConfig()->get("OneHit") == "true"){
+			if ($this->getCfg->getConfig()->get("OneHit") == "true"){
 
 				if ($event->getDamage() > 19.9) {
 
@@ -182,7 +193,7 @@ class EventListener implements Listener{
 
 		if($event->getEntity() instanceof Player){
 
-			if ($this->getConfig()->get("NoKnockBack") == "true"){
+			if ($this->getCfg->getConfig()->get("NoKnockBack") == "true"){
 
 				if ($event->getKnockBack() < $this->getConfig()->get("MinKnockBack")){
 
@@ -192,7 +203,7 @@ class EventListener implements Listener{
 
 			}
 
-			if ($this->getConfig()->get("Unkillable") == "true"){
+			if ($this->getCfg->getConfig()->get("Unkillable") == "true"){
 
 				if ($event->getDamage() < $this->getConfig()->get("MinDamage")){
 
