@@ -47,97 +47,145 @@ class EventListener implements Listener{
 
 			if ($this->getCfg->getConfig()->get("NoClipSafeMode") == "true"){
 
-				if ($level->getBlock($pos)->getId() > 0 and $level->getBlock($pos)->getId() < 6){
+				//Protection of Stone (ID = 1)
+
+				if ($level->getBlock($pos)->getId() == 1 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
 
 				}
 
-				if ($level->getBlock($pos)->getId() > 11 and $level->getBlock($pos)->getId() < 26){
+				//Protection of GrassBlock (ID = 2)
+
+				if ($level->getBlock($pos)->getId() == 2 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
 
 				}
 
-				if ($level->getBlock($pos)->getId() > 40 and $level->getBlock($pos)->getId() < 44){
+				//Protection of Dirt (ID = 3)
+
+				if ($level->getBlock($pos)->getId() == 3 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
 
 				}
 
-				if ($level->getBlock($pos)->getId() > 44 and $level->getBlock($pos)->getId() < 50){
+				//Protection of CobbleStone (ID = 4)
+
+				if ($level->getBlock($pos)->getId() == 4 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
 
 				}
 
-				if ($level->getBlock($pos)->getId() > 78 and $level->getBlock($pos)->getId() < 81){
+				//Protection of OakPlanks (ID = 5)
+
+				if ($level->getBlock($pos)->getId() == 5 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
 
 				}
 
-				if ($level->getBlock($pos)->getId() > 85 and $level->getBlock($pos)->getId() < 90){
+				//Protection of BedRock (ID = 7)
+
+				if ($level->getBlock($pos)->getId() == 7 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
 
 				}
 
-				if ($level->getBlock($pos)->getId() == 112){
+				//Protection of Wood (ID = 17)
+
+				if ($level->getBlock($pos)->getId() == 17 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
 
 				}
 
-				if ($level->getBlock($pos)->getId() > 120 and $level->getBlock($pos)->getId() < 126){
+				//Protection of Bricks (ID = 45)
+
+				if ($level->getBlock($pos)->getId() == 45 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
 
 				}
 
-				if ($level->getBlock($pos)->getId() > 151 and $level->getBlock($pos)->getId() < 156){
+				//Protection of Obsidian (ID = 49)
+
+				if ($level->getBlock($pos)->getId() == 49 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
 
 				}
 
-				if ($level->getBlock($pos)->getId() == 157){
+				//Protection of Ice (ID = 79)
+
+				if ($level->getBlock($pos)->getId() == 79 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
 
 				}
 
-				if ($level->getBlock($pos)->getId() == 159){
+				//Protection of Snow (ID = 80)
+
+				if ($level->getBlock($pos)->getId() == 80 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
 
 				}
 
-				if ($level->getBlock($pos)->getId() == 162){
+				//Protection of Netherrack (ID = 87)
+
+				if ($level->getBlock($pos)->getId() == 87 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
 
 				}
 
-				if ($level->getBlock($pos)->getId() == 198){
+				//Protection of Invisible Bedrock (ID = 95)
+
+				if ($level->getBlock($pos)->getId() == 95 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
 
 				}
 
-				if ($level->getBlock($pos)->getId() == 243){
+				//Protection of Stone Brick (ID = 98)
+
+				if ($level->getBlock($pos)->getId() == 98 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
 
 				}
 
-				if ($level->getBlock($pos)->getId() > 245 and $level->getBlock($pos)->getId() < 255){
+				//Protection of EndStone (ID = 121)
+
+				if ($level->getBlock($pos)->getId() == 121 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
 
 				}
 
-				if ($level->getBlock($pos)->getId() > 171 and $level->getBlock($pos)->getId() < 175){
+				//AC.DOUBLE.SLAB.ID = 157
+
+				if ($level->getBlock($pos)->getId() == 157 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
+
+					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+
+				}
+
+				//AC.STONE.ID = 255
+
+				if ($level->getBlock($pos)->getId() == 255 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
+
+					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+
+				}
+
+				//Protection of Clay (ID = 159)
+
+				if ($level->getBlock($pos)->getId() == 159 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
 
@@ -171,12 +219,6 @@ class EventListener implements Listener{
 
 				}
 
-				if ($event->getEntity() > 1){
-
-					$event->getDamager()->kick(TextFormat::BLUE."[AntiCheat] > KillAura is not allowed!");
-
-				}
-
 			}
 
 			if ($this->getCfg->getConfig()->get("OneHit") == "true"){
@@ -195,7 +237,7 @@ class EventListener implements Listener{
 
 			if ($this->getCfg->getConfig()->get("NoKnockBack") == "true"){
 
-				if ($event->getKnockBack() < $this->getConfig()->get("MinKnockBack")){
+				if ($event->getKnockBack() < $this->getCfg->getConfig()->get("MinKnockBack")){
 
 					$event->getEntity()->kick(TextFormat::BLUE."[AntiCheat] > NoKnockBack is not allowed!");
 
@@ -205,7 +247,7 @@ class EventListener implements Listener{
 
 			if ($this->getCfg->getConfig()->get("Unkillable") == "true"){
 
-				if ($event->getDamage() < $this->getConfig()->get("MinDamage")){
+				if ($event->getDamage() < $this->getCfg->getConfig()->get("MinDamage")){
 
 					$event->getEntity()->kick(TextFormat::BLUE."[AntiCheat] > Unkillable is not allowed!");
 

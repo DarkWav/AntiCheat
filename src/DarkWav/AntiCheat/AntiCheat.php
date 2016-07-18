@@ -18,7 +18,7 @@ class AntiCheat extends PluginBase{
 	$this->saveResource("AntiForceOP.txt");
   	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat Activated");
     $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Shield Activated");
-	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.3.2 [Racoon]");
+	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.3.3 [Black Mamba]");
 	if($this->getConfig()->get("OneHit") == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiOneHit");}
 	if($this->getConfig()->get("Unkillable") == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiUnkillable");}
 	if($this->getConfig()->get("ForceOP") == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiForceOP");}
@@ -40,13 +40,13 @@ class AntiCheat extends PluginBase{
    
 		if ($cmd->getName() == "anticheat"){
           
-             $sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.3.2 [Racoon] ~ DarkWav (Darku)");
+             $sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.3.3 [Black Mamba] ~ DarkWav (Darku)");
 
 		}
 
 		if ($cmd->getName() == "ac"){
 		
-		$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.3.2 [Racoon] ~ DarkWav (Darku)");
+		$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.3.3 [Black Mamba] ~ DarkWav (Darku)");
 
 		}
 
