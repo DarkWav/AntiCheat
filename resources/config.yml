@@ -13,10 +13,26 @@
 
    MinKnockBack: 0.4
 
+#Wich Punishment should take place?
+
+   NoKnockBack-Punishment: kick
+
+#Wich Message Sould be shown if NoKnockBack is detected?
+
+   NoKnockBack-Message: "[AntiCheat] > NoKnockBack is not allowed!"
+
 #Do you want to stop Players from dealing more than 19.9
 #damage to prevent OneHit kills?
 
    OneHit: false
+
+#Wich Punishment should take place?
+
+   OneHit-Punishment: kick
+
+#Wich Message Sould be shown if OneHit is detected?
+
+   OneHit-Message: "[AntiCheat] > OneHit is not allowed!"
 
 #Do you want to enable Unkillable Detection?
 
@@ -30,9 +46,25 @@
 
    MinDamage: 0.1
 
+#Wich Punishment should take place?
+
+   Unkillable-Punishment: kick
+
+#Wich Message Sould be shown if Unkillable is detected?
+
+   Unkillable-Message: "[AntiCheat] > Unkillable is not allowed!"
+
 #Do you want to enable advanced KillAura angle check?
 
    KillAura: true
+
+#Wich Punishment should take place?
+
+   KillAura-Punishment: kick
+
+#Wich Message Sould be shown if KillAura is detected?
+
+   KillAura-Message: "[AntiCheat] > KillAura is not allowed!"
 
 #Do you want to enable advanced ForceOP check?
 #READ AntiForceOP.txt BEFORE ENABLING!
@@ -42,6 +74,9 @@
 #Do you want to enable NoClip Detection?
 #This only allows players to be in the air.
 #Causes a Kick if the player is inside of Blocks.
+#I DON`T GUARANTEE NO FALSE POSITIVES WITH THIS!
+#Disable this instantly if SafeMode is causing
+#false positives and report it to the Author!
 
    NoClip: true
 
@@ -50,6 +85,14 @@
 #HIGHLY recommanded to be kept at "true"
 
    NoClipSafeMode: true
+
+#Wich Punishment should take place?
+
+   NoClip-Punishment: log
+
+#Wich Message Sould be shown if NoClip is detected?
+
+   NoClip-Message: "[AntiCheat] > NoClip is not allowed!"
 
 #AntiCheat main configuration file end
 ...

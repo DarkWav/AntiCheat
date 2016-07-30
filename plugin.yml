@@ -1,6 +1,6 @@
 name: AntiCheat
 main: DarkWav\AntiCheat\AntiCheat
-version: 2.3.3
+version: 2.4.0
 load: STARTUP
 enable: STARTUP
 author: DarkWav (Darku)

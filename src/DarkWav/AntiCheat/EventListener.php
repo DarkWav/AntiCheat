@@ -51,7 +51,17 @@ class EventListener implements Listener{
 
 				if ($level->getBlock($pos)->getId() == 1 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
-					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
+
+						$event->getPlayer()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoClip-Message"));
+
+					}
+
+					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "log"){
+
+						$this->getCfg->getServer()->getLogger()->warn(TextFormat::BLUE."[AntiCheat] $event->getPlayer() is hacking NoClip");
+					
+					}
 
 				}
 
@@ -59,7 +69,18 @@ class EventListener implements Listener{
 
 				if ($level->getBlock($pos)->getId() == 2 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
-					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
+
+						$event->getPlayer()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoClip-Message"));
+
+					}
+
+					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "log"){
+
+						$this->getCfg->getServer()->getLogger()->warn(TextFormat::BLUE."[AntiCheat] $event->getPlayer() is hacking NoClip");
+					
+					}
+
 
 				}
 
@@ -67,7 +88,17 @@ class EventListener implements Listener{
 
 				if ($level->getBlock($pos)->getId() == 3 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
-					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
+
+						$event->getPlayer()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoClip-Message"));
+
+					}
+
+					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "log"){
+
+						$this->getCfg->getServer()->getLogger()->warn(TextFormat::BLUE."[AntiCheat] $event->getPlayer() is hacking NoClip");
+					
+					}
 
 				}
 
@@ -75,7 +106,17 @@ class EventListener implements Listener{
 
 				if ($level->getBlock($pos)->getId() == 4 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
-					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
+
+						$event->getPlayer()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoClip-Message"));
+
+					}
+
+					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "log"){
+
+						$this->getCfg->getServer()->getLogger()->warn(TextFormat::BLUE."[AntiCheat] $event->getPlayer() is hacking NoClip");
+					
+					}
 
 				}
 
@@ -83,7 +124,17 @@ class EventListener implements Listener{
 
 				if ($level->getBlock($pos)->getId() == 5 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
-					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
+
+						$event->getPlayer()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoClip-Message"));
+
+					}
+
+					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "log"){
+
+						$this->getCfg->getServer()->getLogger()->warn(TextFormat::BLUE."[AntiCheat] $event->getPlayer() is hacking NoClip");
+					
+					}
 
 				}
 
@@ -91,7 +142,17 @@ class EventListener implements Listener{
 
 				if ($level->getBlock($pos)->getId() == 7 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
-					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
+
+						$event->getPlayer()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoClip-Message"));
+
+					}
+
+					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "log"){
+
+						$this->getCfg->getServer()->getLogger()->warn(TextFormat::BLUE."[AntiCheat] $event->getPlayer() is hacking NoClip");
+					
+					}
 
 				}
 
@@ -99,7 +160,17 @@ class EventListener implements Listener{
 
 				if ($level->getBlock($pos)->getId() == 17 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
-					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
+
+						$event->getPlayer()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoClip-Message"));
+
+					}
+
+					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "log"){
+
+						$this->getCfg->getServer()->getLogger()->warn(TextFormat::BLUE."[AntiCheat] $event->getPlayer() is hacking NoClip");
+					
+					}
 
 				}
 
@@ -107,7 +178,17 @@ class EventListener implements Listener{
 
 				if ($level->getBlock($pos)->getId() == 45 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
-					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
+
+						$event->getPlayer()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoClip-Message"));
+
+					}
+
+					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "log"){
+
+						$this->getCfg->getServer()->getLogger()->warn(TextFormat::BLUE."[AntiCheat] $event->getPlayer() is hacking NoClip");
+					
+					}
 
 				}
 
@@ -115,79 +196,17 @@ class EventListener implements Listener{
 
 				if ($level->getBlock($pos)->getId() == 49 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
-					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
 
-				}
+						$event->getPlayer()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoClip-Message"));
 
-				//Protection of Ice (ID = 79)
+					}
 
-				if ($level->getBlock($pos)->getId() == 79 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
+					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "log"){
 
-					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
-
-				}
-
-				//Protection of Snow (ID = 80)
-
-				if ($level->getBlock($pos)->getId() == 80 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
-
-					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
-
-				}
-
-				//Protection of Netherrack (ID = 87)
-
-				if ($level->getBlock($pos)->getId() == 87 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
-
-					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
-
-				}
-
-				//Protection of Invisible Bedrock (ID = 95)
-
-				if ($level->getBlock($pos)->getId() == 95 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
-
-					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
-
-				}
-
-				//Protection of Stone Brick (ID = 98)
-
-				if ($level->getBlock($pos)->getId() == 98 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
-
-					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
-
-				}
-
-				//Protection of EndStone (ID = 121)
-
-				if ($level->getBlock($pos)->getId() == 121 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
-
-					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
-
-				}
-
-				//AC.DOUBLE.SLAB.ID = 157
-
-				if ($level->getBlock($pos)->getId() == 157 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
-
-					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
-
-				}
-
-				//AC.STONE.ID = 255
-
-				if ($level->getBlock($pos)->getId() == 255 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
-
-					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
-
-				}
-
-				//Protection of Clay (ID = 159)
-
-				if ($level->getBlock($pos)->getId() == 159 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
-
-					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+						$this->getCfg->getServer()->getLogger()->warn(TextFormat::BLUE."[AntiCheat] $event->getPlayer() is hacking NoClip");
+					
+					}
 
 				}
 
@@ -197,7 +216,17 @@ class EventListener implements Listener{
 
 				if ($level->getBlock($pos)->getId() !== 0){
 
-					$event->getPlayer()->kick(TextFormat::BLUE."[AntiCheat] > NoClip is not allowed!");
+					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
+
+						$this->getCfg->getServer()->getLogger()->error(TextFormat::BLUE."[AntiCheat] This is punishment is not allowed in this mode!");
+
+					}
+
+					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "log"){
+
+						$this->getCfg->getServer()->getLogger()->warn(TextFormat::BLUE."[AntiCheat] $event->getPlayer() is hacking NoClip");
+					
+					}
 
 				}
 
@@ -213,19 +242,64 @@ class EventListener implements Listener{
 
 			if ($this->getCfg->getConfig()->get("KillAura") == "true"){
 
+			$EntityPosition = new Vector3($event->getEntity()->getX(), $event->getEntity()->getY(), $event->getEntity()->getZ());
+			$DamagerPosition = new Vector3($event->getDamager()->getX(), $event->getDamager()->getY(), $event->getDamager()->getZ());
+
+			//[KillAura Detection] Angle Check
+
 				if ($event->getEntity()->getPosition() !== $event->getDamager()->getForward()){
 
-					$event->getDamager()->kick(TextFormat::BLUE."[AntiCheat] > KillAura is not allowed!");
+					if ($this->getCfg->getConfig()->get("KillAura-Punishment") == "kick"){
+
+						$event->getDamager()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("KillAura-Message"));
+
+					}
+
+					if ($this->getCfg->getConfig()->get("KillAura-Punishment") == "log"){
+
+						$this->getCfg->getServer()->getLogger()->warn(TextFormat::BLUE."[AntiCheat] $event->getDamager() is hacking KillAura");
+					
+					}
+
+				}
+
+			//[KillAura Detection] Secret (Heuristic) Check (could work against reach)
+
+				if ($DamagerPosition->distance($EntityPosition) > 3.85){
+
+					if ($this->getCfg->getConfig()->get("KillAura-Punishment") == "kick"){
+
+						$event->getDamager()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("KillAura-Message"));
+
+					}
+
+					if ($this->getCfg->getConfig()->get("KillAura-Punishment") == "log"){
+
+						$this->getCfg->getServer()->getLogger()->warn(TextFormat::BLUE."[AntiCheat] $event->getDamager() is hacking KillAura");
+					
+					}
 
 				}
 
 			}
 
+			//OneHit Detection
+
 			if ($this->getCfg->getConfig()->get("OneHit") == "true"){
 
 				if ($event->getDamage() > 19.9) {
 
-					$event->getDamager()->kick(TextFormat::BLUE."[AntiCheat] > OneHit is not allowed!");
+					if ($this->getCfg->getConfig()->get("OneHit-Punishment") == "kick"){
+
+						$event->getDamager()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("OneHit-Message"));
+
+					}
+
+					if ($this->getCfg->getConfig()->get("OneHit-Punishment") == "log"){
+
+						$this->getCfg->getServer()->getLogger()->warn(TextFormat::BLUE."[AntiCheat] $event->getDamager() is hacking OneHit");
+					
+					}
 
 				}
 
@@ -235,21 +309,45 @@ class EventListener implements Listener{
 
 		if($event->getEntity() instanceof Player){
 
+			//NoNnockBack Detection
+
 			if ($this->getCfg->getConfig()->get("NoKnockBack") == "true"){
 
 				if ($event->getKnockBack() < $this->getCfg->getConfig()->get("MinKnockBack")){
 
-					$event->getEntity()->kick(TextFormat::BLUE."[AntiCheat] > NoKnockBack is not allowed!");
+					if ($this->getCfg->getConfig()->get("NoKnockBack-Punishment") == "kick"){
+
+						$event->getEntity()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoKnockBack-Message"));
+
+					}
+
+					if ($this->getCfg->getConfig()->get("NoKnockBack-Punishment") == "log"){
+
+						$this->getCfg->getServer()->getLogger()->warn(TextFormat::BLUE."[AntiCheat] $event->getEntity() is hacking NoKnockBack");
+					
+					}
 
 				}
 
 			}
 
+			//Unkillable Detection
+
 			if ($this->getCfg->getConfig()->get("Unkillable") == "true"){
 
 				if ($event->getDamage() < $this->getCfg->getConfig()->get("MinDamage")){
 
-					$event->getEntity()->kick(TextFormat::BLUE."[AntiCheat] > Unkillable is not allowed!");
+					if ($this->getCfg->getConfig()->get("Unkillable-Punishment") == "kick"){
+
+						$event->getEntity()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("Unkillable-Message"));
+
+					}
+
+					if ($this->getCfg->getConfig()->get("Unkillable-Punishment") == "log"){
+
+						$this->getCfg->getServer()->getLogger()->warn(TextFormat::BLUE."[AntiCheat] $event->getEntity() is hacking Unkillable");
+					
+					}
 
 				}
 
