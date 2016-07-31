@@ -265,7 +265,7 @@ class EventListener implements Listener{
 
 			//[KillAura Detection] Secret (Heuristic) Check (could work against reach)
 
-				if ($DamagerPosition->distance($EntityPosition) > 3.85){
+				if ($DamagerPosition->distance($EntityPosition) > $this->getCfg->getConfig()->get("MaxRange")){
 
 					if ($this->getCfg->getConfig()->get("KillAura-Punishment") == "kick"){
 
