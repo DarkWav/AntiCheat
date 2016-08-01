@@ -1,9 +1,9 @@
 name: AntiCheat
 main: DarkWav\AntiCheat\AntiCheat
-version: 2.4.0
+version: 2.4.1
 load: STARTUP
 enable: STARTUP
-author: DarkWav (Darku)
+author: DarkWav (Developer), Pav155 (Config Designer)
 api: ["3.0.0","2.1.0","2.0.0","1.14.0","1.13.2","1.0.0"]
 commands:
       anticheat:
