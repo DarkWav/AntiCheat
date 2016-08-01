@@ -1,6 +1,13 @@
 ---
-#AntiCheat main configuration file
-#What should be blocked?
+#=========================================#
+# AntiCheat main configuration file.      #
+# What should be blocked?                 #
+#=========================================#
+#   true = ENABLE | false = DISABLE       #
+#   log = console logging                 #
+#   kick = kick player                    #
+#=========================================#
+#---------------NoKnockBack---------------#
 #Do you want to enable NoKnockBack Detection?
 
    NoKnockBack: true
@@ -9,7 +16,7 @@
 #Increase this to 1.3 if NoKnockBack is not detected.
 #Decrease this to 0.39 if NoKnockBack is causing false
 #positives. Standard: 0.4
-#NEVER set this higher than 1.3
+#NEVER set this higher than 1.4
 
    MinKnockBack: 0.4
 
@@ -21,6 +28,7 @@
 
    NoKnockBack-Message: "[AntiCheat] > NoKnockBack is not allowed!"
 
+#-----------------OneHit------------------#
 #Do you want to stop Players from dealing more than 19.9
 #damage to prevent OneHit kills?
 
@@ -34,6 +42,7 @@
 
    OneHit-Message: "[AntiCheat] > OneHit is not allowed!"
 
+#---------------Unkillable----------------#
 #Do you want to enable Unkillable Detection?
 
    Unkillable: true
@@ -42,7 +51,7 @@
 #Increase this to 1 if Unkillable is not detected.
 #Decrease this to 0.001 if Unkillable is causing false
 #positives. Standard: 0.1
-#NEVER set this higher than 1
+#NEVER set this higher than 1.1
 
    MinDamage: 0.1
 
@@ -54,7 +63,8 @@
 
    Unkillable-Message: "[AntiCheat] > Unkillable is not allowed!"
 
-#Do you want to enable advanced KillAura angle check?
+#----------------KillAura-----------------#
+#Do you want to enable advanced KillAura check?
 
    KillAura: true
 
@@ -66,19 +76,13 @@
 
    KillAura-Message: "[AntiCheat] > KillAura is not allowed!"
 
-#How long can a player Reach to still be legit?
-#Decrease this to 3.8 if KillAura is not detected.
-#Increase this to 4 if KillAura is causing false
-#positives. Standard: 3.9
-#NEVER set this lower than 3.8
-
-   MaxRange: 3.9
-
+#----------------ForceOP------------------#
 #Do you want to enable advanced ForceOP check?
 #READ AntiForceOP.txt BEFORE ENABLING!
 
    ForceOP: false
 
+#-----------------NoClip------------------#
 #Do you want to enable NoClip Detection?
 #This only allows players to be in the air.
 #Causes a Kick if the player is inside of Blocks.
@@ -102,5 +106,12 @@
 
    NoClip-Message: "[AntiCheat] > NoClip is not allowed!"
 
-#AntiCheat main configuration file end
+#//////////////////////////////////////////////////////
+#//                                                  //
+#//     AntiCheat by DarkWav.                        //
+#//     Distributed under the ImagicalMine License.  //
+#//     Do not redistribute in modyfied form!        //
+#//     All rights reserved.                         //
+#//                                                  //
+#//////////////////////////////////////////////////////
 ...
