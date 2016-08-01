@@ -49,7 +49,7 @@ class EventListener implements Listener{
 
 				//Protection of Stone (ID = 1)
 
-				if ($level->getBlock($pos)->getId() == 1 and $level->getBlock($pos) !== $event->getPlayer()->getFloorY()){
+				if ($level->getBlock($pos)->getId() == 1 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
 
@@ -67,7 +67,7 @@ class EventListener implements Listener{
 
 				//Protection of GrassBlock (ID = 2)
 
-				if ($level->getBlock($pos)->getId() == 2 and $level->getBlock($pos) !== $event->getPlayer()->getFloorY()){
+				if ($level->getBlock($pos)->getId() == 2 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
 
@@ -86,7 +86,7 @@ class EventListener implements Listener{
 
 				//Protection of Dirt (ID = 3)
 
-				if ($level->getBlock($pos)->getId() == 3 and $level->getBlock($pos) !== $event->getPlayer()->getFloorY()){
+				if ($level->getBlock($pos)->getId() == 3 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
 
@@ -104,7 +104,7 @@ class EventListener implements Listener{
 
 				//Protection of CobbleStone (ID = 4)
 
-				if ($level->getBlock($pos)->getId() == 4 and $level->getBlock($pos) !== $event->getPlayer()->getFloorY()){
+				if ($level->getBlock($pos)->getId() == 4 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
 
@@ -122,7 +122,7 @@ class EventListener implements Listener{
 
 				//Protection of OakPlanks (ID = 5)
 
-				if ($level->getBlock($pos)->getId() == 5 and $level->getBlock($pos) !== $event->getPlayer()->getFloorY()){
+				if ($level->getBlock($pos)->getId() == 5 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
 
@@ -140,7 +140,7 @@ class EventListener implements Listener{
 
 				//Protection of BedRock (ID = 7)
 
-				if ($level->getBlock($pos)->getId() == 7 and $level->getBlock($pos) !== $event->getPlayer()->getFloorY()){
+				if ($level->getBlock($pos)->getId() == 7 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
 
@@ -158,7 +158,7 @@ class EventListener implements Listener{
 
 				//Protection of Wood (ID = 17)
 
-				if ($level->getBlock($pos)->getId() == 17 and $level->getBlock($pos) !== $event->getPlayer()->getFloorY()){
+				if ($level->getBlock($pos)->getId() == 17 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
 
@@ -176,7 +176,7 @@ class EventListener implements Listener{
 
 				//Protection of Bricks (ID = 45)
 
-				if ($level->getBlock($pos)->getId() == 45 and $level->getBlock($pos) !== $event->getPlayer()->getFloorY()){
+				if ($level->getBlock($pos)->getId() == 45 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
 
@@ -194,7 +194,7 @@ class EventListener implements Listener{
 
 				//Protection of Obsidian (ID = 49)
 
-				if ($level->getBlock($pos)->getId() == 49 and $level->getBlock($pos) !== $event->getPlayer()->getFloorY()){
+				if ($level->getBlock($pos)->getId() == 49 and $level->getBlock($pos) !== $event->getPlayer()->getFloor()){
 
 					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
 
