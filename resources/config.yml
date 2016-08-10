@@ -20,11 +20,11 @@
 
    MinKnockBack: 0.4
 
-#Wich Punishment should take place?
+#Which punishment should take place?
 
    NoKnockBack-Punishment: kick
 
-#Wich Message Sould be shown if NoKnockBack is detected?
+#Which Message Should be shown if NoKnockBack is detected?
 
    NoKnockBack-Message: "[AntiCheat] > NoKnockBack is not allowed!"
 
@@ -34,11 +34,11 @@
 
    OneHit: false
 
-#Wich Punishment should take place?
+#Which Punishment should take place?
 
    OneHit-Punishment: kick
 
-#Wich Message Sould be shown if OneHit is detected?
+#Which Message Sould be shown if OneHit is detected?
 
    OneHit-Message: "[AntiCheat] > OneHit is not allowed!"
 
@@ -93,16 +93,16 @@
    NoClip: true
 
 #Do you Want to enable SafeMode to prevent false
-#positvises with cobweb, grass, ect?
-#HIGHLY recommanded to be kept at "true"
+#positives with cobweb, grass, etc?
+#HIGHLY recommended to be kept at "true"
 
    NoClipSafeMode: true
 
-#Wich Punishment should take place?
+#Which Punishment should take place?
 
    NoClip-Punishment: log
 
-#Wich Message Sould be shown if NoClip is detected?
+#Which Message Should be shown if NoClip is detected?
 
    NoClip-Message: "[AntiCheat] > NoClip is not allowed!"
 
@@ -110,7 +110,7 @@
 #//                                                  //
 #//     AntiCheat by DarkWav.                        //
 #//     Distributed under the ImagicalMine License.  //
-#//     Do not redistribute in modyfied form!        //
+#//     Do not redistribute in modified form!        //
 #//     All rights reserved.                         //
 #//                                                  //
 #//////////////////////////////////////////////////////
