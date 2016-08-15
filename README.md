@@ -15,4 +15,8 @@
 # Please mark issues with the label of your platform.
 
 
+<<<<<<< HEAD
 # [Download Now](https://forums.imagicalmine.net/plugins/anticheat.52/download?version=850)
+=======
+# [Download Now](https://www.imagicalmine.net/community/plugins/anticheat.52/download?version=847)
+>>>>>>> origin/master
