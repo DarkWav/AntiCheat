@@ -1,7 +1,7 @@
 ---
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||#
 #AntiCheat main configuration file!
-#Current version: 2.5.0
+#Current version: 2.5.1
 #What should be blocked?
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||#
 #true = ENABLE
@@ -9,8 +9,8 @@
 #log = Console info logging
 #kick = Player kick
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||#
-   Plugin-Version: 2.5.0
-   Config-Version: 3.1.7
+   Plugin-Version: 2.5.1
+   Config-Version: 3.1.8
 #---------------NoKnockBack---------------#
 #Do you want to enable NoKnockBack Detection?
 
@@ -110,6 +110,9 @@
 #-----------------NoClip------------------#
 #Do you want to enable NoClip Detection?
 #This prevents players form glitching though blocks.
+#This is still W.I.P and may cause false positives.
+#Disable this if you want.
+#If this caueses crashes, please report it to the Author!
 
    NoClip: true
 

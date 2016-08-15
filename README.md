@@ -15,4 +15,4 @@
 # Please mark issues with the label of your platform.
 
 
-# [Download Now](https://forums.imagicalmine.net/plugins/anticheat.52/download?version=787)
+# [Download Now](https://forums.imagicalmine.net/plugins/anticheat.52/download?version=850)

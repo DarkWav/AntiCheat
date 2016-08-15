@@ -18,21 +18,22 @@ class AntiCheat extends PluginBase{
 	$this->saveResource("AntiForceOP.txt");
   	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat Activated");
     $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Shield Activated");
-	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.5.0 [Neutron Star]");
+	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.5.1 [Neutron Star]");
 	if($this->getConfig()->get("OneHit") == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiOneHit");}
 	if($this->getConfig()->get("Unkillable") == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiUnkillable");}
 	if($this->getConfig()->get("ForceOP") == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiForceOP");}
 	if($this->getConfig()->get("NoClip") == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiNoClip");}
 	if($this->getConfig()->get("KillAura") == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiKillAura");}
+	if($this->getConfig()->get("Reach") == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiReach");}
 	if($this->getConfig()->get("NoKnockBack") == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiNoKnockBack");}
 
-		if($this->getConfig()->get("Plugin-Version") != "2.5.0"){
+		if($this->getConfig()->get("Plugin-Version") != "2.5.1" and $this->getConfig()->get("Plugin-Version") != "2.5.0"){
 
 			$this->getServer()->getLogger()->critical(TextFormat::BLUE."[AntiCheat] > Your Config is incompatible with this plugin version, please update immediately!");
 
 		}
 
-		if($this->getConfig()->get("Config-Version") != "3.1.7"){
+		if($this->getConfig()->get("Config-Version") != "3.1.8"){
 
 			$this->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] > Your Config is out of date!");
 
@@ -53,13 +54,13 @@ class AntiCheat extends PluginBase{
    
 		if ($cmd->getName() == "anticheat"){
           
-			$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.5.0 [Neutron Star] ~ DarkWav (Developer), Pav155 (Config Designer)");
+			$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.5.1 [Neutron Star] ~ DarkWav (Developer), Pav155 (Config Designer)");
 
 		}
 
 		if ($cmd->getName() == "ac"){
 		
-			$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.5.0 [Neutron Star] ~ DarkWav (Developer), Pav155 (Config Designer)");
+			$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.5.1 [Neutron Star] ~ DarkWav (Developer), Pav155 (Config Designer)");
 
 		}
 

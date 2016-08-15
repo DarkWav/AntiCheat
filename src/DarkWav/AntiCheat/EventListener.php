@@ -26,6 +26,10 @@ class EventListener implements Listener{
 
 	public function onMove(PlayerMoveEvent $event){
 
+	$level = $event->getPlayer()->getLevel();
+
+	$pos = new Vector3($event->getPlayer()->getX(), $event->getPlayer()->getY(), $event->getPlayer()->getZ());
+
 		if ($this->getCfg->getConfig()->get("ForceOP") == "true"){
 
 			if ($event->getPlayer()->isOp()){
@@ -42,190 +46,87 @@ class EventListener implements Listener{
 
 		if ($this->getCfg->getConfig()->get("NoClip") == "true"){
 
-			$level = $event->getPlayer()->getLevel();
+			if ($level->getBlock($pos)->getId() != 0){
 
-			$pos = new Vector3($event->getPlayer()->getX(), $event->getPlayer()->getY(), $event->getPlayer()->getZ());
+			if ($level->getBlock($pos)->getId() != 30 and $level->getBlock($pos)->getId() != 31){
 
-				//Protection of Stone (ID = 1)
+			if ($level->getBlock($pos)->getId() != 6 and $level->getBlock($pos)->getId() != 32){
 
-				if ($level->getBlock($pos)->getId() == 1 and $level->getBlock($pos) != $event->getPlayer()->getFloorY()){
+			if ($level->getBlock($pos)->getId() != 51 and $level->getBlock($pos)->getId() != 90){
 
-					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
+			if ($level->getBlock($pos)->getId() != 64 and $level->getBlock($pos)->getId() != 71){
 
-						$event->setCancelled(true);
-						$event->getPlayer()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoClip-Message"));
+			if ($level->getBlock($pos)->getId() != 70 and $level->getBlock($pos)->getId() != 72){
 
-					}
+			if ($level->getBlock($pos)->getId() != 8 and $level->getBlock($pos)->getId() != 9){
 
-					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "log"){
+			if ($level->getBlock($pos)->getId() != 10 and $level->getBlock($pos)->getId() != 11){
 
-						$this->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getPlayer()->getName() is hacking NoClip");
-						$event->setCancelled(true);
-					
-					}
+			if ($level->getBlock($pos)->getId() != 26 and $level->getBlock($pos)->getId() != 27){
 
-				}
+			if ($level->getBlock($pos)->getId() != 28 and $level->getBlock($pos)->getId() != 66){
 
-				//Protection of GrassBlock (ID = 2)
+			if ($level->getBlock($pos)->getId() != 65 and $level->getBlock($pos)->getId() != 96){
 
-				if ($level->getBlock($pos)->getId() == 2 and $level->getBlock($pos) != $event->getPlayer()->getFloorY()){
+			if ($level->getBlock($pos)->getId() != 183 and $level->getBlock($pos)->getId() != 184){
 
-					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
+			if ($level->getBlock($pos)->getId() != 185 and $level->getBlock($pos)->getId() != 186){
 
-						$event->setCancelled(true);
-						$event->getPlayer()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoClip-Message"));
+			if ($level->getBlock($pos)->getId() != 187 and $level->getBlock($pos)->getId() != 171){
 
-					}
+			if ($level->getBlock($pos)->getId() != 167 and $level->getBlock($pos)->getId() != 132){
 
-					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "log"){
+			if ($level->getBlock($pos)->getId() != 126 and $level->getBlock($pos)->getId() != 111){
 
-						$this->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getPlayer()->getName() is hacking NoClip");
-						$event->setCancelled(true);
-					
-					}
+			if ($level->getBlock($pos)->getId() != 78 and $level->getBlock($pos)->getId() != 83){
 
+				if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
+
+					$event->setCancelled(true);
+					$event->getPlayer()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoClip-Message"));
 
 				}
 
-				//Protection of Dirt (ID = 3)
+				if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "log"){
 
-				if ($level->getBlock($pos)->getId() == 3 and $level->getBlock($pos) != $event->getPlayer()->getFloorY()){
-
-					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
-
-						$event->setCancelled(true);
-						$event->getPlayer()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoClip-Message"));
-
-					}
-
-					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "log"){
-
-						$this->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getPlayer()->getName() is hacking NoClip");
-						$event->setCancelled(true);
+					$event->setCancelled(true);
+					$this->getCfg->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getPlayer()->getName() is hacking NoClip");
 					
-					}
-
 				}
 
-				//Protection of CobbleStone (ID = 4)
+			}
 
-				if ($level->getBlock($pos)->getId() == 4 and $level->getBlock($pos) != $event->getPlayer()->getFloorY()){
+			}
 
-					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
+			}
 
-						$event->setCancelled(true);
-						$event->getPlayer()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoClip-Message"));
+			}
 
-					}
+			}
 
-					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "log"){
+			}
 
-						$this->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getPlayer()->getName() is hacking NoClip");
-						$event->setCancelled(true);
-					
-					}
+			}
 
-				}
+			}
 
-				//Protection of OakPlanks (ID = 5)
+			}
 
-				if ($level->getBlock($pos)->getId() == 5 and $level->getBlock($pos) != $event->getPlayer()->getFloorY()){
+			}
 
-					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
+			}
 
-						$event->setCancelled(true);
-						$event->getPlayer()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoClip-Message"));
+			}
 
-					}
+			}
 
-					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "log"){
+			}
 
-						$this->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getPlayer()->getName() is hacking NoClip");
-						$event->setCancelled(true);
-					
-					}
+			}
 
-				}
+			}
 
-				//Protection of BedRock (ID = 7)
-
-				if ($level->getBlock($pos)->getId() == 7 and $level->getBlock($pos) != $event->getPlayer()->getFloorY()){
-
-					if ($this->getConfig()->get("NoClip-Punishment") == "kick"){
-
-						$event->setCancelled(true);
-						$event->getPlayer()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoClip-Message"));
-
-					}
-
-					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "log"){
-
-						$this->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getPlayer()->getName() is hacking NoClip");
-						$event->setCancelled(true);
-					
-					}
-
-				}
-
-				//Protection of Wood (ID = 17)
-
-				if ($level->getBlock($pos)->getId() == 17 and $level->getBlock($pos) != $event->getPlayer()->getFloorY()){
-
-					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
-
-						$event->setCancelled(true);
-						$event->getPlayer()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoClip-Message"));
-
-					}
-
-					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "log"){
-
-						$this->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getPlayer()->getName() is hacking NoClip");
-						$event->setCancelled(true);
-					
-					}
-
-				}
-
-				//Protection of Bricks (ID = 45)
-
-				if ($level->getBlock($pos)->getId() == 45 and $level->getBlock($pos) != $event->getPlayer()->getFloorY()){
-
-					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
-
-						$event->setCancelled(true);
-						$event->getPlayer()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoClip-Message"));
-
-					}
-
-					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "log"){
-
-						$this->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getPlayer()->getName() is hacking NoClip");
-						$event->setCancelled(true);
-					
-					}
-
-				}
-
-				//Protection of Obsidian (ID = 49)
-
-				if ($level->getBlock($pos)->getId() == 49 and $level->getBlock($pos) != $event->getPlayer()->getFloorY()){
-
-					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
-
-						$event->setCancelled(true);
-						$event->getPlayer()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoClip-Message"));
-
-					}
-
-					if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "log"){
-
-						$this->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getPlayer()->getName() is hacking NoClip");
-						$event->setCancelled(true);
-					
-					}
-
-				}
+			}
 
 		}
 
@@ -233,12 +134,12 @@ class EventListener implements Listener{
 
 	public function onDamage(EntityDamageByEntityEvent $event, EntityDamageEvent $event2){
 
+	$EntityPosition = new Vector3($event->getEntity()->getX(), $event->getEntity()->getY(), $event->getEntity()->getZ());
+	$DamagerPosition = new Vector3($event->getDamager()->getX(), $event->getDamager()->getY(), $event->getDamager()->getZ());
+
 		if($event->getDamager() instanceof Player){
 
 			if ($this->getCfg->getConfig()->get("KillAura") == "true"){
-
-			$EntityPosition = new Vector3($event->getEntity()->getX(), $event->getEntity()->getY(), $event->getEntity()->getZ());
-			$DamagerPosition = new Vector3($event->getDamager()->getX(), $event->getDamager()->getY(), $event->getDamager()->getZ());
 
 			//KillAura Angle Check
 
@@ -254,13 +155,17 @@ class EventListener implements Listener{
 					if ($this->getCfg->getConfig()->get("KillAura-Punishment") == "log"){
 
 						$event->setCancelled(true);
-						$this->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getDamager()->getName() is hacking KillAura");
+						$this->getCfg->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getDamager()->getName() is hacking KillAura");
 					
 					}
 
 				}
 
+			}
+
 			//Reach Check
+
+			if ($this->getCfg->getConfig()->get("Reach") == "true"){
 
 				if ($DamagerPosition->distance($EntityPosition) > $this->getCfg->getConfig()->get("MaxRange")){
 
@@ -274,7 +179,7 @@ class EventListener implements Listener{
 					if ($this->getCfg->getConfig()->get("Reach-Punishment") == "log"){
 
 						$event->setCancelled(true);
-						$this->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getDamager()->getName() is hacking Reach");
+						$this->getCfg->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getDamager()->getName() is hacking Reach");
 					
 					}
 
@@ -298,7 +203,7 @@ class EventListener implements Listener{
 					if ($this->getCfg->getConfig()->get("OneHit-Punishment") == "log"){
 
 						$event->setCancelled(true);
-						$this->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getDamager()->getName() is hacking OneHit");
+						$this->getCfg->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getDamager()->getName() is hacking OneHit");
 					
 					}
 
@@ -324,7 +229,7 @@ class EventListener implements Listener{
 
 					if ($this->getCfg->getConfig()->get("NoKnockBack-Punishment") == "log"){
 
-						$this->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getEntity()->getName() is hacking NoKnockBack");
+						$this->getCfg->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getEntity()->getName() is hacking NoKnockBack");
 					
 					}
 
@@ -346,7 +251,7 @@ class EventListener implements Listener{
 
 					if ($this->getCfg->getConfig()->get("Unkillable-Punishment") == "log"){
 
-						$this->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getEntity()->getName() is hacking Unkillable");
+						$this->getCfg->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getEntity()->getName() is hacking Unkillable");
 					
 					}
 
