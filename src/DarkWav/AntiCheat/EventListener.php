@@ -45,8 +45,10 @@ class EventListener implements Listener{
 		}
 
 		if ($this->getCfg->getConfig()->get("NoClip") == "true"){
+		
+			//ANTI-FALSE-POSITIVES
 
-			if ($level->getBlock($pos)->getId() != 0){
+			if ($level->getBlock($pos)->getId() != 0 and $level->getBlock($pos)->getId() != 427){
 
 			if ($level->getBlock($pos)->getId() != 30 and $level->getBlock($pos)->getId() != 31){
 
@@ -80,6 +82,64 @@ class EventListener implements Listener{
 
 			if ($level->getBlock($pos)->getId() != 78 and $level->getBlock($pos)->getId() != 83){
 
+			if ($level->getBlock($pos)->getId() != 37 and $level->getBlock($pos)->getId() != 38){
+
+			if ($level->getBlock($pos)->getId() != 39 and $level->getBlock($pos)->getId() != 40){
+
+			if ($level->getBlock($pos)->getId() != 44 and $level->getBlock($pos)->getId() != 50){
+
+			if ($level->getBlock($pos)->getId() != 53 and $level->getBlock($pos)->getId() != 54){
+
+			if ($level->getBlock($pos)->getId() != 55 and $level->getBlock($pos)->getId() != 59){
+
+			if ($level->getBlock($pos)->getId() != 63 and $level->getBlock($pos)->getId() != 127){
+
+			if ($level->getBlock($pos)->getId() != 67 and $level->getBlock($pos)->getId() != 131){
+
+			if ($level->getBlock($pos)->getId() != 68 and $level->getBlock($pos)->getId() != 134){
+
+			if ($level->getBlock($pos)->getId() != 69 and $level->getBlock($pos)->getId() != 135){
+
+			if ($level->getBlock($pos)->getId() != 75 and $level->getBlock($pos)->getId() != 136){
+
+			if ($level->getBlock($pos)->getId() != 76 and $level->getBlock($pos)->getId() != 140){
+
+			if ($level->getBlock($pos)->getId() != 77 and $level->getBlock($pos)->getId() != 141){
+
+			if ($level->getBlock($pos)->getId() != 81 and $level->getBlock($pos)->getId() != 142){
+
+			if ($level->getBlock($pos)->getId() != 92 and $level->getBlock($pos)->getId() != 143){
+
+			if ($level->getBlock($pos)->getId() != 104 and $level->getBlock($pos)->getId() != 144){
+
+			if ($level->getBlock($pos)->getId() != 105 and $level->getBlock($pos)->getId() != 145){
+
+			if ($level->getBlock($pos)->getId() != 106 and $level->getBlock($pos)->getId() != 146){
+
+			if ($level->getBlock($pos)->getId() != 108 and $level->getBlock($pos)->getId() != 147){
+
+			if ($level->getBlock($pos)->getId() != 109 and $level->getBlock($pos)->getId() != 148){
+
+			if ($level->getBlock($pos)->getId() != 116 and $level->getBlock($pos)->getId() != 151){
+
+			if ($level->getBlock($pos)->getId() != 115 and $level->getBlock($pos)->getId() != 156){
+
+			if ($level->getBlock($pos)->getId() != 114 and $level->getBlock($pos)->getId() != 158){
+
+			if ($level->getBlock($pos)->getId() != 117 and $level->getBlock($pos)->getId() != 163){
+
+			if ($level->getBlock($pos)->getId() != 120 and $level->getBlock($pos)->getId() != 164){
+
+			if ($level->getBlock($pos)->getId() != 167 and $level->getBlock($pos)->getId() != 428){
+
+			if ($level->getBlock($pos)->getId() != 171 and $level->getBlock($pos)->getId() != 429){
+
+			if ($level->getBlock($pos)->getId() != 175 and $level->getBlock($pos)->getId() != 430){
+
+			if ($level->getBlock($pos)->getId() != 178 and $level->getBlock($pos)->getId() != 431){
+
+			if ($level->getBlock($pos)->getId() != 244 and $level->getBlock($pos)->getId() != 120){
+
 				if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
 
 					$event->setCancelled(true);
@@ -93,6 +153,64 @@ class EventListener implements Listener{
 					$this->getCfg->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getPlayer()->getName() is hacking NoClip");
 					
 				}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
+
+			}
 
 			}
 
