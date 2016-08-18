@@ -31,193 +31,195 @@ class EventListener implements Listener{
 
 	$pos = new Vector3($event->getPlayer()->getX(), $event->getPlayer()->getY(), $event->getPlayer()->getZ());
 
+	$BlockID = $level->getBlock($pos)->getId()
+
 		if ($this->getCfg->getConfig()->get("NoClip") == "true"){
 		
 			//ANTI-FALSE-POSITIVES
 
-			if ($level->getBlock($pos)->getId() != 0
+			if ($BlockID != 0
 			
-			and $level->getBlock($pos)->getId() != 427
+			and $BlockID != 427
 
-			and $level->getBlock($pos)->getId() != 30
+			and $BlockID != 30
 			
-			and $level->getBlock($pos)->getId() != 31
+			and $BlockID != 31
 
-			and $level->getBlock($pos)->getId() != 6
+			and $BlockID != 6
 
-			and $level->getBlock($pos)->getId() != 32
+			and $BlockID != 32
 
-			and $level->getBlock($pos)->getId() != 51
+			and $BlockID != 51
 
-			and $level->getBlock($pos)->getId() != 90
+			and $BlockID != 90
 
-			and $level->getBlock($pos)->getId() != 64
+			and $BlockID != 64
 			
-			and $level->getBlock($pos)->getId() != 71
+			and $BlockID != 71
 
-			and $level->getBlock($pos)->getId() != 70
+			and $BlockID != 70
 			
-			and $level->getBlock($pos)->getId() != 72
+			and $BlockID != 72
 
-			and $level->getBlock($pos)->getId() != 8
+			and $BlockID != 8
 			
-			and $level->getBlock($pos)->getId() != 9
+			and $BlockID != 9
 
-			and $level->getBlock($pos)->getId() != 10
+			and $BlockID != 10
 			
-			and $level->getBlock($pos)->getId() != 11
+			and $BlockID != 11
 
-			and $level->getBlock($pos)->getId() != 26
+			and $BlockID != 26
 			
-			and $level->getBlock($pos)->getId() != 27
+			and $BlockID != 27
 
-			and $level->getBlock($pos)->getId() != 28
+			and $BlockID != 28
 			
-			and $level->getBlock($pos)->getId() != 66
+			and $BlockID != 66
 
-			and $level->getBlock($pos)->getId() != 65
+			and $BlockID != 65
 			
-			and $level->getBlock($pos)->getId() != 96
+			and $BlockID != 96
 
-			and $level->getBlock($pos)->getId() != 183
+			and $BlockID != 183
 			
-			and $level->getBlock($pos)->getId() != 184
+			and $BlockID != 184
 
-			and $level->getBlock($pos)->getId() != 185
+			and $BlockID != 185
 			
-			and $level->getBlock($pos)->getId() != 186
+			and $BlockID != 186
 
-			and $level->getBlock($pos)->getId() != 187
+			and $BlockID != 187
 			
-			and $level->getBlock($pos)->getId() != 171
+			and $BlockID != 171
 
-			and $level->getBlock($pos)->getId() != 167
+			and $BlockID != 167
 			
-			and $level->getBlock($pos)->getId() != 132
+			and $BlockID != 132
 
-			and $level->getBlock($pos)->getId() != 126
+			and $BlockID != 126
 			
-			and $level->getBlock($pos)->getId() != 111
+			and $BlockID != 111
 
-			and $level->getBlock($pos)->getId() != 78
+			and $BlockID != 78
 			
-			and $level->getBlock($pos)->getId() != 83
+			and $BlockID != 83
 
-			and $level->getBlock($pos)->getId() != 37
+			and $BlockID != 37
 			
-			and $level->getBlock($pos)->getId() != 38
+			and $BlockID != 38
 
-			and $level->getBlock($pos)->getId() != 39
+			and $BlockID != 39
 			
-			and $level->getBlock($pos)->getId() != 40
+			and $BlockID != 40
 
-			and $level->getBlock($pos)->getId() != 44
+			and $BlockID != 44
 			
-			and $level->getBlock($pos)->getId() != 50
+			and $BlockID != 50
 
-			and $level->getBlock($pos)->getId() != 53
+			and $BlockID != 53
 			
-			and $level->getBlock($pos)->getId() != 54
+			and $BlockID != 54
 
-			and $level->getBlock($pos)->getId() != 55
+			and $BlockID != 55
 			
-			and $level->getBlock($pos)->getId() != 59
+			and $BlockID != 59
 
-			and $level->getBlock($pos)->getId() != 63
+			and $BlockID != 63
 			
-			and $level->getBlock($pos)->getId() != 127
+			and $BlockID != 127
 
-			and $level->getBlock($pos)->getId() != 67
+			and $BlockID != 67
 			
-			and $level->getBlock($pos)->getId() != 131
+			and $BlockID != 131
 
-			and $level->getBlock($pos)->getId() != 68
+			and $BlockID != 68
 			
-			and $level->getBlock($pos)->getId() != 134
+			and $BlockID != 134
 
-			and $level->getBlock($pos)->getId() != 69
+			and $BlockID != 69
 			
-			and $level->getBlock($pos)->getId() != 135
+			and $BlockID != 135
 
-			and $level->getBlock($pos)->getId() != 75
+			and $BlockID != 75
 			
-			and $level->getBlock($pos)->getId() != 136
+			and $BlockID != 136
 
-			and $level->getBlock($pos)->getId() != 76
+			and $BlockID != 76
 			
-			and $level->getBlock($pos)->getId() != 140
+			and $BlockID != 140
 
-			and $level->getBlock($pos)->getId() != 77
+			and $BlockID != 77
 			
-			and $level->getBlock($pos)->getId() != 141
+			and $BlockID != 141
 
-			and $level->getBlock($pos)->getId() != 81
+			and $BlockID != 81
 			
-			and $level->getBlock($pos)->getId() != 142
+			and $BlockID != 142
 
-			and $level->getBlock($pos)->getId() != 92
+			and $BlockID != 92
 			
-			and $level->getBlock($pos)->getId() != 143
+			and $BlockID != 143
 
-			and $level->getBlock($pos)->getId() != 104
+			and $BlockID != 104
 			
-			and $level->getBlock($pos)->getId() != 144
+			and $BlockID != 144
 
-			and $level->getBlock($pos)->getId() != 105
+			and $BlockID != 105
 			
-			and $level->getBlock($pos)->getId() != 145
+			and $BlockID != 145
 
-			and $level->getBlock($pos)->getId() != 106
+			and $BlockID != 106
 			
-			and $level->getBlock($pos)->getId() != 146
+			and $BlockID != 146
 
-			and $level->getBlock($pos)->getId() != 108
+			and $BlockID != 108
 			
-			and $level->getBlock($pos)->getId() != 147
+			and $BlockID != 147
 
-			and $level->getBlock($pos)->getId() != 109
+			and $BlockID != 109
 			
-			and $level->getBlock($pos)->getId() != 148
+			and $BlockID != 148
 
-			and $level->getBlock($pos)->getId() != 116
+			and $BlockID != 116
 			
-			and $level->getBlock($pos)->getId() != 151
+			and $BlockID != 151
 
-			and $level->getBlock($pos)->getId() != 115
+			and $BlockID != 115
 			
-			and $level->getBlock($pos)->getId() != 156
+			and $BlockID != 156
 
-			and $level->getBlock($pos)->getId() != 114
+			and $BlockID != 114
 			
-			and $level->getBlock($pos)->getId() != 158
+			and $BlockID != 158
 
-			and $level->getBlock($pos)->getId() != 117
+			and $BlockID != 117
 			
-			and $level->getBlock($pos)->getId() != 163
+			and $BlockID != 163
 
-			and $level->getBlock($pos)->getId() != 120
+			and $BlockID != 120
 			
-			and $level->getBlock($pos)->getId() != 164
+			and $BlockID != 164
 
-			and $level->getBlock($pos)->getId() != 167
+			and $BlockID != 167
 			
-			and $level->getBlock($pos)->getId() != 428
+			and $BlockID != 428
 
-			and $level->getBlock($pos)->getId() != 171
+			and $BlockID != 171
 			
-			and $level->getBlock($pos)->getId() != 429
+			and $BlockID != 429
 
-			and $level->getBlock($pos)->getId() != 175
+			and $BlockID != 175
 			
-			and $level->getBlock($pos)->getId() != 430
+			and $BlockID != 430
 
-			and $level->getBlock($pos)->getId() != 178
+			and $BlockID != 178
 			
-			and $level->getBlock($pos)->getId() != 431
+			and $BlockID != 431
 
-			and $level->getBlock($pos)->getId() != 244
+			and $BlockID != 244
 			
-			and $level->getBlock($pos)->getId() != 120){
+			and $BlockID != 120){
 
 				if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "kick"){
 
