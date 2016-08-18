@@ -14,9 +14,9 @@ class AntiCheatTick extends PluginTask {
 
 		$this->plugin->getServer()->getLogger()->debug(TextFormat::BLUE."[AntiCheat] Running ForceOP Check");
 
-        foreach($this->plugin->getServer()->getOnlinePlayers() as $player){
+		foreach($this->plugin->getServer()->getOnlinePlayers() as $player){
 
-            if ($player->isOp()){
+			if ($player->isOp()){
 
 				if (!$player->hasPermission("anticheat.op")){
 

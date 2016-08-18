@@ -33,7 +33,7 @@ class EventListener implements Listener{
 
 	$BlockID = $level->getBlock($pos)->getId();
 
-		if ($this->getCfg->getConfig()->get("NoClip") == "true"){
+		if ($this->getCfg->getConfig()->get("NoClip")){
 		
 			//ANTI-FALSE-POSITIVES
 
@@ -228,10 +228,9 @@ class EventListener implements Listener{
 
 				}
 
-				if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "log"){
+				if ($this->getCfg->getConfig()->get("NoClip-Punishment") == "block"){
 
 					$event->setCancelled(true);
-					$this->getCfg->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getPlayer()->getName() is hacking NoClip");
 					
 				}
 
@@ -248,7 +247,7 @@ class EventListener implements Listener{
 
 		if($event->getDamager() instanceof Player){
 
-			if ($this->getCfg->getConfig()->get("KillAura") == "true"){
+			if ($this->getCfg->getConfig()->get("KillAura")){
 
 			//KillAura Angle Check
 
@@ -261,10 +260,9 @@ class EventListener implements Listener{
 
 					}
 
-					if ($this->getCfg->getConfig()->get("KillAura-Punishment") == "log"){
+					if ($this->getCfg->getConfig()->get("KillAura-Punishment") == "block"){
 
 						$event->setCancelled(true);
-						$this->getCfg->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getDamager()->getName() is hacking KillAura");
 					
 					}
 
@@ -274,7 +272,7 @@ class EventListener implements Listener{
 
 			//Reach Check
 
-			if ($this->getCfg->getConfig()->get("Reach") == "true"){
+			if ($this->getCfg->getConfig()->get("Reach")){
 
 				if ($DamagerPosition->distance($EntityPosition) > $this->getCfg->getConfig()->get("MaxRange")){
 
@@ -285,10 +283,9 @@ class EventListener implements Listener{
 
 					}
 
-					if ($this->getCfg->getConfig()->get("Reach-Punishment") == "log"){
+					if ($this->getCfg->getConfig()->get("Reach-Punishment") == "block"){
 
 						$event->setCancelled(true);
-						$this->getCfg->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getDamager()->getName() is hacking Reach");
 					
 					}
 
@@ -298,7 +295,7 @@ class EventListener implements Listener{
 
 			//OneHit Detection
 
-			if ($this->getCfg->getConfig()->get("OneHit") == "true"){
+			if ($this->getCfg->getConfig()->get("OneHit")){
 
 				if ($event->getDamage() > 19.9) {
 
@@ -309,10 +306,9 @@ class EventListener implements Listener{
 
 					}
 
-					if ($this->getCfg->getConfig()->get("OneHit-Punishment") == "log"){
+					if ($this->getCfg->getConfig()->get("OneHit-Punishment") == "block"){
 
 						$event->setCancelled(true);
-						$this->getCfg->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getDamager()->getName() is hacking OneHit");
 					
 					}
 
@@ -326,21 +322,11 @@ class EventListener implements Listener{
 
 			//NoNnockBack Detection
 
-			if ($this->getCfg->getConfig()->get("NoKnockBack") == "true"){
+			if ($this->getCfg->getConfig()->get("NoKnockBack")){
 
-				if ($event->getKnockBack() < $this->getCfg->getConfig()->get("MinKnockBack")){
+				if ($event->getKnockBack() < $this->getCfg->getConfig()->get("MinKnockBack")){					
 
-					if ($this->getCfg->getConfig()->get("NoKnockBack-Punishment") == "kick"){
-
-						$event->getEntity()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoKnockBack-Message"));
-
-					}
-
-					if ($this->getCfg->getConfig()->get("NoKnockBack-Punishment") == "log"){
-
-						$this->getCfg->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getEntity()->getName() is hacking NoKnockBack");
-					
-					}
+					$event->getEntity()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("NoKnockBack-Message"));
 
 				}
 
@@ -348,21 +334,11 @@ class EventListener implements Listener{
 
 			//Unkillable Detection
 
-			if ($this->getCfg->getConfig()->get("Unkillable") == "true"){
+			if ($this->getCfg->getConfig()->get("Unkillable")){
 
 				if ($event->getDamage() < $this->getCfg->getConfig()->get("MinDamage")){
 
-					if ($this->getCfg->getConfig()->get("Unkillable-Punishment") == "kick"){
-
-						$event->getEntity()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("Unkillable-Message"));
-
-					}
-
-					if ($this->getCfg->getConfig()->get("Unkillable-Punishment") == "log"){
-
-						$this->getCfg->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] $event->getEntity()->getName() is hacking Unkillable");
-					
-					}
+					$event->getEntity()->kick(TextFormat::BLUE.$this->getCfg->getConfig()->get("Unkillable-Message"));
 
 				}
 

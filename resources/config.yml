@@ -1,16 +1,16 @@
 ---
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||#
-#AntiCheat main configuration file!
+#AntiCheat main configuration file.
 #Current version: 2.5.3
 #What should be blocked?
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||#
 #true = ENABLE
 #false = DISABLE
-#log = Console info logging
+#block = block Hack
 #kick = Player kick
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||#
    Plugin-Version: 2.5.3
-   Config-Version: 3.1.8
+   Config-Version: 3.2.0
 #---------------NoKnockBack---------------#
 #Do you want to enable NoKnockBack Detection?
 
@@ -23,10 +23,6 @@
 #NEVER set this higher than 1.4
 
    MinKnockBack: 0.4
-
-#Which punishment should take place?
-
-   NoKnockBack-Punishment: kick
 
 #Which Message Should be shown if NoKnockBack is detected?
 
@@ -58,10 +54,6 @@
 #NEVER set this higher than 1
 
    MinDamage: 0.1
-
-#Wich Punishment should take place?
-
-   Unkillable-Punishment: kick
 
 #Wich Message Sould be shown if Unkillable is detected?
 
@@ -118,7 +110,7 @@
 
 #Which Punishment should take place?
 
-   NoClip-Punishment: log
+   NoClip-Punishment: block
 
 #Which Message Should be shown if NoClip is detected?
 

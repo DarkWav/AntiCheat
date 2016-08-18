@@ -11,3 +11,5 @@ Step 3: Now Restart your server.
 Step 4: You are now protected against ForceOP! Don´t forget to give the permission "anticheat.op" to your new OPs!
 
 Have Fun with this Tool!
+
+WARNING: THIS MAY CAUSE LAG EVERY 25 SECONDS ON LARGE SERVERS!
