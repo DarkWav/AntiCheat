@@ -31,7 +31,7 @@ class EventListener implements Listener{
 
 	$pos = new Vector3($event->getPlayer()->getX(), $event->getPlayer()->getY(), $event->getPlayer()->getZ());
 
-	$BlockID = $level->getBlock($pos)->getId()
+	$BlockID = $level->getBlock($pos)->getId();
 
 		if ($this->getCfg->getConfig()->get("NoClip") == "true"){
 		
