@@ -8,17 +8,19 @@ use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
 use pocketmine\plugin\PluginDescription;
 use pocketmine\utils\Config;
+use DarkWav\AntiCheat\Tasks\AntiCheatTick;
 
 class AntiCheat extends PluginBase{
 
     public function onEnable(){
 
-	$this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
 	$this->saveDefaultConfig();
+	$this->getServer()->getScheduler()->scheduleRepeatingTask(new AntiCheatTick($this), 500);
+	$this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
 	$this->saveResource("AntiForceOP.txt");
   	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat Activated");
     $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Shield Activated");
-	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.5.2 [Neutron Star]");
+	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.5.3 [Neutron Star]");
 	if($this->getConfig()->get("OneHit") == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiOneHit");}
 	if($this->getConfig()->get("Unkillable") == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiUnkillable");}
 	if($this->getConfig()->get("ForceOP") == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiForceOP");}
@@ -27,13 +29,16 @@ class AntiCheat extends PluginBase{
 	if($this->getConfig()->get("Reach") == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiReach");}
 	if($this->getConfig()->get("NoKnockBack") == "true"){$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiNoKnockBack");}
 
-		if($this->getConfig()->get("Plugin-Version") != "2.5.1" and $this->getConfig()->get("Plugin-Version") != "2.5.0"){
+		if($this->getConfig()->get("Plugin-Version") != "2.5.3" 
+			
+		and $this->getConfig()->get("Plugin-Version") != "2.5.2"
 
-			if($this->getConfig()->get("Plugin-Version") != "2.5.2"){
+		and $this->getConfig()->get("Plugin-Version") != "2.5.1"
 
-				$this->getServer()->getLogger()->critical(TextFormat::BLUE."[AntiCheat] > Your Config is incompatible with this plugin version, please update immediately!");
+		and $this->getConfig()->get("Plugin-Version") != "2.5.0"){
 
-			}
+				$this->getServer()->getLogger()->emergency(TextFormat::BLUE."[AntiCheat] > Your Config is incompatible with this plugin version, please update immediately!");
+				$this->getServer()->shutdown();
 
 		}
 
@@ -58,13 +63,13 @@ class AntiCheat extends PluginBase{
    
 		if ($cmd->getName() == "anticheat"){
           
-			$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.5.2 [Neutron Star] ~ DarkWav (Developer), Pav155 (Config Designer)");
+			$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.5.3 [Neutron Star] ~ DarkWav (Developer), Pav155 (Config Designer)");
 
 		}
 
 		if ($cmd->getName() == "ac"){
 		
-			$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.5.2 [Neutron Star] ~ DarkWav (Developer), Pav155 (Config Designer)");
+			$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.5.3 [Neutron Star] ~ DarkWav (Developer), Pav155 (Config Designer)");
 
 		}
 

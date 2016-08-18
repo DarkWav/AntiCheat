@@ -1,7 +1,7 @@
 ---
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||#
 #AntiCheat main configuration file!
-#Current version: 2.5.2
+#Current version: 2.5.3
 #What should be blocked?
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||#
 #true = ENABLE
@@ -9,7 +9,7 @@
 #log = Console info logging
 #kick = Player kick
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||#
-   Plugin-Version: 2.5.2
+   Plugin-Version: 2.5.3
    Config-Version: 3.1.8
 #---------------NoKnockBack---------------#
 #Do you want to enable NoKnockBack Detection?
