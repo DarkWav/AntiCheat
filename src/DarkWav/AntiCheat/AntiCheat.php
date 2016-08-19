@@ -21,7 +21,7 @@ class AntiCheat extends PluginBase{
 	
   	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat Activated");
     	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Shield Activated");
-	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.5.3 [Neutron Star]");
+	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.5.4 [Neutron Star]");
 	
 	if($this->getConfig()->get("OneHit")) $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiOneHit");
 	if($this->getConfig()->get("Unkillable")) $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiUnkillable");
@@ -31,7 +31,8 @@ class AntiCheat extends PluginBase{
 	if($this->getConfig()->get("Reach")) $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiReach");
 	if($this->getConfig()->get("NoKnockBack")) $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiNoKnockBack");
 
-		if($this->getConfig()->get("Plugin-Version") !== "2.5.3"){
+		if($this->getConfig()->get("Plugin-Version") !== "2.5.3"
+		and $this->getConfig()->get("Plugin-Version") !== "2.5.4"){
 			$this->getServer()->getLogger()->emergency(TextFormat::BLUE."[AntiCheat] > Your Config is incompatible with this plugin version, please update immediately!");
 			$this->getServer()->shutdown();
 		}
@@ -50,7 +51,7 @@ class AntiCheat extends PluginBase{
     
 	public function onCommand(CommandSender $sender, Command $cmd, $label, array $args){
 		if ($cmd->getName() === 'anticheat' || $cmd->getName() === 'ac'){
-			$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.5.3 [Neutron Star] ~ DarkWav (Developer), Pav155 (Config Designer)");
+			$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.5.4 [Neutron Star] ~ DarkWav (Developer)");
 		}
 	}
 

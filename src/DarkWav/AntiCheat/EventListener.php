@@ -25,6 +25,12 @@ class EventListener implements Listener{
 
 	}
 
+	protected function getDistance(Vector3 $pos){
+	
+		return $pos->distance($pos);
+	
+	}
+
 	public function onMove(PlayerMoveEvent $event){
 
 	$level = $event->getPlayer()->getLevel();
@@ -218,6 +224,22 @@ class EventListener implements Listener{
 			and $BlockID != 431
 
 			and $BlockID != 244
+
+			and $BlockID != 113
+
+			and $BlockID != 85
+			
+			and $BlockID != 188
+
+			and $BlockID != 189
+			
+			and $BlockID != 190
+
+			and $BlockID != 191
+			
+			and $BlockID != 192
+
+			and $BlockID != 139
 			
 			and $BlockID != 120){
 
@@ -274,7 +296,7 @@ class EventListener implements Listener{
 
 			if ($this->getCfg->getConfig()->get("Reach")){
 
-				if ($DamagerPosition->distance($EntityPosition) > $this->getCfg->getConfig()->get("MaxRange")){
+				if ($DamagerPosition->getDistance($EntityPosition) > $this->getCfg->getConfig()->get("MaxRange")){
 
 					if ($this->getCfg->getConfig()->get("Reach-Punishment") == "kick"){
 
