@@ -8,52 +8,70 @@ use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
 use pocketmine\utils\Config;
 use DarkWav\AntiCheat\Tasks\AntiCheatTick;
+use pocketmine\event\player\PlayerJoinEvent;
 
-class AntiCheat extends PluginBase{
+class AntiCheat extends PluginBase
+{
+  public $Config;
+  public $Logger;
+  
+  public function onEnable()
+  {
+	  @mkdir($this->getDataFolder());
+	  $this->saveDefaultConfig();
+	  $this->saveResource("AntiForceOP.txt");
+	
+	  $Config = $this->getConfig();
+	  $Logger = $this->getServer()->getLogger();
+		
+	  if($Config->get("ForceOP"))
+	  {
+	    $this->getServer()->getScheduler()->scheduleRepeatingTask(new AntiCheatTick($this), 500);
+	  }  
+	  $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
+	
+  	$Logger->info(TextFormat::BLUE . "[AntiCheat] > AntiCheat Activated"            );
+    $Logger->info(TextFormat::BLUE . "[AntiCheat] > Shield Activated"               );
+	$Logger->info(TextFormat::BLUE . "[AntiCheat] > AntiCheat v2.6.0 [Neutron Star]");
+	
+	  if($Config->get("OneHit"     )) $Logger->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiOneHit"     );
+	  if($Config->get("Unkillable" )) $Logger->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiUnkillable" );
+	  if($Config->get("ForceOP"    )) $Logger->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiForceOP"    );
+	  if($Config->get("NoClip"     )) $Logger->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiNoClip"     );
+	  if($Config->get("Fly"        )) $Logger->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiFly"        );
+	  if($Config->get("Reach"      )) $Logger->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiReach"      );
+	  if($Config->get("NoKnockBack")) $Logger->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiNoKnockBack");
 
-    public function onEnable(){
-	@mkdir($this->getDataFolder());
-	$this->saveDefaultConfig();
-	$this->saveResource("AntiForceOP.txt");
-	
-	if($this->getConfig()->get("ForceOP")) $this->getServer()->getScheduler()->scheduleRepeatingTask(new AntiCheatTick($this), 500);
-	$this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
-	
-  	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat Activated");
-    	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Shield Activated");
-	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.5.4 [Neutron Star]");
-	
-	if($this->getConfig()->get("OneHit")) $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiOneHit");
-	if($this->getConfig()->get("Unkillable")) $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiUnkillable");
-	if($this->getConfig()->get("ForceOP")) $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiForceOP");
-	if($this->getConfig()->get("NoClip")) $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiNoClip");
-	if($this->getConfig()->get("KillAura")) $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiKillAura");
-	if($this->getConfig()->get("Reach")) $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiReach");
-	if($this->getConfig()->get("NoKnockBack")) $this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiNoKnockBack");
-
-		if($this->getConfig()->get("Plugin-Version") !== "2.5.3"
-		and $this->getConfig()->get("Plugin-Version") !== "2.5.4"){
-			$this->getServer()->getLogger()->emergency(TextFormat::BLUE."[AntiCheat] > Your Config is incompatible with this plugin version, please update immediately!");
+		if($Config->get("Plugin-Version") !== "2.6.0")
+		{
+			$Logger->emergency(TextFormat::BLUE."[AntiCheat] > Your Config is incompatible with this plugin version, please update immediately!");
 			$this->getServer()->shutdown();
 		}
 
-		if($this->getConfig()->get("Config-Version") !== "3.2.0"){
-			$this->getServer()->getLogger()->warning(TextFormat::BLUE."[AntiCheat] > Your Config is out of date!");
+		if($Config->get("Config-Version") !== "3.3.0")
+		{
+			$Logger->warning(TextFormat::BLUE."[AntiCheat] > Your Config is out of date!");
 		}
+  }
 
-    }
+  public function onDisable()
+  {
+    $Logger = $this->getServer()->getLogger();
 
-    public function onDisable(){
-    	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > You are no longer protected from cheats!");
-    	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > Shield Deactivated");
-	$this->getServer()->getLogger()->info(TextFormat::BLUE."[AntiCheat] > AntiCheat Deactivated");
-    }
+  	$Logger->info(TextFormat::BLUE."[AntiCheat] > You are no longer protected from cheats!");
+  	$Logger->info(TextFormat::BLUE."[AntiCheat] > Shield Deactivated");
+	$Logger->info(TextFormat::BLUE."[AntiCheat] > AntiCheat Deactivated");
+	$this->getServer()->shutdown();
+  }
     
-	public function onCommand(CommandSender $sender, Command $cmd, $label, array $args){
-		if ($cmd->getName() === 'anticheat' || $cmd->getName() === 'ac'){
-			$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.5.4 [Neutron Star] ~ DarkWav (Developer)");
+	public function onCommand(CommandSender $sender, Command $cmd, $label, array $args)
+	{
+		if ($cmd->getName() === 'anticheat' || $cmd->getName() === 'ac')
+		{
+			$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.6.4 [Neutron Star] ~ DarkWav (Developer)");
 		}
 	}
+
 
 }
 

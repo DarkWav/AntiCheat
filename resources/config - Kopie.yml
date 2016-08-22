@@ -1,7 +1,7 @@
 ---
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||#
 #AntiCheat main configuration file.
-#Current version: 2.6.0
+#Current version: 2.5.4
 #What should be blocked?
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||#
 #true = ENABLE
@@ -59,27 +59,18 @@
 
    Unkillable-Message: "[AntiCheat] > Unkillable is not allowed!"
 
-#-------------------Fly-------------------#
-#Do you want to enable Fly check?
-#This wont have any problems with falling or jumping,
-#even if the player has JumpBoost 2.
+#----------------KillAura-----------------#
+#Do you want to enable advanced KillAura angle check?
 
-   Fly: true
-
-#How many moves may a player be flying before detection?
-#10 Should work fine. (Standard)
-#NEVER set this lower than 2
-#Increase if Fly causes false poitives.
-
-   Fly-Threshold: 10
+   KillAura: true
 
 #Wich Punishment should take place?
 
-   Fly-Punishment: kick
+   KillAura-Punishment: kick
 
-#Wich Message Sould be shown if Fly is detected?
+#Wich Message Sould be shown if KillAura is detected?
 
-   Fly-Message: "[AntiCheat] > Fly is not allowed!"
+   KillAura-Message: "[AntiCheat] > KillAura is not allowed!"
 
 #-----------------Reach-------------------#
 #Do you want to enable Reach check?
