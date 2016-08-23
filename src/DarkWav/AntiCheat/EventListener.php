@@ -29,7 +29,7 @@ class EventListener implements Listener
     $this->PlayerObservers = array();
 	}
 
-	protected function getDistance(Vector3 $pos){
+	public function getDistance(Vector3 $pos){
 	
 		return $pos->distance($pos);
 	
@@ -44,7 +44,7 @@ class EventListener implements Listener
 		{
   		$obs = $this->PlayerObservers['$name'];
   		$obs->Player = $player;
-      $this->PlayerObservers['$name']->PlayerRejoin();
+        $this->PlayerObservers['$name']->PlayerRejoin();
     }
     else
     {

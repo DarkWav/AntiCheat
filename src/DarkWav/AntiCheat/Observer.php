@@ -5,17 +5,19 @@ namespace DarkWav\AntiCheat;
 use pocketmine\utils\TextFormat;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
+use DarkWav\AntiCheat\EventListener;
 
 class Observer
 {
 
   public function __construct($player, AntiCheat $AntiCheat)
   {
-    $this->Player           = $player;
-    $this->PlayerName       = $this->Player->getName();
-    $this->Main             = $AntiCheat;
-    $this->Logger           = $AntiCheat->getServer()->getLogger();
-    $this->PlayerAirCounter = 0;
+    $this->Player              = $player;
+    $this->PlayerName          = $this->Player->getName();
+    $this->Main                = $AntiCheat;
+    $this->Logger              = $AntiCheat->getServer()->getLogger();
+    $this->PlayerAirCounter    = 0;
+	$this->PlayerSpeedCounter  = 0;
   }  
   
   public function PlayerQuit()
@@ -26,13 +28,11 @@ class Observer
   public function PlayerJoin()
   {
     $this->Player->sendMessage(TextFormat::BLUE."[AntiCheat] > $this->PlayerName, I am watching you ...");
-	$this->Logger->debug(TextFormat::BLUE . "[AntiCheat] > $this->PlayerName is now watched...);
   }
   
   public function PlayerRejoin()
   {
-    $this->Player->sendMessage(TextFormat::BLUE."[AntiCheat] > $this->PlayerName, I am is still watching you ...");
-	$this->Logger->debug(TextFormat::BLUE . "[AntiCheat] > $this->PlayerName is still watched...);
+    $this->Player->sendMessage(TextFormat::BLUE."[AntiCheat] > $this->PlayerName, I am still watching you ...");
   }
 
   public function OnMove($event)
@@ -40,19 +40,31 @@ class Observer
     # No Fly
     $YPosOld = $event->getFrom()->getY();
     $YPosNew = $event->getTo()->getY();  
-    
-    $level    = $this->Player->getLevel();
-    $floorpos = new Vector3($this->Player->getX(), $this->Player->getY()-1, $this->Player->getZ());
-    $FloorID  = $level->getBlock($floorpos)->getId();
-	if ($this->Main->getConfig()->get("Fly"))
-    {    
+	$PosOld  = new Vector3($event->getFrom()->getX(), 0, $event->getFrom()->getZ());
+	$PosNew  = new Vector3($event->getTo()->getX(), 0, $event->getTo()->getZ());
+	$level = $this->Player->getLevel();
+    $pos   = new Vector3($this->Player->getX(), $this->Player->getY(), $this->Player->getZ());
+    $BlockID = $level->getBlock($pos)->getId();
 
 	if ($this->Player->getGameMode() !== 1)
 	{
-    if ($FloorID == 0)
+
+	if ($this->Player->isOnGround())
     {
-    	# $this->Player->sendMessage("$this->PlayerName, you are in the air");
-    	# player is in the air 
+        $this->Logger->debug(TextFormat::GREEN . "Player on ground");
+    }
+    else
+    {
+        $this->Logger->debug(TextFormat::RED . "Player is NOT on ground");
+    } 
+
+    if (!$this->Player->isOnGround())
+    {
+
+	if ($this->Main->getConfig()->get("Fly"))
+    {    
+	  if($BlockID != 8 and $BlockID != 9 and $BlockID != 10 and $BlockID != 11)
+	  {
 	    if ($YPosOld > $YPosNew)
 	    {
 	      # Player moves down
@@ -62,9 +74,16 @@ class Observer
 	    {
 	    	# Player moves up or horizontal
 	    	$this->PlayerAirCounter++;
-      }
+		}
+		}
+       }
+	 }
+	 else
+     {
+	   $this->PlayerAirCounter = 0;
+     }
       
-      if ($this->PlayerAirCounter > $this-Main->getCOnfig()->get("Fly-Threshold"))
+      if ($this->PlayerAirCounter > $this->Main->getConfig()->get("Fly-Threshold"))
       {
 	    if ($this->Main->getConfig()->get("Fly-Punishment") == "kick")
         {
@@ -75,27 +94,16 @@ class Observer
         if ($this->Main->getConfig()->get("Fly-Punishment") == "block")
         {
           $event->setCancelled(true);
-      	  $this->Player->sendMessage(TextFormat::BLUE."[AntiCheat] Thought you can Fly?");
-		  $this->Player->sendMessage(TextFormat::BLUE."[AntiCheat] You are no a bird!");
+      	  $this->Player->sendMessage(TextFormat::BLUE."[AntiCheat] You were frozen for Fly!");
         }
       }
-    }
-    else
-    {
-    	$this->PlayerAirCounter = 0;
-    }
-	}
 	}
 
     # No Clip
-    $level = $this->Player->getLevel();
-    $pos   = new Vector3($this->Player->getX(), $this->Player->getY(), $this->Player->getZ());
-    $BlockID = $level->getBlock($pos)->getId();
     if ($this->Main->getConfig()->get("NoClip"))
     {
       //ANTI-FALSE-POSITIVES
       if ($BlockID != 0
-      and $BlockID != 427
       and $BlockID != 30
       and $BlockID != 31
       and $BlockID != 6
@@ -177,13 +185,9 @@ class Observer
       and $BlockID != 120
       and $BlockID != 164
       and $BlockID != 167
-      and $BlockID != 428
       and $BlockID != 171
-      and $BlockID != 429
       and $BlockID != 175
-      and $BlockID != 430
       and $BlockID != 178
-      and $BlockID != 431
       and $BlockID != 244
       and $BlockID != 113
       and $BlockID != 85
@@ -193,6 +197,12 @@ class Observer
       and $BlockID != 191
       and $BlockID != 192
       and $BlockID != 139
+	  and $BlockID != 88
+	  and $BlockID != 193
+      and $BlockID != 194
+      and $BlockID != 195
+      and $BlockID != 196
+	  and $BlockID != 197
       and $BlockID != 120)
       {
         if ($this->Main->getConfig()->get("NoClip-Punishment") == "kick")
@@ -206,8 +216,27 @@ class Observer
           $event->setCancelled(true);
         }
       }
-    }    
-  } 
+    }
+	if ($this->Main->getConfig()->get("Speed"))
+    {
+      if ($PosOld->distance($PosNew) > $this->Main->getConfig()->get("MaxSpeed"))
+        if ($this->Main->getConfig()->get("Speed-Punishment") == "kick")
+        {
+          $event->setCancelled(true);
+		  $this->PlayerSpeedCounter++;
+		  if ($this->PlayerSpeedCounter > $this->Main->getConfig()->get("Speed-Threshold"))
+		  {
+		    $this->PlayerSpeedCounter = 0;
+            $this->Player->kick(TextFormat::BLUE.$this->Main->getConfig()->get("Speed-Message"));
+		  }
+        }
+
+        if ($this->Main->getConfig()->get("Speed-Punishment") == "block")
+        {
+          $event->setCancelled(true);
+        }
+      }
+    }
   public function onDamage($event, $event2)
   {
   $EntityPosition  = new Vector3($event->getEntity()->getX() , $event->getEntity()->getY() , $event->getEntity()->getZ());
@@ -291,7 +320,7 @@ class Observer
 		}
 
 	}
-  }
+  
 }
 
 //////////////////////////////////////////////////////

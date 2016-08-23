@@ -28,7 +28,7 @@
 
    NoKnockBack-Message: "[AntiCheat] > NoKnockBack is not allowed!"
 
-#-----------------OneHit------------------#
+#---------------BadEnchants---------------#
 #Do you want to stop Players from dealing more than 19.9
 #damage to prevent OneHit kills?
 
@@ -42,7 +42,6 @@
 
    OneHit-Message: "[AntiCheat] > OneHit is not allowed!"
 
-#---------------Unkillable----------------#
 #Do you want to enable Unkillable Detection?
 
    Unkillable: true
@@ -61,17 +60,18 @@
 
 #-------------------Fly-------------------#
 #Do you want to enable Fly check?
+#This should block Spider, Jesus and HighJump as well...
 #This wont have any problems with falling or jumping,
 #even if the player has JumpBoost 2.
 
    Fly: true
 
 #How many moves may a player be flying before detection?
-#10 Should work fine. (Standard)
-#NEVER set this lower than 2
+#20 Should work fine. (Standard)
+#NEVER set this lower than 10
 #Increase if Fly causes false poitives.
 
-   Fly-Threshold: 10
+   Fly-Threshold: 20
 
 #Wich Punishment should take place?
 
@@ -80,6 +80,33 @@
 #Wich Message Sould be shown if Fly is detected?
 
    Fly-Message: "[AntiCheat] > Fly is not allowed!"
+
+#-----------------Speed-------------------#
+#Do you want to enable Speed check?
+#This works with falling.
+
+   Speed: true
+
+#How fast may a player be legit?
+#1.5 Should work fine. (Standard)
+#Increase this to 2 if Speed causes false poitives.
+
+   MaxSpeed: 1.5
+
+#Wich Punishment should take place?
+
+   Speed-Punishment: kick
+
+#How many times must a player be hacking before detection?
+#5 Should work fine. (Standard)
+#NEVER set this to 0
+
+   Speed-Threshold: 5
+
+#Wich Message Sould be shown if Spider is detected?
+
+   Speed-Message: "[AntiCheat] > Speed is not allowed!"
+
 
 #-----------------Reach-------------------#
 #Do you want to enable Reach check?

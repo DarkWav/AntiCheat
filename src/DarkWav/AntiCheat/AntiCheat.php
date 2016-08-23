@@ -39,7 +39,11 @@ class AntiCheat extends PluginBase
 	  if($Config->get("ForceOP"    )) $Logger->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiForceOP"    );
 	  if($Config->get("NoClip"     )) $Logger->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiNoClip"     );
 	  if($Config->get("Fly"        )) $Logger->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiFly"        );
+	  if($Config->get("Fly"        )) $Logger->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiHighJump"   );
+	  if($Config->get("Fly"        )) $Logger->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiSpider"     );
+	  if($Config->get("Fly"        )) $Logger->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiJesus"      );
 	  if($Config->get("Reach"      )) $Logger->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiReach"      );
+	  if($Config->get("Speed"      )) $Logger->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiSpeed"      );
 	  if($Config->get("NoKnockBack")) $Logger->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiNoKnockBack");
 
 		if($Config->get("Plugin-Version") !== "2.6.0")
@@ -68,7 +72,7 @@ class AntiCheat extends PluginBase
 	{
 		if ($cmd->getName() === 'anticheat' || $cmd->getName() === 'ac')
 		{
-			$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.6.4 [Neutron Star] ~ DarkWav (Developer)");
+			$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.6.0 [Neutron Star] ~ DarkWav (Developer)");
 		}
 	}
 
