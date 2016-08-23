@@ -63,7 +63,7 @@ class Observer
 
 	if ($this->Main->getConfig()->get("Fly"))
     {    
-	  if($BlockID != 8 and $BlockID != 9 and $BlockID != 10 and $BlockID != 11)
+	  if($BlockID != 8 and $BlockID != 9 and $BlockID != 10 and $BlockID != 11 and $BlockID != 65 and $BlockID != 106)
 	  {
 	    if ($YPosOld > $YPosNew)
 	    {
