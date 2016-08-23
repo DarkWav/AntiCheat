@@ -29,12 +29,6 @@ class EventListener implements Listener
     $this->PlayerObservers = array();
 	}
 
-	public function getDistance(Vector3 $pos){
-	
-		return $pos->distance($pos);
-	
-	}
-
   public function onJoin(PlayerJoinEvent $event)
 	{
 		$player = $event->getPlayer();

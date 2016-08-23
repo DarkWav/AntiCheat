@@ -247,7 +247,7 @@ class Observer
 
 			if ($this->Main->getConfig()->get("Reach")){
 
-				if ($DamagerPosition->getDistance($EntityPosition) > $this->Main->getConfig()->get("MaxRange")){
+				if ($DamagerPosition->distance($EntityPosition) > $this->Main->getConfig()->get("MaxRange")){
 
 					if ($this->Main->getConfig()->get("Reach-Punishment") == "kick"){
 
