@@ -282,6 +282,9 @@ class Observer
       and $BlockID != 195
       and $BlockID != 196
       and $BlockID != 197
+      and $BlockID != 128
+      and $BlockID != 108
+      and $BlockID != 109
       and $BlockID != 120)
       {
         if ($this->Main->getConfig()->get("NoClip-Punishment") == "kick")
