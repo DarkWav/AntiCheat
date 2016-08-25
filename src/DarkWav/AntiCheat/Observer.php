@@ -6,6 +6,7 @@ use pocketmine\utils\TextFormat;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 use DarkWav\AntiCheat\EventListener;
+use pocketmine\entity\Effect;
 
 class Observer
 {
@@ -16,76 +17,154 @@ class Observer
     $this->PlayerName          = $this->Player->getName();
     $this->Main                = $AntiCheat;
     $this->Logger              = $AntiCheat->getServer()->getLogger();
+    $this->Server              = $AntiCheat->getServer();
     $this->PlayerAirCounter    = 0;
-	$this->PlayerSpeedCounter  = 0;
+    $this->PlayerSpeedCounter  = 0;
+
+    #Anti Speed
+    $this->prev_tick  = -1.0;
+    $this->arr_size   = 7;
+    $this->time_array = array_fill(0, $this->arr_size, 0.0);
+    $this->dist_array = array_fill(0, $this->arr_size, 0.0);
+    $this->arr_idx    = 0;
+    $this->time_sum   = 0.0;
+    $this->dist_sum   = 0.0;
   }  
+  
+  public function ResetObserver()
+  {
+    $this->PlayerAirCounter    = 0;
+    $this->PlayerSpeedCounter  = 0;
+    
+    #Reset Anti Speed
+    $this->time_array = array_fill(0, $this->arr_size, 0.0);
+    $this->dist_array = array_fill(0, $this->arr_size, 0.0);
+    $this->arr_idx    = 0;
+    $this->time_sum   = 0.0;
+    $this->dist_sum   = 0.0;
+  }
   
   public function PlayerQuit()
   {
-    $this->Logger->debug(TextFormat::BLUE . "[AntiCheat] > $this->PlayerName is no longer watched...");
+    if ($this->Main->getConfig()->get("I-AM-WATCHING-YOU"))
+    {
+      $this->Logger->debug(TextFormat::BLUE . "[AntiCheat] > $this->PlayerName is no longer watched...");
+    }
   }
 
   public function PlayerJoin()
   {
-    $this->Player->sendMessage(TextFormat::BLUE."[AntiCheat] > $this->PlayerName, I am watching you ...");
+    if ($this->Main->getConfig()->get("I-AM-WATCHING-YOU"))
+    {
+      $this->Player->sendMessage(TextFormat::BLUE."[AntiCheat] > $this->PlayerName, I am watching you ...");
+    }
   }
   
   public function PlayerRejoin()
   {
+    if ($this->Main->getConfig()->get("I-AM-WATCHING-YOU"))
+    {
     $this->Player->sendMessage(TextFormat::BLUE."[AntiCheat] > $this->PlayerName, I am still watching you ...");
+    }
   }
 
   public function OnMove($event)
   {
-    # No Fly
-    $YPosOld = $event->getFrom()->getY();
-    $YPosNew = $event->getTo()->getY();  
-	$PosOld  = new Vector3($event->getFrom()->getX(), 0, $event->getFrom()->getZ());
-	$PosNew  = new Vector3($event->getTo()->getX(), 0, $event->getTo()->getZ());
-	$level = $this->Player->getLevel();
-    $pos   = new Vector3($this->Player->getX(), $this->Player->getY(), $this->Player->getZ());
-    $BlockID = $level->getBlock($pos)->getId();
+    if ($this->Player->getGameMode() == 1 or $this->Player->getGameMode() == 3) return;
 
-	if ($this->Player->getGameMode() !== 1)
-	{
-
-	if ($this->Player->isOnGround())
+    #Anti Speed
+    if ($this->Main->getConfig()->get("Speed"))
     {
-        $this->Logger->debug(TextFormat::GREEN . "Player on ground");
+      $PosOld   = new Vector3($event->getFrom()->getX(), 0.0, $event->getFrom()->getZ());
+      $PosNew   = new Vector3($event->getTo()->getX()  , 0.0, $event->getTo()->getZ()  );
+      $distance = $PosOld->distance($PosNew);
+
+      $tick = (double)$this->Server->getTick(); 
+      $tps  = (double)$this->Server->getTicksPerSecond();
+      if ($tps > 0.0 and $this->prev_tick != -1.0)
+      {
+        $tick_count = (double)($tick - $this->prev_tick);     // server ticks since last move 
+        $delta_t    = (double)($tick_count) / (double)$tps;   // seconds since last move
+
+        if ($delta_t < 2.0)  // "OnMove" message lag is less than 2 second to calculate a new moving speed
+        {    
+          $this->time_sum = $this->time_sum - $this->time_array[$this->arr_idx] + $delta_t;     // ringbuffer time     sum  (remove oldest, add new)
+          $this->dist_sum = $this->dist_sum - $this->dist_array[$this->arr_idx] + $distance;    // ringbuffer distance sum  (remove oldest, add new) 
+          $this->time_array[$this->arr_idx] = $delta_t;       // overwrite oldest delta_t  with the new one
+          $this->dist_array[$this->arr_idx] = $distance;      // overwrite oldest distance with the new one
+        
+          // Update ringbuffer position
+          $this->arr_idx++;
+          if ($this->arr_idx >= $this->arr_size) $this->arr_idx = 0;
+        }
+
+        // calculate speed: distance per time      
+        if ($this->time_sum > 0) $speed = (double)$this->dist_sum / (double)$this->time_sum;
+        else                     $speed = 0.0;
+     
+        if ($speed > 10)
+        {
+          $this->PlayerSpeedCounter += 10;
+        }
+        else
+        {
+          if ($this->PlayerSpeedCounter > 0)
+          { 
+            $this->PlayerSpeedCounter--;
+          }
+        }
+ 
+        if ($this->PlayerSpeedCounter > $this->Main->getConfig()->get("Speed-Threshold") * 10)
+        {
+          if ($this->Main->getConfig()->get("Speed-Punishment") == "kick")
+          {
+            $event->setCancelled(true);
+            $this->ResetObserver();
+            $this->Player->kick(TextFormat::BLUE. $this->Main->getConfig()->get("Speed-Message"));
+            return;
+          }
+          if ($this->Main->getConfig()->get("Speed-Punishment") == "block")
+          {
+            $event->setCancelled(true);
+          }
+        }
+      }
+      $this->prev_tick = $tick;
     }
-    else
-    {
-        $this->Logger->debug(TextFormat::RED . "Player is NOT on ground");
-    } 
 
-    if (!$this->Player->isOnGround())
+    # No Fly
+    if ($this->Main->getConfig()->get("Fly"))
     {
+      $YPosOld = $event->getFrom()->getY();
+      $YPosNew = $event->getTo()->getY();  
+      $level   = $this->Player->getLevel();
+      $pos     = new Vector3($this->Player->getX(), $this->Player->getY(), $this->Player->getZ());
+      $BlockID = $level->getBlock($pos)->getId();
 
-	if ($this->Main->getConfig()->get("Fly"))
-    {    
-	  if($BlockID != 8 and $BlockID != 9 and $BlockID != 10 and $BlockID != 11 and $BlockID != 65 and $BlockID != 106)
-	  {
-	    if ($YPosOld > $YPosNew)
-	    {
-	      # Player moves down
-	      # do nothing: player may be jumping or falling down
-	    }
-	    elseif ($YPosOld <= $YPosNew)
-	    {
-	    	# Player moves up or horizontal
-	    	$this->PlayerAirCounter++;
-		}
-		}
-       }
-	 }
-	 else
-     {
-	   $this->PlayerAirCounter = 0;
-     }
+      if (!$this->Player->isOnGround())
+      {
+        if($BlockID != 8 and $BlockID != 9 and $BlockID != 10 and $BlockID != 11 and $BlockID != 65 and $BlockID != 106)
+        {
+          if ($YPosOld > $YPosNew)
+          {
+            # Player moves down
+            # do nothing: player may be jumping or falling down
+          }
+          elseif ($YPosOld <= $YPosNew)
+          {
+            # Player moves up or horizontal
+            $this->PlayerAirCounter++;
+          }
+        }
+      }
+      else
+      {
+        $this->PlayerAirCounter = 0;
+      }
       
       if ($this->PlayerAirCounter > $this->Main->getConfig()->get("Fly-Threshold"))
       {
-	    if ($this->Main->getConfig()->get("Fly-Punishment") == "kick")
+        if ($this->Main->getConfig()->get("Fly-Punishment") == "kick")
         {
           $event->setCancelled(true);
           $this->Player->kick(TextFormat::BLUE.$this->Main->getConfig()->get("Fly-Message"));
@@ -94,10 +173,10 @@ class Observer
         if ($this->Main->getConfig()->get("Fly-Punishment") == "block")
         {
           $event->setCancelled(true);
-      	  $this->Player->sendMessage(TextFormat::BLUE."[AntiCheat] You were frozen for Fly!");
+          $this->Player->sendMessage(TextFormat::BLUE."[AntiCheat] You were frozen for Fly!");
         }
       }
-	}
+    }
 
     # No Clip
     if ($this->Main->getConfig()->get("NoClip"))
@@ -197,12 +276,12 @@ class Observer
       and $BlockID != 191
       and $BlockID != 192
       and $BlockID != 139
-	  and $BlockID != 88
-	  and $BlockID != 193
+      and $BlockID != 88
+      and $BlockID != 193
       and $BlockID != 194
       and $BlockID != 195
       and $BlockID != 196
-	  and $BlockID != 197
+      and $BlockID != 197
       and $BlockID != 120)
       {
         if ($this->Main->getConfig()->get("NoClip-Punishment") == "kick")
@@ -217,109 +296,91 @@ class Observer
         }
       }
     }
-	if ($this->Main->getConfig()->get("Speed"))
-    {
-      if ($PosOld->distance($PosNew) > $this->Main->getConfig()->get("MaxSpeed"))
-        if ($this->Main->getConfig()->get("Speed-Punishment") == "kick")
-        {
-          $event->setCancelled(true);
-		  $this->PlayerSpeedCounter++;
-		  if ($this->PlayerSpeedCounter > $this->Main->getConfig()->get("Speed-Threshold"))
-		  {
-		    $this->PlayerSpeedCounter = 0;
-            $this->Player->kick(TextFormat::BLUE.$this->Main->getConfig()->get("Speed-Message"));
-		  }
-        }
+  }
 
-        if ($this->Main->getConfig()->get("Speed-Punishment") == "block")
-        {
-          $event->setCancelled(true);
-        }
-      }
-    }
-  public function onDamage($event, $event2)
+  public function OnDamage($event, $event2)
   {
   $EntityPosition  = new Vector3($event->getEntity()->getX() , $event->getEntity()->getY() , $event->getEntity()->getZ());
   $DamagerPosition = new Vector3($event->getDamager()->getX(), $event->getDamager()->getY(), $event->getDamager()->getZ());
     if($event->getDamager() instanceof Player){
 
-			//Reach Check
+      //Reach Check
 
-			if ($this->Main->getConfig()->get("Reach")){
+      if ($this->Main->getConfig()->get("Reach")){
 
-				if ($DamagerPosition->distance($EntityPosition) > $this->Main->getConfig()->get("MaxRange")){
+        if ($DamagerPosition->distance($EntityPosition) > $this->Main->getConfig()->get("MaxRange")){
 
-					if ($this->Main->getConfig()->get("Reach-Punishment") == "kick"){
+          if ($this->Main->getConfig()->get("Reach-Punishment") == "kick"){
 
-						$event->setCancelled(true);
-						$event->getDamager()->kick(TextFormat::BLUE.$this->Main->getConfig()->get("Reach-Message"));
+            $event->setCancelled(true);
+            $event->getDamager()->kick(TextFormat::BLUE.$this->Main->getConfig()->get("Reach-Message"));
 
-					}
+          }
 
-					if ($this->Main->getConfig()->get("Reach-Punishment") == "block"){
+          if ($this->Main->getConfig()->get("Reach-Punishment") == "block"){
 
-						$event->setCancelled(true);
-					
-					}
+            $event->setCancelled(true);
+          
+          }
 
-				}
+        }
 
-			}
+      }
 
-			//OneHit Detection
+      //OneHit Detection
 
-			if ($this->Main->getConfig()->get("OneHit")){
+      if ($this->Main->getConfig()->get("OneHit")){
 
-				if ($event->getDamage() > 19.9) {
+        if ($event->getDamage() > 19.9) {
 
-					if ($this->Main->getConfig()->get("OneHit-Punishment") == "kick"){
+          if ($this->Main->getConfig()->get("OneHit-Punishment") == "kick"){
 
-						$event->setCancelled(true);
-						$event->getDamager()->kick(TextFormat::BLUE.$this->Main->getConfig()->get("OneHit-Message"));
+            $event->setCancelled(true);
+            $event->getDamager()->kick(TextFormat::BLUE.$this->Main->getConfig()->get("OneHit-Message"));
 
-					}
+          }
 
-					if ($this->Main->getConfig()->get("OneHit-Punishment") == "block"){
+          if ($this->Main->getConfig()->get("OneHit-Punishment") == "block"){
 
-						$event->setCancelled(true);
-					
-					}
+            $event->setCancelled(true);
+          
+          }
 
-				}
+        }
 
-			}
+      }
 
-		}
+    }
 
-		if($event->getEntity() instanceof Player){
+    if($event->getEntity() instanceof Player){
 
-			//NoNnockBack Detection
+      //NoNnockBack Detection
 
-			if ($this->Main->getConfig()->get("NoKnockBack")){
+      if ($this->Main->getConfig()->get("NoKnockBack")){
 
-				if ($event->getKnockBack() < $this->Main->getConfig()->get("MinKnockBack")){					
+        if ($event->getKnockBack() < $this->Main->getConfig()->get("MinKnockBack")){          
 
-					$event->getEntity()->kick(TextFormat::BLUE.$this->Main->getConfig()->get("NoKnockBack-Message"));
+          $event->getEntity()->kick(TextFormat::BLUE.$this->Main->getConfig()->get("NoKnockBack-Message"));
 
-				}
+        }
 
-			}
+      }
 
-			//Unkillable Detection
+      //Unkillable Detection
 
-			if ($this->Main->getConfig()->get("Unkillable")){
+      if ($this->Main->getConfig()->get("Unkillable")){
 
-				if ($event->getDamage() < $this->Main->getConfig()->get("MinDamage")){
+        if ($event->getDamage() < $this->Main->getConfig()->get("MinDamage")){
 
-					$event->getEntity()->kick(TextFormat::BLUE.$this->Main->getConfig()->get("Unkillable-Message"));
+          $event->getEntity()->kick(TextFormat::BLUE.$this->Main->getConfig()->get("Unkillable-Message"));
 
-				}
+        }
 
-			}
+      }
 
-		}
+    }
 
-	}
+  }
   
 }
 

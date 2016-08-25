@@ -1,7 +1,7 @@
 ---
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||#
 #AntiCheat main configuration file.
-#Current version: 2.6.0
+#Current version: 2.6.1
 #What should be blocked?
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||#
 #true = ENABLE
@@ -9,8 +9,10 @@
 #block = block Hack
 #kick = Player kick
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||#
-   Plugin-Version: 2.6.0
-   Config-Version: 3.3.0
+   Plugin-Version: 2.6.1
+   Config-Version: 3.3.1
+#Enables i am waching you message
+   I-AM-WATCHING-YOU: true
 #---------------NoKnockBack---------------#
 #Do you want to enable NoKnockBack Detection?
 
@@ -86,12 +88,6 @@
 #This works with falling.
 
    Speed: true
-
-#How fast may a player be legit?
-#1.5 Should work fine. (Standard)
-#Increase this to 2 if Speed causes false poitives.
-
-   MaxSpeed: 1.5
 
 #Wich Punishment should take place?
 

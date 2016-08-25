@@ -10,10 +10,11 @@ use pocketmine\utils\Config;
 use pocketmine\permission\Permission;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
+use pocketmine\event\entity\EntityRegainHealthEvent;
+use pocketmine\event\entity\Effect;
 use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerQuitEvent;
-
 use pocketmine\math\Vector3;
 use DarkWav\AntiCheat\AntiCheat;
 use DarkWav\AntiCheat\Observer;
@@ -34,17 +35,17 @@ class EventListener implements Listener
 		$player = $event->getPlayer();
 		$name   = $player->getName();
 		
-		if (array_key_exists('$name', $this->PlayerObservers))
+		if (array_key_exists($name, $this->PlayerObservers))
 		{
-  		$obs = $this->PlayerObservers['$name'];
+  		$obs = $this->PlayerObservers[$name];
   		$obs->Player = $player;
-        $this->PlayerObservers['$name']->PlayerRejoin();
+      $this->PlayerObservers[$name]->PlayerRejoin();
     }
     else
     {
   		$obs = new Observer($player, $this->Main);
-	  	$this->PlayerObservers['$name'] = $obs;
-	  	$this->PlayerObservers['$name']->PlayerJoin();
+	  	$this->PlayerObservers[$name] = $obs;
+	  	$this->PlayerObservers[$name]->PlayerJoin();
 	  } 	
   }
   
@@ -53,20 +54,20 @@ class EventListener implements Listener
 		$player = $event->getPlayer();
 		$name   = $player->getName();
 
-  	$this->PlayerObservers['$name']->PlayerQuit();
+  	$this->PlayerObservers[$name]->PlayerQuit();
   }
 
 	public function onMove(PlayerMoveEvent $event)
 	{
     $name = $event->getPlayer()->getName();
-    $this->PlayerObservers['$name']->OnMove($event);
+    $this->PlayerObservers[$name]->OnMove($event);
 	}
 
 	public function onDamage(EntityDamageByEntityEvent $event, EntityDamageEvent $event2)
 	{
-	$name  = $event->getEntity()->getName();
-	$name2 = $event->getDamager()->getName();
-    $this->PlayerObservers['$name']->onDamage($event, $event2);
+	  $name  = $event->getEntity()->getName();
+	  $name2 = $event->getDamager()->getName();
+    $this->PlayerObservers[$name]->OnDamage($event, $event2);
 	}
  }
 

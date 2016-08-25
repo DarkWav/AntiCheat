@@ -32,7 +32,7 @@ class AntiCheat extends PluginBase
 	
   	$Logger->info(TextFormat::BLUE . "[AntiCheat] > AntiCheat Activated"            );
     $Logger->info(TextFormat::BLUE . "[AntiCheat] > Shield Activated"               );
-	$Logger->info(TextFormat::BLUE . "[AntiCheat] > AntiCheat v2.6.0 [Neutron Star]");
+	$Logger->info(TextFormat::BLUE . "[AntiCheat] > AntiCheat v2.6.1 [Neutron Star]");
 	
 	  if($Config->get("OneHit"     )) $Logger->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiOneHit"     );
 	  if($Config->get("Unkillable" )) $Logger->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiUnkillable" );
@@ -46,13 +46,13 @@ class AntiCheat extends PluginBase
 	  if($Config->get("Speed"      )) $Logger->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiSpeed"      );
 	  if($Config->get("NoKnockBack")) $Logger->info(TextFormat::BLUE."[AntiCheat] > Enabling AntiNoKnockBack");
 
-		if($Config->get("Plugin-Version") !== "2.6.0")
+		if($Config->get("Plugin-Version") !== "2.6.1")
 		{
 			$Logger->emergency(TextFormat::BLUE."[AntiCheat] > Your Config is incompatible with this plugin version, please update immediately!");
 			$this->getServer()->shutdown();
 		}
 
-		if($Config->get("Config-Version") !== "3.3.0")
+		if($Config->get("Config-Version") !== "3.3.1")
 		{
 			$Logger->warning(TextFormat::BLUE."[AntiCheat] > Your Config is out of date!");
 		}
@@ -72,7 +72,7 @@ class AntiCheat extends PluginBase
 	{
 		if ($cmd->getName() === 'anticheat' || $cmd->getName() === 'ac')
 		{
-			$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.6.0 [Neutron Star] ~ DarkWav (Developer)");
+			$sender->sendMessage(TextFormat::BLUE."[AntiCheat] > AntiCheat v2.6.1 [Neutron Star] ~ DarkWav");
 		}
 	}
 
