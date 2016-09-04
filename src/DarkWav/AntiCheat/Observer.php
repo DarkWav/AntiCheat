@@ -18,30 +18,68 @@ class Observer
     $this->Main                = $AntiCheat;
     $this->Logger              = $AntiCheat->getServer()->getLogger();
     $this->Server              = $AntiCheat->getServer();
+    $this->JoinCounter         = 0;
+
     $this->PlayerAirCounter    = 0;
     $this->PlayerSpeedCounter  = 0;
+    $this->PlayerGlideCounter  = 0;
 
-    #Anti Speed
-    $this->prev_tick  = -1.0;
-    $this->arr_size   = 7;
-    $this->time_array = array_fill(0, $this->arr_size, 0.0);
-    $this->dist_array = array_fill(0, $this->arr_size, 0.0);
-    $this->arr_idx    = 0;
-    $this->time_sum   = 0.0;
-    $this->dist_sum   = 0.0;
+    $this->prev_tick    = -1.0;
+    
+    $this->x_arr_size   = 7;
+    $this->x_arr_idx    = 0;
+    $this->x_time_array = array_fill(0, $this->x_arr_size, 0.0);
+    $this->x_dist_array = array_fill(0, $this->x_arr_size, 0.0);
+    $this->x_time_sum   = 0.0;
+    $this->x_distance   = 0.0;
+    $this->x_dist_sum   = 0.0;
+    $this->x_speed      = 0.0;
+    
+    $this->y_arr_size   = 10;
+    $this->y_arr_idx    = 0;
+    $this->y_time_array = array_fill(0, $this->y_arr_size, 0.0);
+    $this->y_dist_array = array_fill(0, $this->y_arr_size, 0.0);
+    $this->y_time_sum   = 0.0;
+    $this->y_distance   = 0.0;
+    $this->y_dist_sum   = 0.0;
+    $this->y_speed      = 0.0;
+    
+    $this->x_pos_old    = new Vector3(0.0, 0.0, 0.0);
+    $this->x_pos_new    = new Vector3(0.0, 0.0, 0.0);
+    $this->y_pos_old    = 0.0;
+    $this->y_pos_new    = 0.0;
   }  
   
   public function ResetObserver()
   {
     $this->PlayerAirCounter    = 0;
     $this->PlayerSpeedCounter  = 0;
+    $this->PlayerGlideCounter  = 0;
     
-    #Reset Anti Speed
-    $this->time_array = array_fill(0, $this->arr_size, 0.0);
-    $this->dist_array = array_fill(0, $this->arr_size, 0.0);
-    $this->arr_idx    = 0;
-    $this->time_sum   = 0.0;
-    $this->dist_sum   = 0.0;
+    $this->prev_tick     = -1.0;
+    
+    $this->x_arr_size   = 7;
+    $this->x_arr_idx    = 0;
+    $this->x_time_array = array_fill(0, $this->x_arr_size, 0.0);
+    $this->x_dist_array = array_fill(0, $this->x_arr_size, 0.0);
+    $this->x_time_sum   = 0.0;
+    $this->x_distance   = 0.0;
+    $this->x_dist_sum   = 0.0;
+    $this->x_speed      = 0.0;
+    
+    $this->y_arr_size   = 10;
+    $this->y_arr_idx    = 0;
+    $this->y_time_array = array_fill(0, $this->y_arr_size, 0.0);
+    $this->y_dist_array = array_fill(0, $this->y_arr_size, 0.0);
+    $this->y_time_sum   = 0.0;
+    $this->y_distance   = 0.0;
+    $this->y_dist_sum   = 0.0;
+    $this->y_speed      = 0.0;
+
+    $this->x_pos_old    = new Vector3(0.0, 0.0, 0.0);
+    $this->x_pos_new    = new Vector3(0.0, 0.0, 0.0);    
+    $this->y_pos_old    = 0.0;
+    $this->y_pos_new    = 0.0;    
   }
   
   public function PlayerQuit()
@@ -54,6 +92,7 @@ class Observer
 
   public function PlayerJoin()
   {
+    $this->JoinCounter++;
     if ($this->Main->getConfig()->get("I-AM-WATCHING-YOU"))
     {
       $this->Player->sendMessage(TextFormat::BLUE."[AntiCheat] > $this->PlayerName, I am watching you ...");
@@ -62,9 +101,11 @@ class Observer
   
   public function PlayerRejoin()
   {
+    $this->JoinCounter++;
     if ($this->Main->getConfig()->get("I-AM-WATCHING-YOU"))
     {
-    $this->Player->sendMessage(TextFormat::BLUE."[AntiCheat] > $this->PlayerName, I am still watching you ...");
+      $this->Player->sendMessage(TextFormat::BLUE."[AntiCheat] > $this->PlayerName, I am still watching you ...");
+      $this->Logger->debug      (TextFormat::BLUE."[AntiCheat] > $this->PlayerName joined this server $this->JoinCounter times since server start");
     }
   }
 
@@ -72,15 +113,20 @@ class Observer
   {
     if ($this->Player->getGameMode() == 1 or $this->Player->getGameMode() == 3) return;
 
-    #Anti Speed
-    if ($this->Main->getConfig()->get("Speed"))
+    #Anti Speed & Anti Fly
+    if ($this->Main->getConfig()->get("Speed") or $this->Main->getConfig()->get("Fly"))
     {
-      $PosOld   = new Vector3($event->getFrom()->getX(), 0.0, $event->getFrom()->getZ());
-      $PosNew   = new Vector3($event->getTo()->getX()  , 0.0, $event->getTo()->getZ()  );
-      $distance = $PosOld->distance($PosNew);
+      $this->x_pos_old = new Vector3($event->getFrom()->getX(), 0.0, $event->getFrom()->getZ());
+      $this->x_pos_new = new Vector3($event->getTo()->getX()  , 0.0, $event->getTo()->getZ()  );
+      $this->x_distance = $this->x_pos_old->distance($this->x_pos_new);
+
+      $this->y_pos_old  = $event->getFrom()->getY();
+      $this->y_pos_new  = $event->getTo()->getY();  
+      $this->y_distance  = $this->y_pos_old - $this->y_pos_new;
 
       $tick = (double)$this->Server->getTick(); 
       $tps  = (double)$this->Server->getTicksPerSecond();
+
       if ($tps > 0.0 and $this->prev_tick != -1.0)
       {
         $tick_count = (double)($tick - $this->prev_tick);     // server ticks since last move 
@@ -88,78 +134,114 @@ class Observer
 
         if ($delta_t < 2.0)  // "OnMove" message lag is less than 2 second to calculate a new moving speed
         {    
-          $this->time_sum = $this->time_sum - $this->time_array[$this->arr_idx] + $delta_t;     // ringbuffer time     sum  (remove oldest, add new)
-          $this->dist_sum = $this->dist_sum - $this->dist_array[$this->arr_idx] + $distance;    // ringbuffer distance sum  (remove oldest, add new) 
-          $this->time_array[$this->arr_idx] = $delta_t;       // overwrite oldest delta_t  with the new one
-          $this->dist_array[$this->arr_idx] = $distance;      // overwrite oldest distance with the new one
-        
-          // Update ringbuffer position
-          $this->arr_idx++;
-          if ($this->arr_idx >= $this->arr_size) $this->arr_idx = 0;
+          $this->x_time_sum = $this->x_time_sum - $this->x_time_array[$this->x_arr_idx] + $delta_t;             // ringbuffer time     sum  (remove oldest, add new)
+          $this->x_dist_sum = $this->x_dist_sum - $this->x_dist_array[$this->x_arr_idx] + $this->x_distance;    // ringbuffer distance sum  (remove oldest, add new) 
+          $this->x_time_array[$this->x_arr_idx] = $delta_t;                                                     // overwrite oldest delta_t  with the new one
+          $this->x_dist_array[$this->x_arr_idx] = $this->x_distance;                                            // overwrite oldest distance with the new one          
+          $this->x_arr_idx++;                                                                                   // Update ringbuffer position
+          if ($this->x_arr_idx >= $this->x_arr_size) $this->x_arr_idx = 0;          
+          
+          $this->y_time_sum = $this->y_time_sum - $this->y_time_array[$this->y_arr_idx] + $delta_t;             // ringbuffer time     sum  (remove oldest, add new)
+          $this->y_dist_sum = $this->y_dist_sum - $this->y_dist_array[$this->y_arr_idx] + $this->y_distance;    // ringbuffer distance sum  (remove oldest, add new) 
+          $this->y_time_array[$this->y_arr_idx] = $delta_t;                                                      // overwrite oldest delta_t  with the new one
+          $this->y_dist_array[$this->y_arr_idx] = $this->y_distance;                                             // overwrite oldest distance with the new one          
+          $this->y_arr_idx++;                                                                                    // Update ringbuffer position
+          if ($this->y_arr_idx >= $this->y_arr_size) $this->y_arr_idx = 0;
         }
 
         // calculate speed: distance per time      
-        if ($this->time_sum > 0) $speed = (double)$this->dist_sum / (double)$this->time_sum;
-        else                     $speed = 0.0;
+        if ($this->x_time_sum > 0) $this->x_speed = (double)$this->x_dist_sum / (double)$this->x_time_sum;
+        else                       $this->x_speed = 0.0;
+        
+        // calculate speed: distance per time      
+        if ($this->y_time_sum > 0) $this->y_speed = (double)$this->y_dist_sum / (double)$this->y_time_sum;
+        else                       $this->y_speed = 0.0;
      
-        if ($speed > 10)
+        # speed only part
+        if ($this->Main->getConfig()->get("Speed"))
         {
-          $this->PlayerSpeedCounter += 10;
-        }
-        else
-        {
-          if ($this->PlayerSpeedCounter > 0)
-          { 
-            $this->PlayerSpeedCounter--;
-          }
-        }
- 
-        if ($this->PlayerSpeedCounter > $this->Main->getConfig()->get("Speed-Threshold") * 10)
-        {
-          if ($this->Main->getConfig()->get("Speed-Punishment") == "kick")
+          if ($this->x_speed > 10)
           {
-            $event->setCancelled(true);
-            $this->ResetObserver();
-            $this->Player->kick(TextFormat::BLUE. $this->Main->getConfig()->get("Speed-Message"));
-            return;
+            $this->PlayerSpeedCounter += 10;
           }
-          if ($this->Main->getConfig()->get("Speed-Punishment") == "block")
+          else
           {
-            $event->setCancelled(true);
+            if ($this->PlayerSpeedCounter > 0)
+            { 
+              $this->PlayerSpeedCounter--;
+            }
           }
+   
+          if ($this->PlayerSpeedCounter > $this->Main->getConfig()->get("Speed-Threshold") * 10)
+          {
+            if ($this->Main->getConfig()->get("Speed-Punishment") == "kick")
+            {
+              $event->setCancelled(true);
+              $this->ResetObserver();
+              $this->Player->kick(TextFormat::BLUE. $this->Main->getConfig()->get("Speed-Message"));
+              return;
+            }
+            if ($this->Main->getConfig()->get("Speed-Punishment") == "block")
+            {
+              $event->setCancelled(true);
+            }
+          }  
         }
+        
       }
       $this->prev_tick = $tick;
     }
 
-    # No Fly
+    # No Fly and No Glide
     if ($this->Main->getConfig()->get("Fly"))
     {
-      $YPosOld = $event->getFrom()->getY();
-      $YPosNew = $event->getTo()->getY();  
       $level   = $this->Player->getLevel();
       $pos     = new Vector3($this->Player->getX(), $this->Player->getY(), $this->Player->getZ());
       $BlockID = $level->getBlock($pos)->getId();
 
       if (!$this->Player->isOnGround())
       {
-        if($BlockID != 8 and $BlockID != 9 and $BlockID != 10 and $BlockID != 11 and $BlockID != 65 and $BlockID != 106)
+        if($BlockID != 8 and $BlockID != 9 and $BlockID != 10 and $BlockID != 11 and $BlockID != 65 and $BlockID != 106 and $BlockID != 30)
         {
-          if ($YPosOld > $YPosNew)
+          #if ($delta_t > 0) $y_raw_speed = $this->y_distance / $delta_t;
+          #else              $y_raw_speed = 0.0;
+          
+          if ($this->y_pos_old > $this->y_pos_new)
           {
-            # Player moves down
-            # do nothing: player may be jumping or falling down
+            $this->PlayerGlideCounter++;
+            # Player moves down. Check Glide Hack
           }
-          elseif ($YPosOld <= $YPosNew)
+          elseif ($this->y_pos_old <= $this->y_pos_new)
           {
             # Player moves up or horizontal
             $this->PlayerAirCounter++;
+            if ($this->PlayerGlideCounter > 0)
+            {
+              $this->PlayerGlideCounter--;
+            }   
           }
         }
       }
       else
       {
-        $this->PlayerAirCounter = 0;
+        $this->PlayerAirCounter   = 0;
+        $this->PlayerGlideCounter = 0;
+      }
+      
+      if ($this->PlayerGlideCounter > 25 && $this->y_speed < 20)
+      {  
+        if ($this->Main->getConfig()->get("Glide-Punishment") == "kick")
+        {
+          $this->ResetObserver();
+          $event->setCancelled(true);
+          $this->Player->kick(TextFormat::BLUE.$this->Main->getConfig()->get("Glide-Message"));
+        }
+
+        if ($this->Main->getConfig()->get("Glide-Punishment") == "block")
+        {
+          $event->setCancelled(true);
+          $this->Player->sendMessage(TextFormat::BLUE."[AntiCheat] You were frozen for Glide!");
+        }
       }
       
       if ($this->PlayerAirCounter > $this->Main->getConfig()->get("Fly-Threshold"))
@@ -167,6 +249,7 @@ class Observer
         if ($this->Main->getConfig()->get("Fly-Punishment") == "kick")
         {
           $event->setCancelled(true);
+          $this->ResetObserver();
           $this->Player->kick(TextFormat::BLUE.$this->Main->getConfig()->get("Fly-Message"));
         }
 
@@ -317,7 +400,6 @@ class Observer
 
             $event->setCancelled(true);
             $event->getDamager()->kick(TextFormat::BLUE.$this->Main->getConfig()->get("Reach-Message"));
-
           }
 
           if ($this->Main->getConfig()->get("Reach-Punishment") == "block"){

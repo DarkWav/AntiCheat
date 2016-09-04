@@ -9,8 +9,8 @@
 #block = block Hack
 #kick = Player kick
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||#
-   Plugin-Version: 2.6.1
-   Config-Version: 3.3.1
+   Plugin-Version: 2.6.2
+   Config-Version: 3.3.2
 #Enables i am waching you message
    I-AM-WATCHING-YOU: true
 #---------------NoKnockBack---------------#
@@ -60,8 +60,8 @@
 
    Unkillable-Message: "[AntiCheat] > Unkillable is not allowed!"
 
-#-------------------Fly-------------------#
-#Do you want to enable Fly check?
+#----------------Fly/Glide----------------#
+#Do you want to enable Fly and Glide check?
 #This should block Spider, Jesus and HighJump as well...
 #This wont have any problems with falling or jumping,
 #even if the player has JumpBoost 2.
@@ -75,13 +75,21 @@
 
    Fly-Threshold: 20
 
-#Wich Punishment should take place?
+#Wich Punishment should take place if Fly is detected?
 
    Fly-Punishment: kick
 
 #Wich Message Sould be shown if Fly is detected?
 
    Fly-Message: "[AntiCheat] > Fly is not allowed!"
+
+#Wich Punishment should take place if Glide is detected?
+
+   Glide-Punishment: kick
+
+#Wich Message Sould be shown if Fly is detected?
+
+   Glide-Message: "[AntiCheat] > Glide is not allowed!"
 
 #-----------------Speed-------------------#
 #Do you want to enable Speed check?
@@ -102,7 +110,6 @@
 #Wich Message Sould be shown if Spider is detected?
 
    Speed-Message: "[AntiCheat] > Speed is not allowed!"
-
 
 #-----------------Reach-------------------#
 #Do you want to enable Reach check?

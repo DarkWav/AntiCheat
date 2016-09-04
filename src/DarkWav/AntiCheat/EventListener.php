@@ -54,7 +54,14 @@ class EventListener implements Listener
 		$player = $event->getPlayer();
 		$name   = $player->getName();
 
-  	$this->PlayerObservers[$name]->PlayerQuit();
+    if (!empty($player) and !empty($name))
+    {
+      $observer = $this->PlayerObservers[$name];
+      if (!empty($observer))
+      {
+        $observer->PlayerQuit();
+      }   
+    }
   }
 
 	public function onMove(PlayerMoveEvent $event)
