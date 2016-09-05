@@ -1,4 +1,4 @@
-# AntiCheat License 2.0
+# AntiCheat License 2.0 (ACLv2)
 
 You are free to:
 
