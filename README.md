@@ -2,7 +2,7 @@
 
 ## The GitHub repo for my AntiCheat plugin.
 
-## Find The Wiki [Here](https://github.com/DarkWav/AntiCheat/wiki).
+## Find The Wiki and Phar Downloads [Here](https://github.com/DarkWav/AntiCheat/wiki).
 
 # Features:<br>
 ## AntiReach<br>AntiFly<br>AntiSpeed<br>AntiJesus<br>AntiGlide<br>AntiNoKnockBack<br>AntiBadEnchants<br>AntiForceOP<br>AntiNoClip<br>
