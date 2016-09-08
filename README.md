@@ -4,7 +4,7 @@
 
 ## Find The Wiki and Phar Downloads [Here](https://github.com/DarkWav/AntiCheat/wiki).
 
-## [Issues/Help/Support](https://github.com/DarkWav/AntiCheat/issues)<br>
+## [Issues/Help/Support](https://github.com/DarkWav/AntiCheat/issues)
 
 # Features:<br>
 ## AntiReach<br>AntiFly<br>AntiSpeed<br>AntiJesus<br>AntiGlide<br>AntiNoKnockBack<br>AntiBadEnchants<br>AntiForceOP<br>AntiNoClip<br>
