@@ -1,6 +1,6 @@
 # AntiCheat
 
-## The GitHub repo for my AntiCheat plugin for PocketMine-MP and Forks.
+## An AntiCheat plugin for PocketMine-MP and Forks.
 
 ## Find The Wiki and Phar Downloads [Here](https://github.com/DarkWav/AntiCheat/wiki).
 
