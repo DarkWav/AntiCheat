@@ -264,6 +264,9 @@ class Observer
     # No Clip
     if ($this->Main->getConfig()->get("NoClip"))
     {
+      $level   = $this->Player->getLevel();
+      $pos     = new Vector3($this->Player->getX(), $this->Player->getY(), $this->Player->getZ());
+      $BlockID = $level->getBlock($pos)->getId();
       //ANTI-FALSE-POSITIVES
       if ($BlockID != 0
       and $BlockID != 30
