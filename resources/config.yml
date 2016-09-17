@@ -11,7 +11,7 @@
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||#
    Plugin-Version: 2.6.3
    Config-Version: 3.3.2
-#Enables i am waching you message
+#Enables "I am watching you" message
    I-AM-WATCHING-YOU: true
 #---------------NoKnockBack---------------#
 #Do you want to enable NoKnockBack Detection?
@@ -31,16 +31,16 @@
    NoKnockBack-Message: "[AntiCheat] > NoKnockBack is not allowed!"
 
 #---------------BadEnchants---------------#
-#Do you want to stop Players from dealing more than 19.9
+#Do you want to stop players from dealing more than 19.9
 #damage to prevent OneHit kills?
 
    OneHit: false
 
-#Which Punishment should take place?
+#Which punishment should take place?
 
    OneHit-Punishment: kick
 
-#Which Message Sould be shown if OneHit is detected?
+#Which message should be shown if OneHit is detected?
 
    OneHit-Message: "[AntiCheat] > OneHit is not allowed!"
 
@@ -56,7 +56,7 @@
 
    MinDamage: 0.1
 
-#Wich Message Sould be shown if Unkillable is detected?
+#Which message should be shown if Unkillable is detected?
 
    Unkillable-Message: "[AntiCheat] > Unkillable is not allowed!"
 
@@ -75,19 +75,19 @@
 
    Fly-Threshold: 20
 
-#Wich Punishment should take place if Fly is detected?
+#Which punishment should take place if Fly is detected?
 
    Fly-Punishment: kick
 
-#Wich Message Sould be shown if Fly is detected?
+#Which message should be shown if Fly is detected?
 
    Fly-Message: "[AntiCheat] > Fly is not allowed!"
 
-#Wich Punishment should take place if Glide is detected?
+#Which punishment should take place if Glide is detected?
 
    Glide-Punishment: kick
 
-#Wich Message Sould be shown if Fly is detected?
+#Which message should be shown if Fly is detected?
 
    Glide-Message: "[AntiCheat] > Glide is not allowed!"
 
@@ -97,7 +97,7 @@
 
    Speed: true
 
-#Wich Punishment should take place?
+#Which punishment should take place?
 
    Speed-Punishment: kick
 
@@ -107,7 +107,7 @@
 
    Speed-Threshold: 5
 
-#Wich Message Sould be shown if Spider is detected?
+#Which message should be shown if Spider is detected?
 
    Speed-Message: "[AntiCheat] > Speed is not allowed!"
 
@@ -124,11 +124,11 @@
 
    MaxRange: 3.9
 
-#Wich Punishment should take place?
+#Which punishment should take place?
 
    Reach-Punishment: kick
 
-#Wich Message Sould be shown if Reach is detected?
+#Which message should be shown if Reach is detected?
 
    Reach-Message: "[AntiCheat] > Reach is not allowed!"
 
@@ -140,18 +140,18 @@
 
 #-----------------NoClip------------------#
 #Do you want to enable NoClip Detection?
-#This prevents players form glitching though blocks.
+#This prevents players from glitching though blocks.
 #This is still W.I.P and may cause false positives.
 #Disable this if you want.
-#If this caueses crashes, please report it to the Author!
+#If this causes crashes, please report it to the author!
 
    NoClip: true
 
-#Which Punishment should take place?
+#Which punishment should take place?
 
    NoClip-Punishment: block
 
-#Which Message Should be shown if NoClip is detected?
+#Which message should be shown if NoClip is detected?
 
    NoClip-Message: "[AntiCheat] > NoClip is not allowed!"
 
