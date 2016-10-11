@@ -3,7 +3,7 @@
 ## An AntiCheat plugin for PocketMine-MP and Forks.
 ## This Plugin is inactive.
 
-# 0.15.7 only. - [Visit VAC (VoidAntiCheat) for 0.15.9/0.16.0 support.](https://github.com/DarkWav/VAC)
+# 0.15.7 only. - [Visit VAC (VoidAntiCheat) for 0.15/16.X support.](https://github.com/DarkWav/VAC)
 
 ## Find The Wiki and Phar Downloads [Here](https://github.com/DarkWav/AntiCheat/wiki).
 
